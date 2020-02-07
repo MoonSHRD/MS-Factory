@@ -6,7 +6,7 @@ contract KNS {
     Events
 */
 
-event LostedKey(string indexed tel, string indexed Jid);
+event LostedKey(string indexed tel, string indexed Jid, address indexed new_wallet);
 
 /*
     Constants
@@ -47,11 +47,11 @@ function Register(address owner, address wallet, string memory Jid, string memor
 
 }
 
-function LostKey(string memory Jid) public {
+function LostKey(string memory Jid, address new_wallet) public {
 
     Info memory info;
     info = Registry[Jid];
-    emit LostedKey(info.tel,Jid);
+    emit LostedKey(info.tel,Jid,new_wallet);
 
 }
 
