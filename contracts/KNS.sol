@@ -20,7 +20,8 @@ event LostedKey(string indexed tel, string indexed Jid, address indexed new_wall
 mapping (string => Info) public Registry;
 
 struct Info {
-        address owner;
+       // address[] owners;
+        address prime_owner;
         address wallet;
         string tel;
     }
@@ -36,10 +37,10 @@ struct Info {
     Public functions
 */
 
-function Register(address owner, address wallet, string memory Jid, string memory tel) public {
+function Register(address prime_owner, address wallet, string memory Jid, string memory tel) public {
 
     Info memory info;
-    info.owner = owner;
+    info.prime_owner = prime_owner;
     info.wallet = wallet;
     info.tel = tel;
 
