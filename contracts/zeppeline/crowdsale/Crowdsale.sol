@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.6.1;
 
 import "../GSN/Context.sol";
 import "../token/ERC20/IERC20.sol";
@@ -70,7 +70,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * of 2300, which is not enough to call buyTokens. Consider calling
      * buyTokens directly when purchasing tokens from a contract.
      */
-    function () external payable {
+    fallback() external payable {
         buyTokens(_msgSender());
     }
 
