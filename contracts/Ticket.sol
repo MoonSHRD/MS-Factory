@@ -2,13 +2,13 @@ pragma solidity ^0.6.1;
 
 import './zeppeline/token/ERC20/ERC20Mintable.sol';
 
-
+// Ticket is ERC20 token with zero decimals and availability to reedem tickets
 
 
 
 contract Ticket is ERC20Mintable {
     string private _name;
-    string private _symbol;
+  //  string private _symbol;
     uint8 private _decimals;
 
     /**
@@ -16,10 +16,12 @@ contract Ticket is ERC20Mintable {
      * these values are immutable: they can only be set once during
      * construction.
      */
-    constructor (string memory name, string memory symbol, uint8 decimals) public {
+    constructor (string memory name, uint8 decimals) public {
         _name = name;
-        _symbol = symbol;
+     //   _symbol = symbol;
         _decimals = decimals;
+       // addMinter(orginizer);
+        addMinter(msg.sender());
     }
 
     /**
@@ -32,10 +34,10 @@ contract Ticket is ERC20Mintable {
     /**
      * @dev Returns the symbol of the token, usually a shorter version of the
      * name.
-     */
     function symbol() public view returns (string memory) {
         return _symbol;
     }
+    **/
 
     /**
      * @dev Returns the number of decimals used to get its user representation.
@@ -52,10 +54,5 @@ contract Ticket is ERC20Mintable {
     function decimals() public view returns (uint8) {
         return _decimals;
     }
-
-
-
-
-
 
 }
