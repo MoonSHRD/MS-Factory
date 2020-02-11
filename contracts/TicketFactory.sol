@@ -1,4 +1,4 @@
-pragma solidity ^0.6.1;
+pragma solidity ^0.5.11;
 
 //import './zeppeline/token/ERC20/ERC20Mintable.sol';
 
@@ -14,16 +14,18 @@ function createTicket(string memory name) public returns(address ticket_address)
 
     // decimals = 0, cause you can't divide one ticket to parts
     uint8 dec = 0;
-    ticket_address = new Ticket(name,dec);
+    // TODO: refactor to contract type
+    ticket_address = address(new Ticket(name,dec));
     return ticket_address;
 }
 
-function createTicketSale(address orginizer, uint price, Ticket token, uint amount) public returns(address ticket_sale) {
+function createTicketSale(address payable orginizer, uint price, Ticket token, uint amount) public returns(address ticket_sale) {
 
     // calculate price
-    uint cena = price;
+    uint256 cena = price;
 
-    ticket_sale = new TicketSale(cena, orginizer, token);
+    // TODO: refactor to contract type
+    ticket_sale = address(new TicketSale(cena, orginizer, token));
     token.mint(ticket_sale,amount);
 
 

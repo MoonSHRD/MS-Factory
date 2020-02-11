@@ -1,4 +1,4 @@
-pragma solidity ^0.6.1;
+pragma solidity ^0.5.11;
 
 import './zeppeline/token/ERC20/ERC20Mintable.sol';
 
@@ -21,7 +21,7 @@ contract Ticket is ERC20Mintable {
      //   _symbol = symbol;
         _decimals = decimals;
        // addMinter(orginizer);
-        addMinter(msg.sender());
+        addMinter(msg.sender);
     }
 
     /**
