@@ -5,6 +5,6 @@ var KNS = artifacts.require("./KNS.sol");
 module.exports = function(deployer) {
  // deployer.deploy(SimpleStorage);
  deployer.deploy(KNS).then(function() {
-  return deployer.deploy(SuperFactory, A.address);
+  return deployer.deploy(SuperFactory, KNS.address);
 });
 };
