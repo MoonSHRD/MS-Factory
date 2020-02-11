@@ -1,4 +1,4 @@
-pragma solidity ^0.6.1;
+pragma solidity ^0.5.11;
 
 import "../GSN/Context.sol";
 import "../token/ERC20/IERC20.sol";
@@ -23,10 +23,10 @@ contract Crowdsale is Context, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     // The token being sold
-    IERC20 private _token;
+    IERC20 public _token;
 
     // Address where funds are collected
-    address payable private _wallet;
+    address payable public _wallet;
 
     // How many token units a buyer gets per wei.
     // The rate is the conversion between wei and the smallest and indivisible token unit.
@@ -70,7 +70,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * of 2300, which is not enough to call buyTokens. Consider calling
      * buyTokens directly when purchasing tokens from a contract.
      */
-    fallback() external payable {
+    function() external payable {
         buyTokens(_msgSender());
     }
 
