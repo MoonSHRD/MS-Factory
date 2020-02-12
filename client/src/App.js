@@ -8,6 +8,7 @@ import MultiSigWalletWithDailyLimit from "./contracts/MultiSigWalletWithDailyLim
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
+import Web3 from "web3";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -78,6 +79,64 @@ class App extends Component {
     // Update state with the result.
     this.setState({ storageValue: response });
   };
+
+
+  // Appendix for create Wallet
+  // TODO: refactor this
+  createWallet = async () => {
+    const { accounts, registry, w_factory, owner, req, dl, jid, tel} = this.state;
+
+    let ownrs = new Array();
+    ownrs.push(owner);
+
+    //Creating a wallet with one owner
+    await contract2.methods.createWallet(ownrs,req,daily_limit,jid,tel).send({ from: accounts[0] });
+
+
+    //Get the registered wallet addr by registry get
+    const response = await contract1.methods.GetWalletByJid(jid).call();
+
+    //TODO: update state with result
+
+  };
+
+  // TODO: add exeptional 
+  // deposit funds to wallet
+  depositToWallet = async () => {
+
+    // param -- address of wallet, amount
+    const { accounts, wallet_address, val} = this.state;
+
+    // send funds
+    const response = await Web3.eth.send({ from: accounts[0], to: wallet_address, value:Web3.toWei(val,"ether")});
+
+    //TODO: update state with result
+
+  };
+
+
+  // submit new transaction to a multisig wallet
+  // general function
+  submitTransaction = async () => {
+
+    // param -- multisig wallet, deployed address, destination address, uint value, bytes payload
+    const { accounts, dep_address, destination, val, payload}
+
+    //defining instance of wallet
+    const wallet = new web3.eth.Contract(
+      MultiSigWalletWithDailyLimit.abi,
+      deployedNetwork_WF && dep_address,
+    );
+
+    // calling wallet method
+    // destination, value, data
+    const response = await wallet.methods.submitTransaction(destination,Web3.toWei(val,"ether"),payload).send({ from: accounts[0] });
+
+    // TODO: Upd state with result
+
+  };
+
+  
 
   render() {
     if (!this.state.web3) {
