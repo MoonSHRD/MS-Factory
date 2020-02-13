@@ -35,8 +35,10 @@ function() external payable {
 /*
     TODO: add redeem ticket
 */
+function redeemTicket(address visitor) public {
+    IERC20 ticket_token = super.token();
+    ticket_token.transferFrom(visitor,_wallet,1);
+}
 
-
- 
 
 }

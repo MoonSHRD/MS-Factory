@@ -22,7 +22,7 @@ function createTicket(string memory name) public returns(address ticket_address)
 function createTicketSale(address payable orginizer, uint price, Ticket token, uint amount) public returns(address ticket_sale) {
 
     // calculate price
-    uint256 cena = price;
+    uint256 cena = calculateRate(price);
 
     // TODO: refactor to contract type
     ticket_sale = address(new TicketSale(cena, orginizer, token));
@@ -31,6 +31,10 @@ function createTicketSale(address payable orginizer, uint price, Ticket token, u
 
 }
 
-
+function calculateRate (uint256 price) internal returns (uint256 rate_p) {
+    // rate = price * 1 eth
+    rate_p = price * (1 ether);
+    return rate_p;
+}
 
 }
