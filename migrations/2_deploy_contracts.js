@@ -1,10 +1,13 @@
 //var SimpleStorage = artifacts.require("./SimpleStorage.sol");
 var SuperFactory = artifacts.require("./SuperFactory.sol");
 var KNS = artifacts.require("./KNS.sol");
+var accounts = web3.eth.getAccounts();
 
 module.exports = function(deployer) {
  // deployer.deploy(SimpleStorage);
  deployer.deploy(KNS).then(function() {
-  return deployer.deploy(SuperFactory, KNS.address);
+  console.log(accounts);
+  console.log(accounts[0]);
+  return deployer.deploy(SuperFactory, KNS.address,accounts[0],accounts[0]);
 });
 };
