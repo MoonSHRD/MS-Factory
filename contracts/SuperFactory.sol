@@ -9,8 +9,26 @@ contract SuperFactory is MultiSigWalletWithDailyLimitFactory {
 
 KNS registry;
 
-constructor(address registry_deployed) public {
+// address of replacer who replace key if owner has lost access
+address replacer;
+// address of twoFactor for 2FA transactions
+address twoFactor;
+
+
+modifier onlyReplacer() {
+    require(msg.sender == replacer, "msg.sender != replacer");
+    _;
+}
+
+modifier onlyTwoFactor() {
+    require(msg.sender == twoFactor, "msg.sender != 2FA");
+    _;
+}
+
+constructor(address registry_deployed, address _replacer, address _twoFactor) public {
     registry = KNS(registry_deployed);
+    replacer = _replacer;
+    twoFactor = _twoFactor;
 }
 
 function createWallet(address[] memory _owners, uint _required, uint _dailyLimit, string memory Jid, string memory tel) public returns(address _wallet) {
@@ -24,17 +42,31 @@ function createWallet(address[] memory _owners, uint _required, uint _dailyLimit
 
 
 // TODO: add function to create wallet with pre-defined 2fa/replacer key
-/*
-function createSimpleWallet(address memory _owner, uint _required, uint _dailyLimit, string memory Jid, string memory tel) public {
+// HOWTO: req =1 for test, req = 2 for twoFactor AND replacer. req NEVER should be =3 as replacer is needed only for losted keys.
+function createSimpleWallet(address _owner, uint _required, uint _dailyLimit, string memory Jid, string memory tel) public returns(address _wallet){
 
     address[] memory _owners;
+    _owners[0] = _owner;
+    _owners[1] = replacer;
+    _owners[2] = twoFactor;
+
+
+
     address wallet = create(_owners,_required, _dailyLimit);
 
     address prime_owner = _owners[0];
     registry.Register(prime_owner,wallet,Jid,tel);
+    return wallet;
 }
-*/
 
+
+function setReplacer(address _replacer) public onlyReplacer {
+    replacer = _replacer;
+}
+
+function setTwoFactor (address _twoFactor) public onlyTwoFactor {
+    twoFactor = _twoFactor;
+}
 
 
 }
