@@ -50,6 +50,14 @@ contract Ticket721 is ERC721Enumerable {
  
    using SafeMath for uint256;
   // using Counters for Counters.Counter;
+
+  // event (groupID) assosiated with this ticket
+   string _event_id;
+
+
+    address _factory_address;
+
+
    /*
     struct Ticket {
 
@@ -66,5 +74,8 @@ contract Ticket721 is ERC721Enumerable {
 
     // Otherwise we should consider that ticket is unique
 
-
+    constructor(string memory event_id,address factory_address) public {
+        _event_id = event_id;
+        _factory_address = factory_address;
+    }
 }

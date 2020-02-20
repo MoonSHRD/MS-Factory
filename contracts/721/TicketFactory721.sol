@@ -2,10 +2,10 @@ pragma solidity ^0.5.11;
 
 //import './zeppeline/token/ERC20/ERC20Mintable.sol';
 
-import './Ticket.sol';
+import './Ticket721.sol';
 import './TicketSale.sol';
 
-contract TicketFactory {
+contract TicketFactory721 {
 
 //address Ticket;
 //address TicketSale;
@@ -17,6 +17,12 @@ function createTicket(string memory name) public returns(address ticket_address)
     // TODO: refactor to contract type
     ticket_address = address(new Ticket(name,dec));
     return ticket_address;
+}
+
+function createTicket721(string memory event_id) public returns (address ticket_address) {
+   factory_address = address.this;
+   ticket_address = address(new Ticket721(event_id,_factory_address));
+   return ticket_address;
 }
 
 function createTicketSale(address payable orginizer, uint price, Ticket token, uint amount) public returns(address ticket_sale) {
