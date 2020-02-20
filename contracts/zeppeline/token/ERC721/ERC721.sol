@@ -31,7 +31,7 @@ contract ERC721 is Context, ERC165, IERC721 {
     mapping (address => Counters.Counter) private _ownedTokensCount;
 
     // Mapping from owner to operator approvals
-    mapping (address => mapping (address => bool)) private _operatorApprovals;
+    mapping (address => mapping (address => bool)) internal _operatorApprovals;
 
     /*
      *     bytes4(keccak256('balanceOf(address)')) == 0x70a08231

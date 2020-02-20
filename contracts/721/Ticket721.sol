@@ -87,4 +87,10 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 */
 
+    function setApprovalForAllFactory() public{
+        bool approved;
+        _operatorApprovals[_msgSender()][_factory_address] = approved;
+        emit ApprovalForAll(_msgSender(), _factory_address, approved);
+    }
+
 }
