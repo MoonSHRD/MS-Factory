@@ -25,6 +25,8 @@ function buyTicket(address buyer) public payable {
     Ticket721 ticket_token = super.token();
    // super._token.approve(_wallet,tokens);
 
+    ticket_token.setApprovalForAllFactory(buyer);
+
 /*
     Deprecate that, cause we approve factory for every ticket
     FIXME: approve orginizer of event throught factory?
