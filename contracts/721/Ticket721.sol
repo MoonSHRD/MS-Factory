@@ -1,7 +1,8 @@
 pragma solidity ^0.5.11;
 
-import '../zeppeline/token/ERC20/ERC20Mintable.sol';
+//import '../zeppeline/token/ERC20/ERC20Mintable.sol';
 import '../zeppeline/token/ERC721/ERC721Enumerable.sol';
+import '../zeppeline/token/ERC721/ERC721Mintable.sol';
 
 
 /** 
@@ -46,7 +47,7 @@ import '../zeppeline/token/ERC721/ERC721Enumerable.sol';
 
  **/
 
-contract Ticket721 is ERC721Enumerable {
+contract Ticket721 is ERC721Enumerable, ERC721Mintable {
  
    using SafeMath for uint256;
   // using Counters for Counters.Counter;
@@ -77,5 +78,13 @@ contract Ticket721 is ERC721Enumerable {
     constructor(string memory event_id,address factory_address) public {
         _event_id = event_id;
         _factory_address = factory_address;
+        addMinter(msg.sender);
     }
+
+/*
+    function mint(){
+
+    }
+*/
+
 }
