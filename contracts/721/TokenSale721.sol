@@ -20,6 +20,9 @@ contract TokenSale721 is Context, ReentrancyGuard {
     // The token being sold
     Ticket721 public _token;
 
+    // FIXME: replace counter to the ticket
+    // FIXME: add event id concatenation
+    // FIXME: add singletone pattern
     Counters.Counter _ticket_id_count;
 
     // Address where funds are collected

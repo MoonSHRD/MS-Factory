@@ -93,4 +93,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         emit ApprovalForAll(_owner, _factory_address, approved);
     }
 
+    function _transferFromTicket(address from, address to, uint256 tokenId) public {
+        super._transferFrom(from, to, tokenId);
+    }
 }

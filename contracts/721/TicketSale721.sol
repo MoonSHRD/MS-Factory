@@ -51,7 +51,7 @@ function() external payable {
 */
 function redeemTicket(address visitor) public {
     Ticket721 ticket_token = super.token();
-    ticket_token.transferFrom(visitor,_wallet,1);
+    ticket_token._transferFromTicket(visitor,_wallet,1);
 }
 
 
