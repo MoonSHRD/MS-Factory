@@ -15,16 +15,12 @@ contract TokenSale721 is Context, ReentrancyGuard {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
-    using Counters for Counters.Counter;
-
     // The token being sold
     Ticket721 public _token;
 
-    // FIXME: replace counter to the ticket
-    // FIXME: add event id concatenation
-    // FIXME: add singletone pattern
-    // FIXME: REPLACE THIS TO TICKET CONTRACT
-    Counters.Counter _ticket_id_count;
+
+    //event_id
+    uint256 public _event_id;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -63,6 +59,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
         _rate = rate;
         _wallet = wallet;
         _token = token;
+
+        _event_id = _token.reserveEventId();
     }
 
     /**
@@ -160,14 +158,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param tokenAmount Number of tokens to be emitted
      */
     function _deliverTokens(address beneficiary, uint256 tokenAmount) internal {
-       // _token.safeTransfer(beneficiary, tokenAmount);
-        // generate new ticket for each buyed
-        for (uint256 i = 0; i < tokenAmount; i++ ){
-            _ticket_id_count.increment();
-            uint256 ticket_id = _ticket_id_count.current();
-            _token.mint(beneficiary,ticket_id);
-        }
-
+        _token.buyTicket(beneficiary,tokenAmount, _event_id);
     }
 
     /**
