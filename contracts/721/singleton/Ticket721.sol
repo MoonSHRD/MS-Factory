@@ -3,18 +3,10 @@ pragma solidity ^0.5.11;
 //import '../zeppeline/token/ERC20/ERC20Mintable.sol';
 import '../../zeppeline/token/ERC721/ERC721Enumerable.sol';
 import '../../zeppeline/token/ERC721/ERC721Mintable.sol';
+import "../../zeppeline/drafts/Counters.sol";
 
 
-/** 
 
-    We will use this template if we consider, that EACH ticket(token) is unique
-
-
-    Probably we should consider, that each ticketsale has a specific contract of ticket?
-
-    Or should we considered, that every tickets are available throught this single contract?
-
-**/
 
 
 
@@ -50,23 +42,21 @@ import '../../zeppeline/token/ERC721/ERC721Mintable.sol';
 contract Ticket721 is ERC721Enumerable, ERC721Mintable {
  
    using SafeMath for uint256;
-  // using Counters for Counters.Counter;
+   using Counters for Counters.Counter;
 
-  // event (groupID) assosiated with this ticket
-  // string _event_id;
 
 
     address _factory_address;
 
 
-   /*
-    struct Ticket {
+    // Global counters for ticket_id and event_id
+    Counters.Counter _ticket_id_count;
+    Counters.Counter _event_id_count;
 
-    
-
-    }
-    */
-
+    // map from ticketsales to event_id
+    mapping(uint256 => address) eventsales;
+    // map from event id to ticket ids
+    mapping (uint256 => uint256[]) ticketIds;
 
     // If we are assuming, that tokenID is a eventID and ticket is a counter
     // Mapping from owner to tokenID to number of ticket
@@ -81,11 +71,6 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         addMinter(msg.sender);
     }
 
-/*
-    function mint(){
-
-    }
-*/
 
     function setApprovalForAllFactory(address _owner) public{
         bool approved;
@@ -96,4 +81,24 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     function _transferFromTicket(address from, address to, uint256 tokenId) public {
         super._transferFrom(from, to, tokenId);
     }
+
+
+    function reserveEventId() public returns(uint256 event_id){
+        _event_id_count.increment();
+        event_id = _ticket_id_count.current();
+        eventsales[event_id] = msg.sender;
+        return event_id;
+    }
+
+    function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id) public{
+        for (uint256 i = 0; i < ticketAmount; i++ ){
+            _ticket_id_count.increment();
+            uint256 ticket_id = _ticket_id_count.current();
+            _mint(buyer,ticket_id);
+            ticketIds[event_id].push(ticket_id);
+        }
+    }
+
+    
+
 }
