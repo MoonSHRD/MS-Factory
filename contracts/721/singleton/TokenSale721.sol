@@ -188,6 +188,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
      */
     function _getTokenAmount(uint256 weiAmount) internal view returns (uint256) {
         return weiAmount.mul(_rate);
+        //FIXME: round result to int, check math
     }
 
     /**

@@ -10,7 +10,7 @@ contract TicketSale721 is TokenSale721 {
 constructor(uint256 rate, address payable wallet, Ticket721 token) TokenSale721(rate,wallet,token) public {}
 
 
-/** 
+/**
 *
 * @dev overload buy token function to give allowance to reedem tickets 
 *
@@ -18,26 +18,12 @@ constructor(uint256 rate, address payable wallet, Ticket721 token) TokenSale721(
 */
 function buyTicket(address buyer) public payable {
     super.buyTokens(buyer);
-    // @TODO add allowance request to orginizer
-    uint256 weiAmount = msg.value;
-    // calculate token amount to be created
-    uint256 tokenAmount = super._getTokenAmount(weiAmount);
     Ticket721 ticket_token = super.token();
    // super._token.approve(_wallet,tokens);
 
+    // chek this one more time
     ticket_token.setApprovalForAllFactory(buyer);
 
-/*
-    Deprecate that, cause we approve factory for every ticket
-    FIXME: approve orginizer of event throught factory?
-
-
-    for (uint256 i = 0; i < tokenAmount; i++ ){
-            uint256 ticket_token_id = ticket_token.tokenOfOwnerByIndex(buyer,i);
-            ticket_token.approve(_wallet,ticket_token_id);
-        }
-*/
-  // ticket_token.approve(_wallet,tokens);
 }
 
 // fallback
@@ -47,7 +33,7 @@ function() external payable {
 
 
 /*
-    TODO: add redeem ticket
+ *   TODO: add redeem ticket
 */
 function redeemTicket(address visitor) public {
     Ticket721 ticket_token = super.token();

@@ -1,6 +1,5 @@
 pragma solidity ^0.5.11;
 
-//import '../zeppeline/token/ERC20/ERC20Mintable.sol';
 import '../../zeppeline/token/ERC721/ERC721Enumerable.sol';
 import '../../zeppeline/token/ERC721/ERC721Mintable.sol';
 import "../../zeppeline/drafts/Counters.sol";
@@ -40,11 +39,8 @@ import "../../zeppeline/drafts/Counters.sol";
  **/
 
 contract Ticket721 is ERC721Enumerable, ERC721Mintable {
- 
    using SafeMath for uint256;
    using Counters for Counters.Counter;
-
-
 
     address _factory_address;
 
@@ -57,16 +53,12 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     mapping(uint256 => address) eventsales;
     // map from event id to ticket ids
     mapping (uint256 => uint256[]) ticketIds;
-
-    // If we are assuming, that tokenID is a eventID and ticket is a counter
-    // Mapping from owner to tokenID to number of ticket
-    //mapping (address => mapping(uint256 => Counters.Counter)) tickets;
+    // map fron token ID to its index in ticketIds
+    mapping (uint256 => uint256) ticketIndex;
 
 
-    // Otherwise we should consider that ticket is unique
-
+    //FIXME: invoke constructor from 721(?)
     constructor(address factory_address) public {
-       // _event_id = event_id;
         _factory_address = factory_address;
         addMinter(msg.sender);
     }
@@ -91,14 +83,42 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id) public{
+      
+        //FIXME: require caller is TicketSale assosiated with event_id
+      
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
             _mint(buyer,ticket_id);
+            ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
         }
     }
 
-    
+    function redeemTicket(address owner,uint256 tokenId, uint256 event_id) public{
+        // FIXME : check caller is ticketsale(?)
+        super._burn(owner,tokenId);
+
+       // To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and
+       // then delete the last slot (swap and pop).
+
+
+        uint256 ticket_index = ticketIndex[tokenId];
+        uint256 lastTicketIndex = ticketIds[event_id].length.sub(1);
+
+      //  uint256[] storage ticketIdArray = ticketIds[event_id];
+      //  uint256 lastTicketId = ticketIdArray[lastTicketIndex];
+
+        uint256 lastTicketId = ticketIds[event_id][lastTicketIndex];
+
+
+        ticketIds[event_id][ticket_index] = lastTicketId; // Move the last token to the slot of the to-delete token
+        ticketIndex[lastTicketId] = ticket_index;         // Update the moved token's index
+
+        ticketIds[event_id].length--;  // remove last element in array
+        ticketIndex[tokenId] = 0;
+
+
+    }
 
 }
