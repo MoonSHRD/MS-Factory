@@ -1,12 +1,23 @@
 pragma solidity ^0.5.0;
 
-import "../../GSN/Context.sol";
-import "./IERC721.sol";
-import "./IERC721Receiver.sol";
-import "../../math/SafeMath.sol";
-import "../../utils/Address.sol";
-import "../../drafts/Counters.sol";
-import "../../introspection/ERC165.sol";
+import "../zeppeline/GSN/Context.sol";
+import "../zeppeline/token/ERC721/IERC721.sol";
+import "../zeppeline/token/ERC721/IERC721Receiver.sol";
+import "../zeppeline/math/SafeMath.sol";
+import "../zeppeline/utils/Address.sol";
+import "../zeppeline/drafts/Counters.sol";
+import "../zeppeline/introspection/ERC165.sol";
+
+
+/** 
+
+
+    WE WILL USE THIS TEMPLATE IF WE CONSIDER, THAT TOKEN id is EVENT id, and it is not unique
+
+
+**/
+
+
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -22,6 +33,7 @@ contract ERC721 is Context, ERC165, IERC721 {
     bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
 
     // Mapping from token ID to owner
+    // FIXME - if ticket is not unique, it could be many owner of same type of ticket
     mapping (uint256 => address) private _tokenOwner;
 
     // Mapping from token ID to approved address
@@ -30,8 +42,12 @@ contract ERC721 is Context, ERC165, IERC721 {
     // Mapping from owner to number of owned token
     mapping (address => Counters.Counter) private _ownedTokensCount;
 
+    // If we are assuming, that tokenID is a eventID and ticket is a counter
+    // Mapping from owner to tokenID to number of ticket
+    mapping (address => mapping(uint256 => Counters.Counter)) _tickets;
+
     // Mapping from owner to operator approvals
-    mapping (address => mapping (address => bool)) internal _operatorApprovals;
+    mapping (address => mapping (address => bool)) private _operatorApprovals;
 
     /*
      *     bytes4(keccak256('balanceOf(address)')) == 0x70a08231
@@ -63,6 +79,12 @@ contract ERC721 is Context, ERC165, IERC721 {
         require(owner != address(0), "ERC721: balance query for the zero address");
 
         return _ownedTokensCount[owner].current();
+    }
+
+    function balanceOfTicket(uint256 tokenID, address owner) public view returns (uint256) {
+         require(owner != address(0), "ERC721: balance query for the zero address");
+
+         return _tickets[owner][tokenID].current();
     }
 
     /**
