@@ -31,15 +31,10 @@ function() external payable {
         buyTicket(_msgSender());
     }
 
-
-/*
- *   TODO: add redeem ticket
-*/
 function redeemTicket(address visitor, uint256 token_id) public {
     Ticket721 ticket_token = super.token();
     uint256 event_id = super.event_id();
     ticket_token.redeemTicket(visitor, token_id, event_id);
 }
-
 
 }
