@@ -101,6 +101,10 @@ contract TokenSale721 is Context, ReentrancyGuard {
         return _weiRaised;
     }
 
+    function event_id() public view returns (uint256) {
+        return _event_id;
+    }
+
     /**
      * @dev low level token purchase ***DO NOT OVERRIDE***
      * This function has a non-reentrancy guard, so it shouldn't be called by

@@ -35,9 +35,10 @@ function() external payable {
 /*
  *   TODO: add redeem ticket
 */
-function redeemTicket(address visitor) public {
+function redeemTicket(address visitor, uint256 token_id) public {
     Ticket721 ticket_token = super.token();
-    ticket_token._transferFromTicket(visitor,_wallet,1);
+    uint256 event_id = super.event_id();
+    ticket_token.redeemTicket(visitor, token_id, event_id);
 }
 
 
