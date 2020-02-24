@@ -94,7 +94,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     function redeemTicket(address owner,uint256 tokenId, uint256 event_id) public{
-        // FIXME : check caller is ticketsale(?)
+        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         super._burn(owner,tokenId);
 
        // To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and
