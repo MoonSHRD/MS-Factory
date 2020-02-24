@@ -65,7 +65,7 @@ function createDummyWallet(string memory Jid, string memory tel) public returns(
    // uint _dailyLimit;
     _owners[0] = twoFactor;
 
-    address wallet = create(_owners, 2, 0);
+    address wallet = create(_owners, 1, 0);
     registry.Register(twoFactor,wallet,Jid,tel);
     return wallet;
 }
