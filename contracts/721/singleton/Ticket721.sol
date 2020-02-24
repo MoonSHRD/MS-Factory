@@ -63,7 +63,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         addMinter(msg.sender);
     }
 
-
+    // FIXME: approve for ticketsale, not factory
     function setApprovalForAllFactory(address _owner) public{
         bool approved;
         _operatorApprovals[_owner][_factory_address] = approved;
