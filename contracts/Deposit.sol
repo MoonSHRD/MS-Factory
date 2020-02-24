@@ -96,7 +96,8 @@ function proceedTransaction(IRequest memory tx) internal {
 // fallback
 function() external payable {
   //  cashOutRequest()
-  revert();
+  // don't allow user to cashOut without pointing destination
+  revert("can't cashOut without out address");
 }
 
 
