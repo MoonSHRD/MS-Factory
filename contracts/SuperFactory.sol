@@ -60,9 +60,11 @@ function createSimpleWallet(address _owner, uint _required, uint _dailyLimit, st
 }
 
 // Dummy wallet is a wallet with one key - 2FA entangled with telephone number
+/*
 function createDummyWallet() public {
 
 }
+*/
 
 
 function setReplacer(address _replacer) public onlyReplacer {
