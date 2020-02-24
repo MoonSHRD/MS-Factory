@@ -194,6 +194,14 @@ contract MultiSigWallet {
         confirmTransaction(transactionId);
     }
 
+    /// @dev Allows anyone to submit transaction without confirming it
+    function submitInvoice(address destination, uint value, bytes memory data)
+        public
+        returns (uint transactionId)
+    {
+        transactionId = addTransaction(destination, value, data);
+    }
+
     /// @dev Allows an owner to confirm a transaction.
     /// @param transactionId Transaction ID.
     function confirmTransaction(uint transactionId)
