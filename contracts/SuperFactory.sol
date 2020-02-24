@@ -60,11 +60,16 @@ function createSimpleWallet(address _owner, uint _required, uint _dailyLimit, st
 }
 
 // Dummy wallet is a wallet with one key - 2FA entangled with telephone number
-/*
-function createDummyWallet() public {
+function createDummyWallet(string memory Jid, string memory tel) public returns(address _wallet) {
+    address[] memory _owners;
+   // uint _dailyLimit;
+    _owners[0] = twoFactor;
 
+    address wallet = create(_owners, 2, 0);
+    registry.Register(twoFactor,wallet,Jid,tel);
+    return wallet;
 }
-*/
+
 
 
 function setReplacer(address _replacer) public onlyReplacer {

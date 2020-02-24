@@ -41,6 +41,7 @@ struct Info {
     Public functions
 */
 
+// FIXME: add check for existence
 function Register(address prime_owner, address wallet, string memory Jid, string memory tel) public {
 
     Info memory info;
