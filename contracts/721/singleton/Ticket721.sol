@@ -64,10 +64,10 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     // FIXME: approve for ticketsale, not factory
-    function setApprovalForAllFactory(address _owner) public{
+    function setApprovalForEvent(address _owner, address ticketsale) internal{
         bool approved;
-        _operatorApprovals[_owner][_factory_address] = approved;
-        emit ApprovalForAll(_owner, _factory_address, approved);
+        _operatorApprovals[_owner][ticketsale] = approved;
+        emit ApprovalForAll(_owner, ticketsale, approved);
     }
 
     function _transferFromTicket(address from, address to, uint256 tokenId) public {
@@ -87,10 +87,14 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
+            addMinter(msg.sender);
             _mint(buyer,ticket_id);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
+            // approve for ticketsale (msg.sender = ticketsale)
+            approve(msg.sender, ticket_id);
         }
+
     }
 
     function redeemTicket(address owner,uint256 tokenId, uint256 event_id) public{
