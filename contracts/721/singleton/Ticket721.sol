@@ -83,9 +83,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id) public{
-      
-        //FIXME: require caller is TicketSale assosiated with event_id
-      
+        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
