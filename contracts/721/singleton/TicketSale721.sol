@@ -18,11 +18,11 @@ constructor(uint256 rate, address payable wallet, Ticket721 token) TokenSale721(
 */
 function buyTicket(address buyer) public payable {
     super.buyTokens(buyer);
-    Ticket721 ticket_token = super.token();
+    //Ticket721 ticket_token = super.token();
    // super._token.approve(_wallet,tokens);
 
     // chek this one more time
-    ticket_token.setApprovalForAllFactory(buyer);
+    //ticket_token.setApprovalForEvent(buyer,);
 
 }
 

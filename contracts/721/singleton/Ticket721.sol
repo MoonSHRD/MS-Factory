@@ -59,15 +59,15 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
     //FIXME: invoke constructor from 721(?)
     constructor(address factory_address) public {
-        _factory_address = factory_address;
-        addMinter(msg.sender);
+       // _factory_address = factory_address;
+       // addMinter(msg.sender);
     }
 
-
-    function setApprovalForAllFactory(address _owner) public{
+    // FIXME: approve for ticketsale, not factory
+    function setApprovalForEvent(address _owner, address ticketsale) internal{
         bool approved;
-        _operatorApprovals[_owner][_factory_address] = approved;
-        emit ApprovalForAll(_owner, _factory_address, approved);
+        _operatorApprovals[_owner][ticketsale] = approved;
+        emit ApprovalForAll(_owner, ticketsale, approved);
     }
 
     function _transferFromTicket(address from, address to, uint256 tokenId) public {
@@ -83,20 +83,22 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id) public{
-      
-        //FIXME: require caller is TicketSale assosiated with event_id
-      
+        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
+            addMinter(msg.sender);
             _mint(buyer,ticket_id);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
+            // approve for ticketsale (msg.sender = ticketsale)
+            approve(msg.sender, ticket_id);
         }
+
     }
 
     function redeemTicket(address owner,uint256 tokenId, uint256 event_id) public{
-        // FIXME : check caller is ticketsale(?)
+        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         super._burn(owner,tokenId);
 
        // To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and

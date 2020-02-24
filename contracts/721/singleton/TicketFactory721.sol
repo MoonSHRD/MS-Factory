@@ -7,6 +7,13 @@ import './TicketSale721.sol';
 
 contract TicketFactory721 {
 
+// constant
+address ticket_template;
+
+
+constructor() public {
+    ticket_template = createTicket721();
+}
 
 // FIXME: change to internal function
 function createTicket721() internal returns (address ticket_address) {
@@ -26,7 +33,7 @@ function createTicketSale721(address payable organizer, uint price, Ticket721 to
 
 function createTicketSale(address payable organizer, uint price) public returns (address payable ticket_sale_adr, uint256 event_id) {
 
-    address ticket_adr = createTicket721();
+    address ticket_adr = ticket_template;
     Ticket721 ticket = Ticket721(ticket_adr);
     ticket_sale_adr = createTicketSale721(organizer, price, ticket);
     TicketSale721 ticket_sale = TicketSale721(ticket_sale_adr);

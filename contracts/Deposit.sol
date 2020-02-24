@@ -87,16 +87,21 @@ function cashInSubmit(string memory uuid) public onlyOwner {
 
 }
 
-function proceedTransaction(IRequest memory tx) internal {
-    address payable _user = tx.user;
-    uint amount = tx.amount;
+function proceedTransaction(IRequest memory ts) internal {
+    address payable _user = ts.user;
+    uint amount = ts.amount;
     _user.transfer(amount);
 }
+
+
+
+
 
 // fallback
 function() external payable {
   //  cashOutRequest()
-  revert();
+  // don't allow user to cashOut without pointing destination
+  revert("can't cashOut without out address");
 }
 
 
