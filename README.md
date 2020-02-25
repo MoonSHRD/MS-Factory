@@ -26,11 +26,11 @@ $ web3j truffle generate /path/to/<truffle-smart-contract-output>.json -o /path/
   ### Generate our main contracts
 
   ```
-  web3j truffle generate ./client/src/contracts/KNS.json -o ./java/ -p com.moonshrd.contract
+  web3j truffle generate ./client/src/contracts/KNS.json -o ./java/ -p com.example.web3wallet
   ```
   ```
-  web3j truffle generate ./client/src/contracts/SuperFactory.json -o ./java/ -p com.moonshrd.contract
+  web3j truffle generate ./client/src/contracts/SuperFactory.json -o ./java/ -p com.example.web3wallet
   ```
   ```
-  web3j truffle generate ./client/src/contracts/TicketFactory721.json -o ./java/ -p com.moonshrd.contract
+  web3j truffle generate ./client/src/contracts/TicketFactory721.json -o ./java/ -p com.example.web3wallet
   ```

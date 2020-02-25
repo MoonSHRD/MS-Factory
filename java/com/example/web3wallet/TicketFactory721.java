@@ -1,4 +1,4 @@
-package com.moonshrd.contract;
+package com.example.web3wallet;
 
 import java.math.BigInteger;
 import java.util.Arrays;
