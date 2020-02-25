@@ -14,3 +14,23 @@
   Run dev server:       cd client && npm run start
   
   Build for production: cd client && npm run build
+
+  ## Build JAVA artifacts to android
+
+  ```
+
+$ cd /path/to/your/web3j/java/project
+$ web3j truffle generate /path/to/<truffle-smart-contract-output>.json -o /path/to/src/main/java -p com.your.organisation.name
+```
+
+  ### Generate our main contracts
+
+  ```
+  web3j truffle generate ./client/src/contracts/KNS.json -o ./java/ -p com.moonshrd.contract
+  ```
+  ```
+  web3j truffle generate ./client/src/contracts/SuperFactory.json -o ./java/ -p com.moonshrd.contract
+  ```
+  ```
+  web3j truffle generate ./client/src/contracts/TicketFactory721.json -o ./java/ -p com.moonshrd.contract
+  ```
