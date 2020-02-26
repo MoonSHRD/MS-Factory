@@ -2,6 +2,7 @@
 var SuperFactory = artifacts.require("./SuperFactory.sol");
 var KNS = artifacts.require("./KNS.sol");
 var TicketFactory = artifacts.require("./721/singleton/TicketFactory721.sol")
+var Deposit = artifacts.require("./Deposit.sol")
 //var accounts = web3.eth.getAccounts();
 
 module.exports = function(deployer, network, accounts) {
@@ -15,5 +16,6 @@ module.exports = function(deployer, network, accounts) {
   return deployer.deploy(SuperFactory, KNS.address,accounts[1],accounts[2]);
 });
 deployer.deploy(TicketFactory);
+deployer.deploy(Deposit);
 
 };

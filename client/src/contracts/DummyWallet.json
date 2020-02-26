@@ -603,7 +603,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Confirmation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Deposit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Execution\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"ExecutionFailure\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnerAddition\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnerRemoval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"}],\"name\":\"RequirementChange\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Revocation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Submission\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"MAX_OWNER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_required\",\"type\":\"uint256\"}],\"name\":\"changeRequirement\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"confirmTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"confirmations\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"executeTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"getConfirmationCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"getConfirmations\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"_confirmations\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getOwners\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bool\",\"name\":\"pending\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"name\":\"getTransactionCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"pending\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"name\":\"getTransactionIds\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_transactionIds\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"isConfirmed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"owners\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"replaceOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"required\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"revokeConfirmation\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"submitInvoice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"submitTransaction\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"transactionCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"transactions\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"addOwner(address)\":{\"details\":\"Allows to add a new owner. Transaction has to be sent by wallet.\",\"params\":{\"owner\":\"Address of new owner.\"}},\"changeRequirement(uint256)\":{\"details\":\"Allows to change the number of required confirmations. Transaction has to be sent by wallet.\",\"params\":{\"_required\":\"Number of required confirmations.\"}},\"confirmTransaction(uint256)\":{\"details\":\"Allows an owner to confirm a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"}},\"executeTransaction(uint256)\":{\"details\":\"Allows anyone to execute a confirmed transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"}},\"getConfirmationCount(uint256)\":{\"details\":\"Returns number of confirmations of a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"},\"return\":\"Number of confirmations.\"},\"getConfirmations(uint256)\":{\"details\":\"Returns array with owner addresses, which confirmed transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"},\"return\":\"Returns array of owner addresses.\"},\"getOwners()\":{\"details\":\"Returns list of owners.\",\"return\":\"List of owner addresses.\"},\"getTransactionCount(bool,bool)\":{\"details\":\"Returns total number of transactions after filers are applied.\",\"params\":{\"executed\":\"Include executed transactions.\",\"pending\":\"Include pending transactions.\"},\"return\":\"Total number of transactions after filters are applied.\"},\"getTransactionIds(uint256,uint256,bool,bool)\":{\"details\":\"Returns list of transaction IDs in defined range.\",\"params\":{\"executed\":\"Include executed transactions.\",\"from\":\"Index start position of transaction array.\",\"pending\":\"Include pending transactions.\",\"to\":\"Index end position of transaction array.\"},\"return\":\"Returns array of transaction IDs.\"},\"isConfirmed(uint256)\":{\"details\":\"Returns the confirmation status of a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"},\"return\":\"Confirmation status.\"},\"removeOwner(address)\":{\"details\":\"Allows to remove an owner. Transaction has to be sent by wallet.\",\"params\":{\"owner\":\"Address of owner.\"}},\"replaceOwner(address,address)\":{\"details\":\"Allows to replace an owner with a new owner. Transaction has to be sent by wallet.\",\"params\":{\"newOwner\":\"Address of new owner.\",\"owner\":\"Address of owner to be replaced.\"}},\"revokeConfirmation(uint256)\":{\"details\":\"Allows an owner to revoke a confirmation for a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"}},\"submitInvoice(address,uint256,bytes)\":{\"details\":\"Allows anyone to submit transaction without confirming it\"},\"submitTransaction(address,uint256,bytes)\":{\"details\":\"Allows an owner to submit and confirm a transaction.\",\"params\":{\"data\":\"Transaction data payload.\",\"destination\":\"Transaction target address.\",\"value\":\"Transaction ether value.\"},\"return\":\"Returns transaction ID.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/DummyWallet/DummyWallet.sol\":\"DummyWallet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jack/ethProjects/MS-Factory/contracts/KNS.sol\":{\"keccak256\":\"0xc9a3fc40b33eeae21c0671b890a3b60a67613c9ff2e009ccb6673bee2d980c2f\",\"urls\":[\"bzz-raw://7b5540313ce07f07b2e0fbbe64c749ef4322391a243b05fb88b520282f55643e\",\"dweb:/ipfs/QmU7ssdfebsQMuf8kw9oFXdXmMJWkumQCZDEpEbSn1V5cm\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/DummyWallet/DummyWallet.sol\":{\"keccak256\":\"0x863fa427e0fc9346bd8eb3108ca168e846ace9900cf0047f6d284e3dac9ffe52\",\"urls\":[\"bzz-raw://3af0d8028ed22b344e4242d9df69dbcad7e5de00f3cddd4e91145e3944b6a125\",\"dweb:/ipfs/QmRF9mA2BFqGpRfpvy9DEk9krFWxLZYTxfrJ9qYrZr54KP\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/Factory.sol\":{\"keccak256\":\"0x909b91d32d37490b5bc5fe7bfc5871894acebd2bc4a84ab295259c3c8c8578d2\",\"urls\":[\"bzz-raw://f07ed399d5fe9275d0f003898bff3f72649f03e901b26b77654b02bf612c4a9d\",\"dweb:/ipfs/QmY48Xhrsd65mYtL9LEssxWm5wuBBeharwmozk4h7EEdSK\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWallet.sol\":{\"keccak256\":\"0xd67da10300c8cdf40698313d238e111a2141b7b64a00d5103c61b05b6ad7eea5\",\"urls\":[\"bzz-raw://35bf36f98b5b24b1696a9c35855582822e86d10d2fcd28b30d11676b7a83fd1b\",\"dweb:/ipfs/QmQQcSKBqf9eLyS59WMBBspq6YN6bKvm79NL6mqUmmrDXV\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletFactory.sol\":{\"keccak256\":\"0x573137cfd5d53ffcb888e28d5c82e22077223d627b55f55fddc1b780673e220b\",\"urls\":[\"bzz-raw://58b5c0f9f058bea2da1c1e5a5c561c592724264e09db60c834b3b1ad2bf02a51\",\"dweb:/ipfs/QmbiiKoAx8Xg7WYJ29WoGGoCNn1dDcYGtBQb4UJHtDWaCW\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletWithDailyLimit.sol\":{\"keccak256\":\"0x6a15a0b384bc6f2f3ebc2e5b64062b13f682e69e0221a3b41da5ec5398b47c3e\",\"urls\":[\"bzz-raw://0dfd8792407fe7587905461216609dc3f19e1f034cdb846f30a8f19d8570a14b\",\"dweb:/ipfs/QmTKSwYuxpWdyvQUXaj24Lr5z6aJ8w9A8vfet4tZ5j7Gz9\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletWithDailyLimitFactory.sol\":{\"keccak256\":\"0xd13568a76e4682f5f19a1a8f8001d13e3b20aafea904cf6884a3b6778e83a48e\",\"urls\":[\"bzz-raw://289a5a99160628bf208f8c785606c68f9306a0c117a94edf694da04991212b13\",\"dweb:/ipfs/QmVsqeps4yVNaxu5ra1H2x8ym7eTMxUvZdz5dvAhevqeMA\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Confirmation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Deposit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Execution\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"ExecutionFailure\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnerAddition\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnerRemoval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"}],\"name\":\"RequirementChange\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Revocation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"Submission\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"MAX_OWNER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_required\",\"type\":\"uint256\"}],\"name\":\"changeRequirement\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"confirmTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"confirmations\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"executeTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"getConfirmationCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"getConfirmations\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"_confirmations\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getOwners\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bool\",\"name\":\"pending\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"name\":\"getTransactionCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"pending\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"name\":\"getTransactionIds\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_transactionIds\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"isConfirmed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"owners\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"replaceOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"required\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"name\":\"revokeConfirmation\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"submitInvoice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"submitTransaction\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"transactionCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"transactions\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"destination\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"addOwner(address)\":{\"details\":\"Allows to add a new owner. Transaction has to be sent by wallet.\",\"params\":{\"owner\":\"Address of new owner.\"}},\"changeRequirement(uint256)\":{\"details\":\"Allows to change the number of required confirmations. Transaction has to be sent by wallet.\",\"params\":{\"_required\":\"Number of required confirmations.\"}},\"confirmTransaction(uint256)\":{\"details\":\"Allows an owner to confirm a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"}},\"executeTransaction(uint256)\":{\"details\":\"Allows anyone to execute a confirmed transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"}},\"getConfirmationCount(uint256)\":{\"details\":\"Returns number of confirmations of a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"},\"return\":\"Number of confirmations.\"},\"getConfirmations(uint256)\":{\"details\":\"Returns array with owner addresses, which confirmed transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"},\"return\":\"Returns array of owner addresses.\"},\"getOwners()\":{\"details\":\"Returns list of owners.\",\"return\":\"List of owner addresses.\"},\"getTransactionCount(bool,bool)\":{\"details\":\"Returns total number of transactions after filers are applied.\",\"params\":{\"executed\":\"Include executed transactions.\",\"pending\":\"Include pending transactions.\"},\"return\":\"Total number of transactions after filters are applied.\"},\"getTransactionIds(uint256,uint256,bool,bool)\":{\"details\":\"Returns list of transaction IDs in defined range.\",\"params\":{\"executed\":\"Include executed transactions.\",\"from\":\"Index start position of transaction array.\",\"pending\":\"Include pending transactions.\",\"to\":\"Index end position of transaction array.\"},\"return\":\"Returns array of transaction IDs.\"},\"isConfirmed(uint256)\":{\"details\":\"Returns the confirmation status of a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"},\"return\":\"Confirmation status.\"},\"removeOwner(address)\":{\"details\":\"Allows to remove an owner. Transaction has to be sent by wallet.\",\"params\":{\"owner\":\"Address of owner.\"}},\"replaceOwner(address,address)\":{\"details\":\"Allows to replace an owner with a new owner. Transaction has to be sent by wallet.\",\"params\":{\"newOwner\":\"Address of new owner.\",\"owner\":\"Address of owner to be replaced.\"}},\"revokeConfirmation(uint256)\":{\"details\":\"Allows an owner to revoke a confirmation for a transaction.\",\"params\":{\"transactionId\":\"Transaction ID.\"}},\"submitInvoice(address,uint256,bytes)\":{\"details\":\"Allows anyone to submit transaction without confirming it\"},\"submitTransaction(address,uint256,bytes)\":{\"details\":\"Allows an owner to submit and confirm a transaction.\",\"params\":{\"data\":\"Transaction data payload.\",\"destination\":\"Transaction target address.\",\"value\":\"Transaction ether value.\"},\"return\":\"Returns transaction ID.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/DummyWallet/DummyWallet.sol\":\"DummyWallet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jack/ethProjects/MS-Factory/contracts/KNS.sol\":{\"keccak256\":\"0x8b372c85646a9e1f0d61e026fe9ad7009f9a1c7516a919b8f613939dcf3ecbd1\",\"urls\":[\"bzz-raw://300049110c6560e4602cca853378b6da4af37569909cebd39178a279cbfb221f\",\"dweb:/ipfs/QmXVNZq84fcPhFQQQoQ2CWFQ9bezocP3TxjUiHBroKGETs\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/DummyWallet/DummyWallet.sol\":{\"keccak256\":\"0x863fa427e0fc9346bd8eb3108ca168e846ace9900cf0047f6d284e3dac9ffe52\",\"urls\":[\"bzz-raw://3af0d8028ed22b344e4242d9df69dbcad7e5de00f3cddd4e91145e3944b6a125\",\"dweb:/ipfs/QmRF9mA2BFqGpRfpvy9DEk9krFWxLZYTxfrJ9qYrZr54KP\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/Factory.sol\":{\"keccak256\":\"0x909b91d32d37490b5bc5fe7bfc5871894acebd2bc4a84ab295259c3c8c8578d2\",\"urls\":[\"bzz-raw://f07ed399d5fe9275d0f003898bff3f72649f03e901b26b77654b02bf612c4a9d\",\"dweb:/ipfs/QmY48Xhrsd65mYtL9LEssxWm5wuBBeharwmozk4h7EEdSK\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWallet.sol\":{\"keccak256\":\"0xd67da10300c8cdf40698313d238e111a2141b7b64a00d5103c61b05b6ad7eea5\",\"urls\":[\"bzz-raw://35bf36f98b5b24b1696a9c35855582822e86d10d2fcd28b30d11676b7a83fd1b\",\"dweb:/ipfs/QmQQcSKBqf9eLyS59WMBBspq6YN6bKvm79NL6mqUmmrDXV\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletFactory.sol\":{\"keccak256\":\"0x573137cfd5d53ffcb888e28d5c82e22077223d627b55f55fddc1b780673e220b\",\"urls\":[\"bzz-raw://58b5c0f9f058bea2da1c1e5a5c561c592724264e09db60c834b3b1ad2bf02a51\",\"dweb:/ipfs/QmbiiKoAx8Xg7WYJ29WoGGoCNn1dDcYGtBQb4UJHtDWaCW\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletWithDailyLimit.sol\":{\"keccak256\":\"0x6a15a0b384bc6f2f3ebc2e5b64062b13f682e69e0221a3b41da5ec5398b47c3e\",\"urls\":[\"bzz-raw://0dfd8792407fe7587905461216609dc3f19e1f034cdb846f30a8f19d8570a14b\",\"dweb:/ipfs/QmTKSwYuxpWdyvQUXaj24Lr5z6aJ8w9A8vfet4tZ5j7Gz9\"]},\"/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletWithDailyLimitFactory.sol\":{\"keccak256\":\"0xd13568a76e4682f5f19a1a8f8001d13e3b20aafea904cf6884a3b6778e83a48e\",\"urls\":[\"bzz-raw://289a5a99160628bf208f8c785606c68f9306a0c117a94edf694da04991212b13\",\"dweb:/ipfs/QmVsqeps4yVNaxu5ra1H2x8ym7eTMxUvZdz5dvAhevqeMA\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
@@ -614,14 +614,14 @@
     "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/DummyWallet/DummyWallet.sol",
     "exportedSymbols": {
       "DummyWallet": [
-        1457
+        1482
       ]
     },
-    "id": 1458,
+    "id": 1483,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1450,
+        "id": 1475,
         "literals": [
           "solidity",
           "^",
@@ -634,10 +634,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletFactory.sol",
         "file": "../MultiSigWalletFactory.sol",
-        "id": 1451,
+        "id": 1476,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 2640,
+        "scope": 1483,
+        "sourceUnit": 2665,
         "src": "26:38:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -645,10 +645,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletWithDailyLimitFactory.sol",
         "file": "../MultiSigWalletWithDailyLimitFactory.sol",
-        "id": 1452,
+        "id": 1477,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 2882,
+        "scope": 1483,
+        "sourceUnit": 2907,
         "src": "65:52:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -656,10 +656,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWallet.sol",
         "file": "../MultiSigWallet.sol",
-        "id": 1453,
+        "id": 1478,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 2608,
+        "scope": 1483,
+        "sourceUnit": 2633,
         "src": "118:31:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -667,10 +667,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/KNS.sol",
         "file": "../../KNS.sol",
-        "id": 1454,
+        "id": 1479,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 1156,
+        "scope": 1483,
+        "sourceUnit": 1175,
         "src": "150:23:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -681,36 +681,36 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1455,
+              "id": 1480,
               "name": "MultiSigWallet",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2607,
+              "referencedDeclaration": 2632,
               "src": "199:14:9",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MultiSigWallet_$2607",
+                "typeIdentifier": "t_contract$_MultiSigWallet_$2632",
                 "typeString": "contract MultiSigWallet"
               }
             },
-            "id": 1456,
+            "id": 1481,
             "nodeType": "InheritanceSpecifier",
             "src": "199:14:9"
           }
         ],
         "contractDependencies": [
-          2607
+          2632
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1457,
+        "id": 1482,
         "linearizedBaseContracts": [
-          1457,
-          2607
+          1482,
+          2632
         ],
         "name": "DummyWallet",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1458,
+        "scope": 1483,
         "src": "175:47:9"
       }
     ],
@@ -720,14 +720,14 @@
     "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/DummyWallet/DummyWallet.sol",
     "exportedSymbols": {
       "DummyWallet": [
-        1457
+        1482
       ]
     },
-    "id": 1458,
+    "id": 1483,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1450,
+        "id": 1475,
         "literals": [
           "solidity",
           "^",
@@ -740,10 +740,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletFactory.sol",
         "file": "../MultiSigWalletFactory.sol",
-        "id": 1451,
+        "id": 1476,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 2640,
+        "scope": 1483,
+        "sourceUnit": 2665,
         "src": "26:38:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -751,10 +751,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWalletWithDailyLimitFactory.sol",
         "file": "../MultiSigWalletWithDailyLimitFactory.sol",
-        "id": 1452,
+        "id": 1477,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 2882,
+        "scope": 1483,
+        "sourceUnit": 2907,
         "src": "65:52:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -762,10 +762,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/gnosis/MultiSigWallet.sol",
         "file": "../MultiSigWallet.sol",
-        "id": 1453,
+        "id": 1478,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 2608,
+        "scope": 1483,
+        "sourceUnit": 2633,
         "src": "118:31:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -773,10 +773,10 @@
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/KNS.sol",
         "file": "../../KNS.sol",
-        "id": 1454,
+        "id": 1479,
         "nodeType": "ImportDirective",
-        "scope": 1458,
-        "sourceUnit": 1156,
+        "scope": 1483,
+        "sourceUnit": 1175,
         "src": "150:23:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -787,36 +787,36 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1455,
+              "id": 1480,
               "name": "MultiSigWallet",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2607,
+              "referencedDeclaration": 2632,
               "src": "199:14:9",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MultiSigWallet_$2607",
+                "typeIdentifier": "t_contract$_MultiSigWallet_$2632",
                 "typeString": "contract MultiSigWallet"
               }
             },
-            "id": 1456,
+            "id": 1481,
             "nodeType": "InheritanceSpecifier",
             "src": "199:14:9"
           }
         ],
         "contractDependencies": [
-          2607
+          2632
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1457,
+        "id": 1482,
         "linearizedBaseContracts": [
-          1457,
-          2607
+          1482,
+          2632
         ],
         "name": "DummyWallet",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1458,
+        "scope": 1483,
         "src": "175:47:9"
       }
     ],
@@ -828,7 +828,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2020-02-24T16:23:21.732Z",
+  "updatedAt": "2020-02-26T16:46:45.087Z",
   "devdoc": {
     "methods": {
       "addOwner(address)": {

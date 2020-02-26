@@ -14,7 +14,10 @@ Events
 // amount is in Wei, so cashier probably need to convert it
 event cashOutRequestEvent(string indexed destination, address indexed user, uint amount);
 
+// TODO add indexed payload to event
+
 event cashInRequestEvent(string indexed from, address indexed user, uint amount, string indexed uuid);
+
 
 
 /*
@@ -35,15 +38,14 @@ struct IRequest {
     string fiat_address;
     address submited_by;
     bool executed;
-    // tx.data -- can be added for getting fiat tx.data and check it. 
-    // but it's not secure..
+    string payload; // should not be secret info
 }
-
 
 // cash out
 
 function cashOutRequest(string memory destination, address user) public payable {
     uint amount = msg.value;
+    // FIXME: add amount conversion
     emit cashOutRequestEvent(destination, user, amount);
 
 }
@@ -66,6 +68,8 @@ function cashInRequest(string memory from, address payable user, string memory u
 
 
 }
+
+
 
 // TODO Validator key can be added here to prove (submit) transaction from FIAT processor. 
 // It 's not neccerily, as we could just use the blockchain validation itself, but do it in more transcendent way

@@ -7,7 +7,10 @@ contract KNS {
 */
 
 event LostedKey(string indexed tel, string indexed Jid, address indexed new_wallet);
-event Registred(address prime_owner, address wallet, string Jid, string indexed tel);
+
+// @warn  NOT-INDEXED values set AS IS, INDEXED values are ENCODED before setting
+event Registred(address prime_owner, address wallet, string indexed Jid, string indexed tel);
+event RegistredHuman(address prime_owner, address wallet, string JID, string tel);
 
 /*
     Constants
@@ -52,6 +55,7 @@ function Register(address prime_owner, address wallet, string memory Jid, string
     RegistryJ[Jid] = info;
     RegistryT[tel] = info;
     emit Registred(prime_owner,wallet,Jid,tel);
+    emit RegistredHuman(prime_owner,wallet,Jid,tel);
 
 }
 
