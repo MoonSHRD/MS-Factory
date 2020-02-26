@@ -52,7 +52,7 @@ function createSimpleWallet(address _owner, uint _required, uint _dailyLimit, st
 
 
 
-    address wallet = create(_owners,_required, _dailyLimit); // FIXME: super.create instead of create (?)
+    address wallet = super.create(_owners,_required, _dailyLimit); // FIXME: super.create instead of create (?)
 
     address prime_owner = _owners[0];
     registry.Register(prime_owner,wallet,Jid,tel);
