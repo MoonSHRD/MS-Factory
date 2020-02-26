@@ -45,10 +45,14 @@ function createWallet(address[] memory _owners, uint _required, uint _dailyLimit
 // HOWTO: req =1 for test, req = 2 for twoFactor AND replacer. req NEVER should be =3 as replacer is needed only for losted keys.
 function createSimpleWallet(address _owner, uint _required, uint _dailyLimit, string memory Jid, string memory tel) public returns(address _wallet){
 
-    address[] memory _owners;
+    address[] memory _owners = new address[](3);
+
     _owners[0] = _owner;
     _owners[1] = replacer;
     _owners[2] = twoFactor;
+    
+
+   // _owners.push(_owner);
 
 
 
