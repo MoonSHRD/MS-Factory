@@ -49,6 +49,8 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     event TicketBoughtHuman(address visitor_wallet,uint256 event_id, uint256 ticket_id);
     event TicketFulfilled(address indexed visitor_wallet,uint256 indexed event_id, uint256 indexed ticket_id);   // FIXME: add date to event?
     event TicketFulfilledHuman(address visitor_wallet,uint256 event_id, uint256 ticket_id);
+    event EventIdReserved(address indexed ticket_sale, uint256 indexed event_id);
+    event EventIdReservedHuman(address ticket_sale, uint256 event_id);
 
     // Global counters for ticket_id and event_id
     Counters.Counter _ticket_id_count;
@@ -106,9 +108,12 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         _event_id_count.increment();
         event_id = _ticket_id_count.current();
         eventsales[event_id] = msg.sender;
+        emit EventIdReserved(msg.sender,event_id);
+        emit EventIdReservedHuman(msg.sender,event_id);
         return event_id;
     }
 
+    //TODO - return ticketIDs?
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id) public{
         require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         for (uint256 i = 0; i < ticketAmount; i++ ){
