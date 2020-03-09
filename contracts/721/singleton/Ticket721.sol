@@ -44,6 +44,11 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
     address _factory_address;
 
+    //events
+    event TicketBought(address indexed visitor_wallet,uint256 indexed event_id, uint256 indexed ticket_id);
+    event TicketBoughtHuman(address visitor_wallet,uint256 event_id, uint256 ticket_id);
+    event TicketFulfilled(address indexed visitor_wallet,uint256 indexed event_id, uint256 indexed ticket_id);   // FIXME: add date to event?
+    event TicketFulfilledHuman(address visitor_wallet,uint256 event_id, uint256 ticket_id);
 
     // Global counters for ticket_id and event_id
     Counters.Counter _ticket_id_count;
@@ -117,12 +122,11 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
             // approve for ticketsale (msg.sender = ticketsale)
             approve(msg.sender, ticket_id);
             //FIXME this function must return ticket_id
+            emit TicketBought(buyer,event_id,ticket_id);
+            emit TicketBoughtHuman(buyer,event_id,ticket_id);
         }
 
     }
-
-    //FIXME: new redeemTicket(?)
-
 
     // This function is burning tokens.
     // @deprecated
@@ -155,11 +159,12 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     */
 
 
-     function redeemTicket(uint256 tokenId, uint256 event_id) public{
+     function redeemTicket(address visitor, uint256 tokenId, uint256 event_id) public{
         require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         require(ticketInfoStorage[tokenId].state == TicketState.Paid, "Ticket state must be Paid");
         ticketInfoStorage[tokenId] = TicketInfo(TicketState.Fulfilled);
-
+        emit TicketFulfilled(visitor,event_id,tokenId);
+        emit TicketFulfilledHuman(visitor, event_id,tokenId);
     }
 
 
