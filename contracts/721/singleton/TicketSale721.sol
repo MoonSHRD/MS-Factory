@@ -31,10 +31,21 @@ function() external payable {
         buyTicket(_msgSender());
     }
 
+// deprecated
+/*
 function redeemTicket(address visitor, uint256 token_id) public {
     Ticket721 ticket_token = super.token();
     uint256 event_id = super.event_id();
     ticket_token.redeemTicket(visitor, token_id, event_id);
 }
+*/
+
+function redeemTicket(uint256 token_id) public {
+    Ticket721 ticket_token = super.token();
+    uint256 event_id = super.event_id();
+    ticket_token.redeemTicket(token_id, event_id);
+}
+
+
 
 }

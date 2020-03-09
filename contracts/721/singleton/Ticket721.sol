@@ -49,12 +49,34 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     Counters.Counter _ticket_id_count;
     Counters.Counter _event_id_count;
 
+    // Ticket lifecycle
+    enum TicketState {Paid, Fulfilled, Cancelled}
+
     // map from ticketsales to event_id
     mapping(uint256 => address) eventsales;
     // map from event id to ticket ids
     mapping (uint256 => uint256[]) ticketIds;
     // map fron token ID to its index in ticketIds
     mapping (uint256 => uint256) ticketIndex;
+    //
+    mapping (uint256 => TicketInfo) ticketInfoStorage;
+
+
+
+    /**
+   * Ticket information
+   */
+
+    struct TicketInfo {
+    //string description;
+    //uint price;
+    TicketState state;
+    //string fulfilmentURI;
+    //address retailer;
+  }
+
+   // TicketInfo[] internal ticketStorage;
+
 
 
     //FIXME: invoke constructor from 721(?)
@@ -89,14 +111,22 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
             uint256 ticket_id = _ticket_id_count.current();
             addMinter(msg.sender);
             _mint(buyer,ticket_id);
+            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
             // approve for ticketsale (msg.sender = ticketsale)
             approve(msg.sender, ticket_id);
+            //FIXME this function must return ticket_id
         }
 
     }
 
+    //FIXME: new redeemTicket(?)
+
+
+    // This function is burning tokens.
+    // @deprecated
+    /*
     function redeemTicket(address owner,uint256 tokenId, uint256 event_id) public{
         require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
         super._burn(owner,tokenId);
@@ -122,5 +152,17 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
 
     }
+    */
+
+
+     function redeemTicket(uint256 tokenId, uint256 event_id) public{
+        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
+        require(ticketInfoStorage[tokenId].state == TicketState.Paid, "Ticket state must be Paid");
+        ticketInfoStorage[tokenId] = TicketInfo(TicketState.Fulfilled);
+
+    }
+
+
+
 
 }
