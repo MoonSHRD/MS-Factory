@@ -45,6 +45,12 @@ function createTicketSale(address payable organizer, uint price) public returns 
 
 }
 
+function PlugInTicketSale(address payable origin_sale, uint price) public returns(address payable plugin_sale) {
+    uint cena = calculateRate(price);
+    plugin_sale = address(new TicketSalePluggable(cena,origin_sale));
+    return plugin_sale;
+}
+
 function calculateRate (uint256 price) internal pure returns (uint256 rate_p) {
     // rate = price * 1 eth
     rate_p = price * (1 ether);
