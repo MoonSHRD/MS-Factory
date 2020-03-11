@@ -1,5 +1,5 @@
 {
-  "contractName": "TicketSale721",
+  "contractName": "TicketSalePluggable",
   "abi": [
     {
       "inputs": [
@@ -10,12 +10,7 @@
         },
         {
           "internalType": "address payable",
-          "name": "wallet",
-          "type": "address"
-        },
-        {
-          "internalType": "contract Ticket721",
-          "name": "token",
+          "name": "_origin",
           "type": "address"
         }
       ],
@@ -137,6 +132,21 @@
     {
       "constant": true,
       "inputs": [],
+      "name": "origin_sale",
+      "outputs": [
+        {
+          "internalType": "contract TokenSale721",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
       "name": "rate",
       "outputs": [
         {
@@ -230,25 +240,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"},{\"internalType\":\"address payable\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"contract Ticket721\",\"name\":\"token\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokensPurchased\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"_event_id\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"_token\",\"outputs\":[{\"internalType\":\"contract Ticket721\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"_wallet\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"}],\"name\":\"buyTicket\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"event_id\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"visitor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"token_id\",\"type\":\"uint256\"}],\"name\":\"redeemTicket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"internalType\":\"contract Ticket721\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"wallet\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"buyTicket(address)\":{\"details\":\"overload buy token function to give allowance to reedem tickets  *\"},\"buyTokens(address)\":{\"details\":\"low level token purchase ***DO NOT OVERRIDE*** This function has a non-reentrancy guard, so it shouldn't be called by another `nonReentrant` function.\",\"params\":{\"beneficiary\":\"Recipient of the token purchase\"}},\"rate()\":{\"return\":\"the number of token units a buyer gets per wei.\"},\"token()\":{\"return\":\"the token being sold.\"},\"wallet()\":{\"return\":\"the address where funds are collected.\"},\"weiRaised()\":{\"return\":\"the amount of wei raised.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSale721.sol\":\"TicketSale721\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/Ticket721.sol\":{\"keccak256\":\"0x581346b047539880329c8c226a7c59fa19db5f506fb99df04fb26f68e58529b9\",\"urls\":[\"bzz-raw://82b64129f1282ce0e5f13000095944405b70c29354eea4b30825c15eacdcafae\",\"dweb:/ipfs/QmfWZoCB1hEREDTSP5RpJA6coTtgSQ9dE1vbBDtc6Lc3iU\"]},\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSale721.sol\":{\"keccak256\":\"0xac2cece8903b28ee9f4eae84d940d2b47fea9400a9a69da8f456c11aacc2d0d4\",\"urls\":[\"bzz-raw://92b52abbf2b407aee69287e0d2cdac9f7d729bfa95158f5ff9ab0e185e9ae0c7\",\"dweb:/ipfs/QmdhEMStQV2CWqWhLbggExd4S92A2t16sy3apMXziU9wDu\"]},\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TokenSale721.sol\":{\"keccak256\":\"0x6c093960cf920bbe2bdde1e78882152acb251a56104719521a3921578ec39298\",\"urls\":[\"bzz-raw://b2ea3ef185d3b46b1c33c8b2a5930230aa25aa1558e534186ef9826ecd6df0f6\",\"dweb:/ipfs/Qmdg84cYcVCz8pjUcpgS2BaJVT16j64R4bPxvCDHQxegLd\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/GSN/Context.sol\":{\"keccak256\":\"0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061\",\"urls\":[\"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436\",\"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/access/roles/MinterRole.sol\":{\"keccak256\":\"0xbe8eef6f2cb4e427f5c5d8a76865ccd06e55a4f1d6671ba312d45bfa705aedbf\",\"urls\":[\"bzz-raw://badf338a5e22c8658c01fe2ce89b487d9dbf6d2d9d5eb49df7415383e2498765\",\"dweb:/ipfs/QmP5aMkvFwMJyuQjKE8ADh5tkWYqonb4KjgkAjgYEVVFAv\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/crowdsale/Crowdsale.sol\":{\"keccak256\":\"0x804e9232671799cc1259d37cadb62ffdd32daddf0711565be266d8fd2b61130a\",\"urls\":[\"bzz-raw://6f27659286be94a53323df7af0f322f08ef2a2497903a61c57c3ee2690647d54\",\"dweb:/ipfs/QmT8e2fSeCBLtiJyVsMoGEqMkvNNiFRvqUznXwpzcjzmKV\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/drafts/Counters.sol\":{\"keccak256\":\"0x5be8533c5950173dc2b77b75108fae6e6c5449aedadde3385ba457394aad2384\",\"urls\":[\"bzz-raw://d429fb04f5b31d909dc759d0f88e28055b80b4dd43e5def4dffc947fa0609229\",\"dweb:/ipfs/QmaY9idX5CwLLtjjTQAdiiaDSrncgafkatUZXTbbajpz8b\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/introspection/ERC165.sol\":{\"keccak256\":\"0x01aedbf24e121a744262e04c7815b2a4c8ce604dee4829c5cff00943a594ccf3\",\"urls\":[\"bzz-raw://999ab32a6498d8ad8db61d47c3774aae2ff919acceebe2aeb50879bef62642c3\",\"dweb:/ipfs/QmephAYF5hoymu9qCFK6mURM2kZJCxU4ntUb4KTf1miVPT\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/introspection/IERC165.sol\":{\"keccak256\":\"0xe0ed10f53955c35eecb02724538650a155aa940be3f0a54cd3bde6c6b0c6e48c\",\"urls\":[\"bzz-raw://7dcfda88e3225987245908c3296f3559752647036804325ebfaa9fd1545161c3\",\"dweb:/ipfs/QmXxx5rHfLL57zdgyyyG9MMv4XGN7bpVSc2MuDcaCgto6u\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xef0a647e23ee7948ce815dbbf9a7c4e1590098f3cdacdc1fddcb6a99b36cfb91\",\"urls\":[\"bzz-raw://91e4a0b3f692457959273ecbe14a466bf96736954c4d48ab57d46daa177f0bf6\",\"dweb:/ipfs/QmPNcR23JdhMaVPsBq4GFdhfTgKKMwhFSPCXxEetqL8Eju\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0xcdf95fba36981cf892e9c53d35935391159d817c53aadd6939fcbbba3257bbfe\",\"urls\":[\"bzz-raw://9b398f2a7d44ca974c126e847aae3e92a339379f5838b1b7898eaf7055fcd8c3\",\"dweb:/ipfs/QmRz7nGywv9QFpe7pYa2GxaSorrH5tqjvg5BabNLbpLeuR\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/ERC721.sol\":{\"keccak256\":\"0x1c96acea0d31d4d720a7f8a4ca6cf59d298d6d2c8c86ea494c33b73e6449412f\",\"urls\":[\"bzz-raw://557fd90e4368bc64753f43be0647bcc14872b555cf335ff2a8654c302e051d50\",\"dweb:/ipfs/QmcLL3FhQSemyE4yun2YwjGEmHFSKyqieWZs4LSrgPi2FL\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/ERC721Enumerable.sol\":{\"keccak256\":\"0x28f4e41b86db783cd8daf9fdec839ce5930332b60f6dc9ac4992dfb584997e79\",\"urls\":[\"bzz-raw://6f1b545ec9e1f0284e86ddd4ffff353e1ab5e026bbbfaa2a5d2d791c39d7afd7\",\"dweb:/ipfs/Qmf9rVfj6LreiE7NHkkT1S7eLbSQDDY1gKd9XWERx2AN7W\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/ERC721Mintable.sol\":{\"keccak256\":\"0xdd9d2d0f7fac88b5704044983443c052810b397e6383535711a9162302c32d03\",\"urls\":[\"bzz-raw://3082c4ead86756c5aa19e6734117394dc230d4f92c16537a402dfb57579e5d72\",\"dweb:/ipfs/QmbGubkvZ8FouoNjrBGsVmJskPXYcYXa1MkWCktwxbd4tU\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/IERC721.sol\":{\"keccak256\":\"0x680c11bc8173eef7d5db843baaf64ce499476de2c172f6aea631dbee54bcd2e6\",\"urls\":[\"bzz-raw://0f314963ab26fb65c6f364d57900f0f1aa8f6aeb4396e327e5e5c646815f060e\",\"dweb:/ipfs/Qmf6eSUtRUF4YDxGyhQq7TVDYzuHcYEvk9Us3RVy5iZQVH\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/IERC721Enumerable.sol\":{\"keccak256\":\"0x5c573acd6c7b98d71f3c1c44d63dc17400b0fd7b26a52c9fded43b8b533dc4ec\",\"urls\":[\"bzz-raw://e23af54444d2dbfae58895339eb7b189e1ba5d0b7abde63716e7ef7da23b2fde\",\"dweb:/ipfs/QmZva7dE1SMd1yyizzc6ivSoBXXwpNveLV7iFNATNpq68Y\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/IERC721Receiver.sol\":{\"keccak256\":\"0x042048c375daca04b31e31c91bbae912b84b5eb818c4e31b2deb530fd2305342\",\"urls\":[\"bzz-raw://d877a87c5e29b9ffca3e334378058c051a4e012fd3635039681003a9376baf1f\",\"dweb:/ipfs/QmR45snf93cFXtB71TZcmoGy9DbcMha8CqgkDKaLvhjXZK\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0xb63221b23818d622bfd83d18e0968307e4fcb7a35536bdceded76e1cf8349acd\",\"urls\":[\"bzz-raw://44e1e8c22362c4708a8c3362735f1465f5b05e2f7315e16c7010d694ce019d73\",\"dweb:/ipfs/QmWj9g8X1hxkXRre2kwkEjLBetjuzmSbWHD81bsSojnBkS\"]}},\"version\":1}",
-  "bytecode": "0x6080604052600160025534801561001557600080fd5b50604051610eae380380610eae8339818101604052606081101561003857600080fd5b8101908080519060200190929190805190602001909291908051906020019092919050505082828260016000806101000a81548160ff021916908315150217905550600083116100f0576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f43726f776473616c653a2072617465206973203000000000000000000000000081525060200191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610176576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526025815260200180610e896025913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156101fc576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526024815260200180610e656024913960400191505060405180910390fd5b8260048190555081600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555080600060016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16634c0eb465600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b15801561034857600080fd5b505af115801561035c573d6000803e3d6000fd5b505050506040513d602081101561037257600080fd5b8101908080519060200190929190505050600181905550505050505050610ac78061039e6000396000f3fe60806040526004361061009c5760003560e01c80636ed08ea0116100645780636ed08ea01461020d57806391039dee14610238578063a5f8cdbb14610263578063ec8ac4d8146102a7578063ecd0c0c3146102eb578063fc0c546a146103425761009c565b80632c4e722e146100ae5780634042b66f146100d9578063521eb27314610104578063610757e41461015b5780636c1e81e3146101b2575b6100ac6100a7610399565b6103a1565b005b3480156100ba57600080fd5b506100c36103ad565b6040518082815260200191505060405180910390f35b3480156100e557600080fd5b506100ee6103b7565b6040518082815260200191505060405180910390f35b34801561011057600080fd5b506101196103c1565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561016757600080fd5b506101706103eb565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101be57600080fd5b5061020b600480360360408110156101d557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610411565b005b34801561021957600080fd5b506102226104d6565b6040518082815260200191505060405180910390f35b34801561024457600080fd5b5061024d6104dc565b6040518082815260200191505060405180910390f35b6102a56004803603602081101561027957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a1565b005b6102e9600480360360208110156102bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506104e6565b005b3480156102f757600080fd5b50610300610671565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561034e57600080fd5b50610357610697565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600033905090565b6103aa816104e6565b50565b6000600454905090565b6000600554905090565b6000600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600061041b610697565b905060006104276104dc565b90508173ffffffffffffffffffffffffffffffffffffffff1663a27c282e8585846040518463ffffffff1660e01b8152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018381526020018281526020019350505050600060405180830381600087803b1580156104b857600080fd5b505af11580156104cc573d6000803e3d6000fd5b5050505050505050565b60015481565b6000600154905090565b6000809054906101000a900460ff16610567576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f5265656e7472616e637947756172643a207265656e7472616e742063616c6c0081525060200191505060405180910390fd5b60008060006101000a81548160ff021916908315150217905550600034905061059082826106c0565b600061059b826107c1565b90506105b2826005546107df90919063ffffffff16565b6005819055506105c28382610867565b8273ffffffffffffffffffffffffffffffffffffffff166105e1610399565b73ffffffffffffffffffffffffffffffffffffffff167f6faf93231a456e552dbc9961f58d9713ee4f2e69d15f1975b050ef0911053a7b8484604051808381526020018281526020019250505060405180910390a36106408383610875565b610648610879565b61065283836108e4565b505060016000806101000a81548160ff02191690831515021790555050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610746576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602a815260200180610a69602a913960400191505060405180910390fd5b60008114156107bd576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260198152602001807f43726f776473616c653a20776569416d6f756e7420697320300000000000000081525060200191505060405180910390fd5b5050565b60006107d8600454836108e890919063ffffffff16565b9050919050565b60008082840190508381101561085d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b610871828261096e565b5050565b5050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156108e1573d6000803e3d6000fd5b50565b5050565b6000808314156108fb5760009050610968565b600082840290508284828161090c57fe5b0414610963576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180610a486021913960400191505060405180910390fd5b809150505b92915050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663cd3a15f883836001546002546040518563ffffffff1660e01b8152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152602001828152602001945050505050600060405180830381600087803b158015610a2b57600080fd5b505af1158015610a3f573d6000803e3d6000fd5b50505050505056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7743726f776473616c653a2062656e656669636961727920697320746865207a65726f2061646472657373a265627a7a723158200e4f0dd4dd6f5a69c27ae7382f00ead14f008918f7843be05931468f509a811264736f6c6343000510003243726f776473616c653a20746f6b656e20697320746865207a65726f206164647265737343726f776473616c653a2077616c6c657420697320746865207a65726f2061646472657373",
-  "deployedBytecode": "0x60806040526004361061009c5760003560e01c80636ed08ea0116100645780636ed08ea01461020d57806391039dee14610238578063a5f8cdbb14610263578063ec8ac4d8146102a7578063ecd0c0c3146102eb578063fc0c546a146103425761009c565b80632c4e722e146100ae5780634042b66f146100d9578063521eb27314610104578063610757e41461015b5780636c1e81e3146101b2575b6100ac6100a7610399565b6103a1565b005b3480156100ba57600080fd5b506100c36103ad565b6040518082815260200191505060405180910390f35b3480156100e557600080fd5b506100ee6103b7565b6040518082815260200191505060405180910390f35b34801561011057600080fd5b506101196103c1565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561016757600080fd5b506101706103eb565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101be57600080fd5b5061020b600480360360408110156101d557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610411565b005b34801561021957600080fd5b506102226104d6565b6040518082815260200191505060405180910390f35b34801561024457600080fd5b5061024d6104dc565b6040518082815260200191505060405180910390f35b6102a56004803603602081101561027957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a1565b005b6102e9600480360360208110156102bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506104e6565b005b3480156102f757600080fd5b50610300610671565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561034e57600080fd5b50610357610697565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600033905090565b6103aa816104e6565b50565b6000600454905090565b6000600554905090565b6000600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600061041b610697565b905060006104276104dc565b90508173ffffffffffffffffffffffffffffffffffffffff1663a27c282e8585846040518463ffffffff1660e01b8152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018381526020018281526020019350505050600060405180830381600087803b1580156104b857600080fd5b505af11580156104cc573d6000803e3d6000fd5b5050505050505050565b60015481565b6000600154905090565b6000809054906101000a900460ff16610567576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f5265656e7472616e637947756172643a207265656e7472616e742063616c6c0081525060200191505060405180910390fd5b60008060006101000a81548160ff021916908315150217905550600034905061059082826106c0565b600061059b826107c1565b90506105b2826005546107df90919063ffffffff16565b6005819055506105c28382610867565b8273ffffffffffffffffffffffffffffffffffffffff166105e1610399565b73ffffffffffffffffffffffffffffffffffffffff167f6faf93231a456e552dbc9961f58d9713ee4f2e69d15f1975b050ef0911053a7b8484604051808381526020018281526020019250505060405180910390a36106408383610875565b610648610879565b61065283836108e4565b505060016000806101000a81548160ff02191690831515021790555050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610746576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602a815260200180610a69602a913960400191505060405180910390fd5b60008114156107bd576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260198152602001807f43726f776473616c653a20776569416d6f756e7420697320300000000000000081525060200191505060405180910390fd5b5050565b60006107d8600454836108e890919063ffffffff16565b9050919050565b60008082840190508381101561085d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b610871828261096e565b5050565b5050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156108e1573d6000803e3d6000fd5b50565b5050565b6000808314156108fb5760009050610968565b600082840290508284828161090c57fe5b0414610963576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180610a486021913960400191505060405180910390fd5b809150505b92915050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663cd3a15f883836001546002546040518563ffffffff1660e01b8152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152602001828152602001945050505050600060405180830381600087803b158015610a2b57600080fd5b505af1158015610a3f573d6000803e3d6000fd5b50505050505056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7743726f776473616c653a2062656e656669636961727920697320746865207a65726f2061646472657373a265627a7a723158200e4f0dd4dd6f5a69c27ae7382f00ead14f008918f7843be05931468f509a811264736f6c63430005100032",
-  "sourceMap": "82:1026:3:-;;;616:1:5;596:21;;126:108:3;8:9:-1;5:2;;;30:1;27;20:12;5:2;126:108:3;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;126:108:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;206:4;211:6;218:5;1435:4:102;1421:11;;:18;;;;;;;;;;;;;;;;;;1972:1:5;1965:4;:8;1957:41;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2034:1;2016:20;;:6;:20;;;;2008:70;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2122:1;2096:28;;2104:5;2096:28;;;;2088:77;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2184:4;2176:5;:12;;;;2208:6;2198:7;;:16;;;;;;;;;;;;;;;;;;2233:5;2224:6;;:14;;;;;;;;;;;;;;;;;;2261:6;;;;;;;;;;;:21;;;2283:7;;;;;;;;;;;2261:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2261:30:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2261:30:5;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2261:30:5;;;;;;;;;;;;;;;;2249:9;:42;;;;1872:426;;;126:108:3;;;82:1026;;;;;;",
-  "deployedSourceMap": "82:1026:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;625:23;635:12;:10;:12::i;:::-;625:9;:23::i;:::-;82:1026;3041:75:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3041:75:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;3179:85;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3179:85:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2869:87;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2869:87:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;665:30;;8:9:-1;5:2;;;30:1;27;20:12;5:2;665:30:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;891:212:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;891:212:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;891:212:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;546:24:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;546:24:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;3270:83;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3270:83:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;322:251:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;322:251:3;;;;;;;;;;;;;;;;;;;:::i;:::-;;3610:605:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3610:605:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;500:23;;8:9:-1;5:2;;;30:1;27;20:12;5:2;500:23:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;2714:79;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2714:79:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;788:96:20;833:15;867:10;860:17;;788:96;:::o;322:251:3:-;377:22;393:5;377:15;:22::i;:::-;322:251;:::o;3041:75:5:-;3078:7;3104:5;;3097:12;;3041:75;:::o;3179:85::-;3221:7;3247:10;;3240:17;;3179:85;:::o;2869:87::-;2908:15;2942:7;;;;;;;;;;;2935:14;;2869:87;:::o;665:30::-;;;;;;;;;;;;;:::o;891:212:3:-;961:22;986:13;:11;:13::i;:::-;961:38;;1005:16;1024;:14;:16::i;:::-;1005:35;;1046:12;:25;;;1072:7;1081:8;1091;1046:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1046:54:3;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1046:54:3;;;;891:212;;;;:::o;546:24:5:-;;;;:::o;3270:83::-;3311:7;3337:9;;3330:16;;3270:83;:::o;3610:605::-;1934:11:102;;;;;;;;;;;1926:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2070:5;2056:11;;:19;;;;;;;;;;;;;;;;;;3688:17:5;3708:9;3688:29;;3727:44;3748:11;3761:9;3727:20;:44::i;:::-;3830:14;3847:26;3863:9;3847:15;:26::i;:::-;3830:43;;3921:25;3936:9;3921:10;;:14;;:25;;;;:::i;:::-;3908:10;:38;;;;3957:37;3974:11;3987:6;3957:16;:37::i;:::-;4039:11;4009:61;;4025:12;:10;:12::i;:::-;4009:61;;;4052:9;4063:6;4009:61;;;;;;;;;;;;;;;;;;;;;;;;4081:46;4104:11;4117:9;4081:22;:46::i;:::-;4138:15;:13;:15::i;:::-;4163:45;4185:11;4198:9;4163:21;:45::i;:::-;2086:1:102;;2244:4;2230:11;;:18;;;;;;;;;;;;;;;;;;3610:605:5;:::o;500:23::-;;;;;;;;;;;;;:::o;2714:79::-;2752:9;2780:6;;;;;;;;;;;2773:13;;2714:79;:::o;4757:376::-;4882:1;4859:25;;:11;:25;;;;4851:80;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4962:1;4949:9;:14;;4941:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4757:376;;:::o;7079:169::-;7146:7;7172:20;7186:5;;7172:9;:13;;:20;;;;:::i;:::-;7165:27;;7079:169;;;:::o;834:176:63:-;892:7;911:9;927:1;923;:5;911:17;;951:1;946;:6;;938:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1002:1;995:8;;;834:176;;;;:::o;6281:134:5:-;6368:40;6383:11;6396;6368:14;:40::i;:::-;6281:134;;:::o;6685:145::-;;;:::o;7335:78::-;7379:7;;;;;;;;;;;:16;;:27;7396:9;7379:27;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;7379:27:5;7335:78::o;5428:149::-;;;:::o;2159:459:63:-;2217:7;2463:1;2458;:6;2454:45;;;2487:1;2480:8;;;;2454:45;2509:9;2525:1;2521;:5;2509:17;;2553:1;2548;2544;:5;;;;;;:10;2536:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2610:1;2603:8;;;2159:459;;;;;:::o;5857:158:5:-;5942:6;;;;;;;;;;;:16;;;5959:11;5971;5984:9;;5995:12;;5942:66;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;5942:66:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;5942:66:5;;;;5857:158;;:::o",
-  "source": "pragma solidity ^0.5.11;\n\nimport './TokenSale721.sol';\nimport './Ticket721.sol';\n\ncontract TicketSale721 is TokenSale721 {\n\n\n\nconstructor(uint256 rate, address payable wallet, Ticket721 token) TokenSale721(rate,wallet,token) public {}\n\n\n/**\n*\n* @dev overload buy token function to give allowance to reedem tickets \n*\n*\n*/\nfunction buyTicket(address buyer) public payable {\n    super.buyTokens(buyer);\n    //Ticket721 ticket_token = super.token();\n   // super._token.approve(_wallet,tokens);\n\n    // chek this one more time\n    //ticket_token.setApprovalForEvent(buyer,);\n\n}\n\n// fallback\nfunction() external payable {\n        buyTicket(_msgSender());\n    }\n\n// deprecated\n/*\nfunction redeemTicket(address visitor, uint256 token_id) public {\n    Ticket721 ticket_token = super.token();\n    uint256 event_id = super.event_id();\n    ticket_token.redeemTicket(visitor, token_id, event_id);\n}\n*/\n\nfunction redeemTicket(address visitor, uint256 token_id) public {\n    Ticket721 ticket_token = super.token();\n    uint256 event_id = super.event_id();\n    ticket_token.redeemTicket(visitor, token_id, event_id);\n}\n\n\n\n}",
-  "sourcePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSale721.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"},{\"internalType\":\"address payable\",\"name\":\"_origin\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokensPurchased\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"_event_id\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"_token\",\"outputs\":[{\"internalType\":\"contract Ticket721\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"_wallet\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"}],\"name\":\"buyTicket\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"event_id\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"origin_sale\",\"outputs\":[{\"internalType\":\"contract TokenSale721\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"visitor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"token_id\",\"type\":\"uint256\"}],\"name\":\"redeemTicket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"internalType\":\"contract Ticket721\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"wallet\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"buyTicket(address)\":{\"details\":\"overload buy token function to give allowance to reedem tickets  *\"},\"buyTokens(address)\":{\"details\":\"low level token purchase ***DO NOT OVERRIDE*** This function has a non-reentrancy guard, so it shouldn't be called by another `nonReentrant` function.\",\"params\":{\"beneficiary\":\"Recipient of the token purchase\"}},\"rate()\":{\"return\":\"the number of token units a buyer gets per wei.\"},\"token()\":{\"return\":\"the token being sold.\"},\"wallet()\":{\"return\":\"the address where funds are collected.\"},\"weiRaised()\":{\"return\":\"the amount of wei raised.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSalePluggable.sol\":\"TicketSalePluggable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/PluggableSale.sol\":{\"keccak256\":\"0xcdb31ed29a406f5d91ae0d33c23e7688acf6d73a852fb90ce1fcc511b00ff1ce\",\"urls\":[\"bzz-raw://ab44250521e9d6dffcb9e0de874a3689c44ce9de7b6fbc6fe97a31969beecc12\",\"dweb:/ipfs/QmPEKWmM1WEGcrVRabfWLf93nEiEuE39Mu4aFTM6uhk82k\"]},\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/Ticket721.sol\":{\"keccak256\":\"0x581346b047539880329c8c226a7c59fa19db5f506fb99df04fb26f68e58529b9\",\"urls\":[\"bzz-raw://82b64129f1282ce0e5f13000095944405b70c29354eea4b30825c15eacdcafae\",\"dweb:/ipfs/QmfWZoCB1hEREDTSP5RpJA6coTtgSQ9dE1vbBDtc6Lc3iU\"]},\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSalePluggable.sol\":{\"keccak256\":\"0x78596363e0b80c58bc09969eba438791b2ab7ff87fd1c7f7adf7f24f21f5ef04\",\"urls\":[\"bzz-raw://28332491eff1a8f9947351cfb2940cc6749be9bbb7e8a6c07d6016ab9182cdac\",\"dweb:/ipfs/QmYSyDjAqeN2jnrHyPDtKNFRDnagJ8MqCj93vBasfAMyqt\"]},\"/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TokenSale721.sol\":{\"keccak256\":\"0x6c093960cf920bbe2bdde1e78882152acb251a56104719521a3921578ec39298\",\"urls\":[\"bzz-raw://b2ea3ef185d3b46b1c33c8b2a5930230aa25aa1558e534186ef9826ecd6df0f6\",\"dweb:/ipfs/Qmdg84cYcVCz8pjUcpgS2BaJVT16j64R4bPxvCDHQxegLd\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/GSN/Context.sol\":{\"keccak256\":\"0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061\",\"urls\":[\"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436\",\"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/access/roles/MinterRole.sol\":{\"keccak256\":\"0xbe8eef6f2cb4e427f5c5d8a76865ccd06e55a4f1d6671ba312d45bfa705aedbf\",\"urls\":[\"bzz-raw://badf338a5e22c8658c01fe2ce89b487d9dbf6d2d9d5eb49df7415383e2498765\",\"dweb:/ipfs/QmP5aMkvFwMJyuQjKE8ADh5tkWYqonb4KjgkAjgYEVVFAv\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/crowdsale/Crowdsale.sol\":{\"keccak256\":\"0x804e9232671799cc1259d37cadb62ffdd32daddf0711565be266d8fd2b61130a\",\"urls\":[\"bzz-raw://6f27659286be94a53323df7af0f322f08ef2a2497903a61c57c3ee2690647d54\",\"dweb:/ipfs/QmT8e2fSeCBLtiJyVsMoGEqMkvNNiFRvqUznXwpzcjzmKV\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/drafts/Counters.sol\":{\"keccak256\":\"0x5be8533c5950173dc2b77b75108fae6e6c5449aedadde3385ba457394aad2384\",\"urls\":[\"bzz-raw://d429fb04f5b31d909dc759d0f88e28055b80b4dd43e5def4dffc947fa0609229\",\"dweb:/ipfs/QmaY9idX5CwLLtjjTQAdiiaDSrncgafkatUZXTbbajpz8b\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/introspection/ERC165.sol\":{\"keccak256\":\"0x01aedbf24e121a744262e04c7815b2a4c8ce604dee4829c5cff00943a594ccf3\",\"urls\":[\"bzz-raw://999ab32a6498d8ad8db61d47c3774aae2ff919acceebe2aeb50879bef62642c3\",\"dweb:/ipfs/QmephAYF5hoymu9qCFK6mURM2kZJCxU4ntUb4KTf1miVPT\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/introspection/IERC165.sol\":{\"keccak256\":\"0xe0ed10f53955c35eecb02724538650a155aa940be3f0a54cd3bde6c6b0c6e48c\",\"urls\":[\"bzz-raw://7dcfda88e3225987245908c3296f3559752647036804325ebfaa9fd1545161c3\",\"dweb:/ipfs/QmXxx5rHfLL57zdgyyyG9MMv4XGN7bpVSc2MuDcaCgto6u\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xef0a647e23ee7948ce815dbbf9a7c4e1590098f3cdacdc1fddcb6a99b36cfb91\",\"urls\":[\"bzz-raw://91e4a0b3f692457959273ecbe14a466bf96736954c4d48ab57d46daa177f0bf6\",\"dweb:/ipfs/QmPNcR23JdhMaVPsBq4GFdhfTgKKMwhFSPCXxEetqL8Eju\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0xcdf95fba36981cf892e9c53d35935391159d817c53aadd6939fcbbba3257bbfe\",\"urls\":[\"bzz-raw://9b398f2a7d44ca974c126e847aae3e92a339379f5838b1b7898eaf7055fcd8c3\",\"dweb:/ipfs/QmRz7nGywv9QFpe7pYa2GxaSorrH5tqjvg5BabNLbpLeuR\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/ERC721.sol\":{\"keccak256\":\"0x1c96acea0d31d4d720a7f8a4ca6cf59d298d6d2c8c86ea494c33b73e6449412f\",\"urls\":[\"bzz-raw://557fd90e4368bc64753f43be0647bcc14872b555cf335ff2a8654c302e051d50\",\"dweb:/ipfs/QmcLL3FhQSemyE4yun2YwjGEmHFSKyqieWZs4LSrgPi2FL\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/ERC721Enumerable.sol\":{\"keccak256\":\"0x28f4e41b86db783cd8daf9fdec839ce5930332b60f6dc9ac4992dfb584997e79\",\"urls\":[\"bzz-raw://6f1b545ec9e1f0284e86ddd4ffff353e1ab5e026bbbfaa2a5d2d791c39d7afd7\",\"dweb:/ipfs/Qmf9rVfj6LreiE7NHkkT1S7eLbSQDDY1gKd9XWERx2AN7W\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/ERC721Mintable.sol\":{\"keccak256\":\"0xdd9d2d0f7fac88b5704044983443c052810b397e6383535711a9162302c32d03\",\"urls\":[\"bzz-raw://3082c4ead86756c5aa19e6734117394dc230d4f92c16537a402dfb57579e5d72\",\"dweb:/ipfs/QmbGubkvZ8FouoNjrBGsVmJskPXYcYXa1MkWCktwxbd4tU\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/IERC721.sol\":{\"keccak256\":\"0x680c11bc8173eef7d5db843baaf64ce499476de2c172f6aea631dbee54bcd2e6\",\"urls\":[\"bzz-raw://0f314963ab26fb65c6f364d57900f0f1aa8f6aeb4396e327e5e5c646815f060e\",\"dweb:/ipfs/Qmf6eSUtRUF4YDxGyhQq7TVDYzuHcYEvk9Us3RVy5iZQVH\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/IERC721Enumerable.sol\":{\"keccak256\":\"0x5c573acd6c7b98d71f3c1c44d63dc17400b0fd7b26a52c9fded43b8b533dc4ec\",\"urls\":[\"bzz-raw://e23af54444d2dbfae58895339eb7b189e1ba5d0b7abde63716e7ef7da23b2fde\",\"dweb:/ipfs/QmZva7dE1SMd1yyizzc6ivSoBXXwpNveLV7iFNATNpq68Y\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/token/ERC721/IERC721Receiver.sol\":{\"keccak256\":\"0x042048c375daca04b31e31c91bbae912b84b5eb818c4e31b2deb530fd2305342\",\"urls\":[\"bzz-raw://d877a87c5e29b9ffca3e334378058c051a4e012fd3635039681003a9376baf1f\",\"dweb:/ipfs/QmR45snf93cFXtB71TZcmoGy9DbcMha8CqgkDKaLvhjXZK\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]},\"/home/jack/ethProjects/MS-Factory/contracts/zeppeline/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0xb63221b23818d622bfd83d18e0968307e4fcb7a35536bdceded76e1cf8349acd\",\"urls\":[\"bzz-raw://44e1e8c22362c4708a8c3362735f1465f5b05e2f7315e16c7010d694ce019d73\",\"dweb:/ipfs/QmWj9g8X1hxkXRre2kwkEjLBetjuzmSbWHD81bsSojnBkS\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516111773803806111778339818101604052604081101561003357600080fd5b810190808051906020019092919080519060200190929190505050818160016000806101000a81548160ff021916908315150217905550600082116100e0576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f43726f776473616c653a2072617465206973203000000000000000000000000081525060200191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610183576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601d8152602001807f6f726967696e2063616e6e6f74206265207a65726f206164647265737300000081525060200191505060405180910390fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663521eb2736040518163ffffffff1660e01b815260040160206040518083038186803b1580156101eb57600080fd5b505afa1580156101ff573d6000803e3d6000fd5b505050506040513d602081101561021557600080fd5b8101908080519060200190929190505050600460006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055503373ffffffffffffffffffffffffffffffffffffffff16600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161461030c576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260278152602001806111506027913960400191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081600581905550600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663fc0c546a6040518163ffffffff1660e01b815260040160206040518083038186803b1580156103bc57600080fd5b505afa1580156103d0573d6000803e3d6000fd5b505050506040513d60208110156103e657600080fd5b8101908080519060200190929190505050600060016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166391039dee6040518163ffffffff1660e01b815260040160206040518083038186803b15801561049f57600080fd5b505afa1580156104b3573d6000803e3d6000fd5b505050506040513d60208110156104c957600080fd5b8101908080519060200190929190505050600281905550600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663645c0fb0600254600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166040518363ffffffff1660e01b8152600401808381526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200192505050602060405180830381600087803b1580156105ad57600080fd5b505af11580156105c1573d6000803e3d6000fd5b505050506040513d60208110156105d757600080fd5b810190808051906020019092919050505060038190555050505050610b4f806106016000396000f3fe6080604052600436106100a75760003560e01c80636ed08ea0116100645780636ed08ea01461026f57806391039dee1461029a578063a5f8cdbb146102c5578063ec8ac4d814610309578063ecd0c0c31461034d578063fc0c546a146103a4576100a7565b80632c4e722e146100b95780634042b66f146100e457806341035a411461010f578063521eb27314610166578063610757e4146101bd5780636c1e81e314610214575b6100b76100b26103fb565b610403565b005b3480156100c557600080fd5b506100ce61040f565b6040518082815260200191505060405180910390f35b3480156100f057600080fd5b506100f9610419565b6040518082815260200191505060405180910390f35b34801561011b57600080fd5b50610124610423565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561017257600080fd5b5061017b610449565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101c957600080fd5b506101d2610473565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561022057600080fd5b5061026d6004803603604081101561023757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610499565b005b34801561027b57600080fd5b5061028461055e565b6040518082815260200191505060405180910390f35b3480156102a657600080fd5b506102af610564565b6040518082815260200191505060405180910390f35b610307600480360360208110156102db57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610403565b005b61034b6004803603602081101561031f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061056e565b005b34801561035957600080fd5b506103626106f9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156103b057600080fd5b506103b961071f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600033905090565b61040c8161056e565b50565b6000600554905090565b6000600654905090565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60006104a361071f565b905060006104af610564565b90508173ffffffffffffffffffffffffffffffffffffffff1663a27c282e8585846040518463ffffffff1660e01b8152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018381526020018281526020019350505050600060405180830381600087803b15801561054057600080fd5b505af1158015610554573d6000803e3d6000fd5b5050505050505050565b60025481565b6000600254905090565b6000809054906101000a900460ff166105ef576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f5265656e7472616e637947756172643a207265656e7472616e742063616c6c0081525060200191505060405180910390fd5b60008060006101000a81548160ff02191690831515021790555060003490506106188282610748565b600061062382610849565b905061063a8260065461086790919063ffffffff16565b60068190555061064a83826108ef565b8273ffffffffffffffffffffffffffffffffffffffff166106696103fb565b73ffffffffffffffffffffffffffffffffffffffff167f6faf93231a456e552dbc9961f58d9713ee4f2e69d15f1975b050ef0911053a7b8484604051808381526020018281526020019250505060405180910390a36106c883836108fd565b6106d0610901565b6106da838361096c565b505060016000806101000a81548160ff02191690831515021790555050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156107ce576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602a815260200180610af1602a913960400191505060405180910390fd5b6000811415610845576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260198152602001807f43726f776473616c653a20776569416d6f756e7420697320300000000000000081525060200191505060405180910390fd5b5050565b60006108606005548361097090919063ffffffff16565b9050919050565b6000808284019050838110156108e5576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b6108f982826109f6565b5050565b5050565b600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050158015610969573d6000803e3d6000fd5b50565b5050565b60008083141561098357600090506109f0565b600082840290508284828161099457fe5b04146109eb576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180610ad06021913960400191505060405180910390fd5b809150505b92915050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663cd3a15f883836002546003546040518563ffffffff1660e01b8152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152602001828152602001945050505050600060405180830381600087803b158015610ab357600080fd5b505af1158015610ac7573d6000803e3d6000fd5b50505050505056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7743726f776473616c653a2062656e656669636961727920697320746865207a65726f2061646472657373a265627a7a72315820ae8c6fe07a33cb3f77277897fb18b6963e0500c36ae72ff482bd19c555a1428064736f6c634300051000326f6e6c79206f726967696e206f7267616e697a65722063616e20706c7567206e65772073616c65",
+  "deployedBytecode": "0x6080604052600436106100a75760003560e01c80636ed08ea0116100645780636ed08ea01461026f57806391039dee1461029a578063a5f8cdbb146102c5578063ec8ac4d814610309578063ecd0c0c31461034d578063fc0c546a146103a4576100a7565b80632c4e722e146100b95780634042b66f146100e457806341035a411461010f578063521eb27314610166578063610757e4146101bd5780636c1e81e314610214575b6100b76100b26103fb565b610403565b005b3480156100c557600080fd5b506100ce61040f565b6040518082815260200191505060405180910390f35b3480156100f057600080fd5b506100f9610419565b6040518082815260200191505060405180910390f35b34801561011b57600080fd5b50610124610423565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561017257600080fd5b5061017b610449565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101c957600080fd5b506101d2610473565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561022057600080fd5b5061026d6004803603604081101561023757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610499565b005b34801561027b57600080fd5b5061028461055e565b6040518082815260200191505060405180910390f35b3480156102a657600080fd5b506102af610564565b6040518082815260200191505060405180910390f35b610307600480360360208110156102db57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610403565b005b61034b6004803603602081101561031f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061056e565b005b34801561035957600080fd5b506103626106f9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156103b057600080fd5b506103b961071f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600033905090565b61040c8161056e565b50565b6000600554905090565b6000600654905090565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60006104a361071f565b905060006104af610564565b90508173ffffffffffffffffffffffffffffffffffffffff1663a27c282e8585846040518463ffffffff1660e01b8152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018381526020018281526020019350505050600060405180830381600087803b15801561054057600080fd5b505af1158015610554573d6000803e3d6000fd5b5050505050505050565b60025481565b6000600254905090565b6000809054906101000a900460ff166105ef576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f5265656e7472616e637947756172643a207265656e7472616e742063616c6c0081525060200191505060405180910390fd5b60008060006101000a81548160ff02191690831515021790555060003490506106188282610748565b600061062382610849565b905061063a8260065461086790919063ffffffff16565b60068190555061064a83826108ef565b8273ffffffffffffffffffffffffffffffffffffffff166106696103fb565b73ffffffffffffffffffffffffffffffffffffffff167f6faf93231a456e552dbc9961f58d9713ee4f2e69d15f1975b050ef0911053a7b8484604051808381526020018281526020019250505060405180910390a36106c883836108fd565b6106d0610901565b6106da838361096c565b505060016000806101000a81548160ff02191690831515021790555050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156107ce576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602a815260200180610af1602a913960400191505060405180910390fd5b6000811415610845576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260198152602001807f43726f776473616c653a20776569416d6f756e7420697320300000000000000081525060200191505060405180910390fd5b5050565b60006108606005548361097090919063ffffffff16565b9050919050565b6000808284019050838110156108e5576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b6108f982826109f6565b5050565b5050565b600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050158015610969573d6000803e3d6000fd5b50565b5050565b60008083141561098357600090506109f0565b600082840290508284828161099457fe5b04146109eb576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180610ad06021913960400191505060405180910390fd5b809150505b92915050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663cd3a15f883836002546003546040518563ffffffff1660e01b8152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152602001828152602001945050505050600060405180830381600087803b158015610ab357600080fd5b505af1158015610ac7573d6000803e3d6000fd5b50505050505056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7743726f776473616c653a2062656e656669636961727920697320746865207a65726f2061646472657373a265627a7a72315820ae8c6fe07a33cb3f77277897fb18b6963e0500c36ae72ff482bd19c555a1428064736f6c63430005100032",
+  "sourceMap": "83:1014:4:-;;;134:89;8:9:-1;5:2;;;30:1;27;20:12;5:2;134:89:4;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;134:89:4;;;;;;;;;;;;;;;;;;;;;;;;;199:4;205:7;1435:4:102;1421:11;;:18;;;;;;;;;;;;;;;;;;1951:1:0;1944:4;:8;1936:41;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2184:1;2166:20;;:6;:20;;;;2158:62;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2241:11;;;;;;;;;;;:18;;;:20;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2241:20:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2241:20:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2241:20:0;;;;;;;;;;;;;;;;2231:7;;:30;;;;;;;;;;;;;;;;;;2290:10;2279:21;;:7;;;;;;;;;;;:21;;;2271:73;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2382:6;2355:11;;:34;;;;;;;;;;;;;;;;;;2408:4;2400:5;:12;;;;2431:11;;;;;;;;;;;:17;;;:19;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2431:19:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2431:19:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2431:19:0;;;;;;;;;;;;;;;;2422:6;;:28;;;;;;;;;;;;;;;;;;2473:11;;;;;;;;;;;:20;;;:22;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2473:22:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2473:22:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2473:22:0;;;;;;;;;;;;;;;;2461:9;:34;;;;2520:6;;;;;;;;;;;:15;;;2536:9;;2546:7;;;;;;;;;;;2520:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2520:34:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2520:34:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2520:34:0;;;;;;;;;;;;;;;;2505:12;:49;;;;1868:693;;134:89:4;;83:1014;;;;;;",
+  "deployedSourceMap": "83:1014:4:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;614:23;624:12;:10;:12::i;:::-;614:9;:23::i;:::-;83:1014;3304:75:0;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3304:75:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;3442:85;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3442:85:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;609:31;;8:9:-1;5:2;;;30:1;27;20:12;5:2;609:31:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;3132:87;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3132:87:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;778:30;;8:9:-1;5:2;;;30:1;27;20:12;5:2;778:30:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;880:212:4;;8:9:-1;5:2;;;30:1;27;20:12;5:2;880:212:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;880:212:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;663:24:0;;8:9:-1;5:2;;;30:1;27;20:12;5:2;663:24:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;3533:83;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3533:83:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;311:251:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;311:251:4;;;;;;;;;;;;;;;;;;;:::i;:::-;;3873:605:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3873:605:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;530:23;;8:9:-1;5:2;;;30:1;27;20:12;5:2;530:23:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;2977:79;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2977:79:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;788:96:20;833:15;867:10;860:17;;788:96;:::o;311:251:4:-;366:22;382:5;366:15;:22::i;:::-;311:251;:::o;3304:75:0:-;3341:7;3367:5;;3360:12;;3304:75;:::o;3442:85::-;3484:7;3510:10;;3503:17;;3442:85;:::o;609:31::-;;;;;;;;;;;;;:::o;3132:87::-;3171:15;3205:7;;;;;;;;;;;3198:14;;3132:87;:::o;778:30::-;;;;;;;;;;;;;:::o;880:212:4:-;950:22;975:13;:11;:13::i;:::-;950:38;;994:16;1013;:14;:16::i;:::-;994:35;;1035:12;:25;;;1061:7;1070:8;1080;1035:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1035:54:4;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1035:54:4;;;;880:212;;;;:::o;663:24:0:-;;;;:::o;3533:83::-;3574:7;3600:9;;3593:16;;3533:83;:::o;3873:605::-;1934:11:102;;;;;;;;;;;1926:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2070:5;2056:11;;:19;;;;;;;;;;;;;;;;;;3951:17:0;3971:9;3951:29;;3990:44;4011:11;4024:9;3990:20;:44::i;:::-;4093:14;4110:26;4126:9;4110:15;:26::i;:::-;4093:43;;4184:25;4199:9;4184:10;;:14;;:25;;;;:::i;:::-;4171:10;:38;;;;4220:37;4237:11;4250:6;4220:16;:37::i;:::-;4302:11;4272:61;;4288:12;:10;:12::i;:::-;4272:61;;;4315:9;4326:6;4272:61;;;;;;;;;;;;;;;;;;;;;;;;4344:46;4367:11;4380:9;4344:22;:46::i;:::-;4401:15;:13;:15::i;:::-;4426:45;4448:11;4461:9;4426:21;:45::i;:::-;2086:1:102;;2244:4;2230:11;;:18;;;;;;;;;;;;;;;;;;3873:605:0;:::o;530:23::-;;;;;;;;;;;;;:::o;2977:79::-;3015:9;3043:6;;;;;;;;;;;3036:13;;2977:79;:::o;5020:376::-;5145:1;5122:25;;:11;:25;;;;5114:80;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5225:1;5212:9;:14;;5204:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5020:376;;:::o;7341:169::-;7408:7;7434:20;7448:5;;7434:9;:13;;:20;;;;:::i;:::-;7427:27;;7341:169;;;:::o;834:176:63:-;892:7;911:9;927:1;923;:5;911:17;;951:1;946;:6;;938:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1002:1;995:8;;;834:176;;;;:::o;6543:134:0:-;6630:40;6645:11;6658;6630:14;:40::i;:::-;6543:134;;:::o;6947:145::-;;;:::o;7597:78::-;7641:7;;;;;;;;;;;:16;;:27;7658:9;7641:27;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;7641:27:0;7597:78::o;5691:149::-;;;:::o;2159:459:63:-;2217:7;2463:1;2458;:6;2454:45;;;2487:1;2480:8;;;;2454:45;2509:9;2525:1;2521;:5;2509:17;;2553:1;2548;2544;:5;;;;;;:10;2536:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2610:1;2603:8;;;2159:459;;;;;:::o;6120:157:0:-;6205:6;;;;;;;;;;;:16;;;6222:11;6234;6247:9;;6257:12;;6205:65;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;6205:65:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;6205:65:0;;;;6120:157;;:::o",
+  "source": "pragma solidity ^0.5.11;\n\nimport './PluggableSale.sol';\nimport './Ticket721.sol';\n\ncontract TicketSalePluggable is PluggableSale {\n\n\n\nconstructor(uint256 rate, address payable _origin) PluggableSale(rate, _origin) public {}\n\n\n/**\n*\n* @dev overload buy token function to give allowance to reedem tickets \n*\n*\n*/\nfunction buyTicket(address buyer) public payable {\n    super.buyTokens(buyer);\n    //Ticket721 ticket_token = super.token();\n   // super._token.approve(_wallet,tokens);\n\n    // chek this one more time\n    //ticket_token.setApprovalForEvent(buyer,);\n\n}\n\n// fallback\nfunction() external payable {\n        buyTicket(_msgSender());\n    }\n\n// deprecated\n/*\nfunction redeemTicket(address visitor, uint256 token_id) public {\n    Ticket721 ticket_token = super.token();\n    uint256 event_id = super.event_id();\n    ticket_token.redeemTicket(visitor, token_id, event_id);\n}\n*/\n\nfunction redeemTicket(address visitor, uint256 token_id) public {\n    Ticket721 ticket_token = super.token();\n    uint256 event_id = super.event_id();\n    ticket_token.redeemTicket(visitor, token_id, event_id);\n}\n\n\n\n}",
+  "sourcePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSalePluggable.sol",
   "ast": {
-    "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSale721.sol",
+    "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSalePluggable.sol",
     "exportedSymbols": {
-      "TicketSale721": [
-        999
+      "TicketSalePluggable": [
+        1067
       ]
     },
-    "id": 1000,
+    "id": 1068,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 930,
+        "id": 1001,
         "literals": [
           "solidity",
           "^",
@@ -256,27 +266,27 @@
           ".11"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:4"
       },
       {
-        "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TokenSale721.sol",
-        "file": "./TokenSale721.sol",
-        "id": 931,
+        "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/PluggableSale.sol",
+        "file": "./PluggableSale.sol",
+        "id": 1002,
         "nodeType": "ImportDirective",
-        "scope": 1000,
-        "sourceUnit": 1369,
-        "src": "26:28:3",
+        "scope": 1068,
+        "sourceUnit": 315,
+        "src": "26:29:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/Ticket721.sol",
         "file": "./Ticket721.sol",
-        "id": 932,
+        "id": 1003,
         "nodeType": "ImportDirective",
-        "scope": 1000,
+        "scope": 1068,
         "sourceUnit": 767,
-        "src": "55:25:3",
+        "src": "56:25:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -286,48 +296,48 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 933,
-              "name": "TokenSale721",
+              "id": 1004,
+              "name": "PluggableSale",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1368,
-              "src": "108:12:3",
+              "referencedDeclaration": 314,
+              "src": "115:13:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TokenSale721_$1368",
-                "typeString": "contract TokenSale721"
+                "typeIdentifier": "t_contract$_PluggableSale_$314",
+                "typeString": "contract PluggableSale"
               }
             },
-            "id": 934,
+            "id": 1005,
             "nodeType": "InheritanceSpecifier",
-            "src": "108:12:3"
+            "src": "115:13:4"
           }
         ],
         "contractDependencies": [
-          1368,
+          314,
           3859,
           14244
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 999,
+        "id": 1067,
         "linearizedBaseContracts": [
-          999,
-          1368,
+          1067,
+          314,
           14244,
           3859
         ],
-        "name": "TicketSale721",
+        "name": "TicketSalePluggable",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 948,
+              "id": 1016,
               "nodeType": "Block",
-              "src": "232:2:3",
+              "src": "221:2:4",
               "statements": []
             },
             "documentation": null,
-            "id": 949,
+            "id": 1017,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -335,12 +345,12 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 943,
+                    "id": 1012,
                     "name": "rate",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 936,
-                    "src": "206:4:3",
+                    "referencedDeclaration": 1007,
+                    "src": "199:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -348,62 +358,49 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 944,
-                    "name": "wallet",
+                    "id": 1013,
+                    "name": "_origin",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 938,
-                    "src": "211:6:3",
+                    "referencedDeclaration": 1009,
+                    "src": "205:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     }
-                  },
-                  {
-                    "argumentTypes": null,
-                    "id": 945,
-                    "name": "token",
-                    "nodeType": "Identifier",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 940,
-                    "src": "218:5:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Ticket721_$766",
-                      "typeString": "contract Ticket721"
-                    }
                   }
                 ],
-                "id": 946,
+                "id": 1014,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 942,
-                  "name": "TokenSale721",
+                  "id": 1011,
+                  "name": "PluggableSale",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1368,
-                  "src": "193:12:3",
+                  "referencedDeclaration": 314,
+                  "src": "185:13:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_TokenSale721_$1368_$",
-                    "typeString": "type(contract TokenSale721)"
+                    "typeIdentifier": "t_type$_t_contract$_PluggableSale_$314_$",
+                    "typeString": "type(contract PluggableSale)"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "193:31:3"
+                "src": "185:28:4"
               }
             ],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 941,
+              "id": 1010,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 936,
+                  "id": 1007,
                   "name": "rate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 949,
-                  "src": "138:12:3",
+                  "scope": 1017,
+                  "src": "146:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -411,10 +408,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 935,
+                    "id": 1006,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "138:7:3",
+                    "src": "146:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -425,11 +422,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 938,
-                  "name": "wallet",
+                  "id": 1009,
+                  "name": "_origin",
                   "nodeType": "VariableDeclaration",
-                  "scope": 949,
-                  "src": "152:22:3",
+                  "scope": 1017,
+                  "src": "160:23:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -437,10 +434,10 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 937,
+                    "id": 1008,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "152:15:3",
+                    "src": "160:15:4",
                     "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
@@ -449,55 +446,27 @@
                   },
                   "value": null,
                   "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 940,
-                  "name": "token",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 949,
-                  "src": "176:15:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Ticket721_$766",
-                    "typeString": "contract Ticket721"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 939,
-                    "name": "Ticket721",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 766,
-                    "src": "176:9:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Ticket721_$766",
-                      "typeString": "contract Ticket721"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
                 }
               ],
-              "src": "137:55:3"
+              "src": "145:39:4"
             },
             "returnParameters": {
-              "id": 947,
+              "id": 1015,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "232:0:3"
+              "src": "221:0:4"
             },
-            "scope": 999,
-            "src": "126:108:3",
+            "scope": 1067,
+            "src": "134:89:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 960,
+              "id": 1028,
               "nodeType": "Block",
-              "src": "371:202:3",
+              "src": "360:202:4",
               "statements": [
                 {
                   "expression": {
@@ -505,12 +474,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 957,
+                        "id": 1025,
                         "name": "buyer",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 951,
-                        "src": "393:5:3",
+                        "referencedDeclaration": 1019,
+                        "src": "382:5:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -526,32 +495,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 954,
+                        "id": 1022,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14424,
-                        "src": "377:5:3",
+                        "referencedDeclaration": 14426,
+                        "src": "366:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_TicketSale721_$999",
-                          "typeString": "contract super TicketSale721"
+                          "typeIdentifier": "t_super$_TicketSalePluggable_$1067",
+                          "typeString": "contract super TicketSalePluggable"
                         }
                       },
-                      "id": 956,
+                      "id": 1024,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "buyTokens",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1271,
-                      "src": "377:15:3",
+                      "referencedDeclaration": 217,
+                      "src": "366:15:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 958,
+                    "id": 1026,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -559,36 +528,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "377:22:3",
+                    "src": "366:22:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 959,
+                  "id": 1027,
                   "nodeType": "ExpressionStatement",
-                  "src": "377:22:3"
+                  "src": "366:22:4"
                 }
               ]
             },
             "documentation": "* @dev overload buy token function to give allowance to reedem tickets \n*",
-            "id": 961,
+            "id": 1029,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "buyTicket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 952,
+              "id": 1020,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 951,
+                  "id": 1019,
                   "name": "buyer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 961,
-                  "src": "341:13:3",
+                  "scope": 1029,
+                  "src": "330:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -596,10 +565,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 950,
+                    "id": 1018,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "341:7:3",
+                    "src": "330:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -610,25 +579,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "340:15:3"
+              "src": "329:15:4"
             },
             "returnParameters": {
-              "id": 953,
+              "id": 1021,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "371:0:3"
+              "src": "360:0:4"
             },
-            "scope": 999,
-            "src": "322:251:3",
+            "scope": 1067,
+            "src": "311:251:4",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 969,
+              "id": 1037,
               "nodeType": "Block",
-              "src": "615:40:3",
+              "src": "604:40:4",
               "statements": [
                 {
                   "expression": {
@@ -639,18 +608,18 @@
                         "arguments": [],
                         "expression": {
                           "argumentTypes": [],
-                          "id": 965,
+                          "id": 1033,
                           "name": "_msgSender",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 3847,
-                          "src": "635:10:3",
+                          "src": "624:10:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_address_payable_$",
                             "typeString": "function () view returns (address payable)"
                           }
                         },
-                        "id": 966,
+                        "id": 1034,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -658,7 +627,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "635:12:3",
+                        "src": "624:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -672,18 +641,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 964,
+                      "id": 1032,
                       "name": "buyTicket",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 961,
-                      "src": "625:9:3",
+                      "referencedDeclaration": 1029,
+                      "src": "614:9:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 967,
+                    "id": 1035,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -691,61 +660,61 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "625:23:3",
+                    "src": "614:23:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 968,
+                  "id": 1036,
                   "nodeType": "ExpressionStatement",
-                  "src": "625:23:3"
+                  "src": "614:23:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 970,
+            "id": 1038,
             "implemented": true,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 962,
+              "id": 1030,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "595:2:3"
+              "src": "584:2:4"
             },
             "returnParameters": {
-              "id": 963,
+              "id": 1031,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "615:0:3"
+              "src": "604:0:4"
             },
-            "scope": 999,
-            "src": "587:68:3",
+            "scope": 1067,
+            "src": "576:68:4",
             "stateMutability": "payable",
-            "superFunction": 1174,
+            "superFunction": 120,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 997,
+              "id": 1065,
               "nodeType": "Block",
-              "src": "955:148:3",
+              "src": "944:148:4",
               "statements": [
                 {
                   "assignments": [
-                    978
+                    1046
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 978,
+                      "id": 1046,
                       "name": "ticket_token",
                       "nodeType": "VariableDeclaration",
-                      "scope": 997,
-                      "src": "961:22:3",
+                      "scope": 1065,
+                      "src": "950:22:4",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -754,11 +723,11 @@
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 977,
+                        "id": 1045,
                         "name": "Ticket721",
                         "nodeType": "UserDefinedTypeName",
                         "referencedDeclaration": 766,
-                        "src": "961:9:3",
+                        "src": "950:9:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_Ticket721_$766",
                           "typeString": "contract Ticket721"
@@ -768,7 +737,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 982,
+                  "id": 1050,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [],
@@ -776,32 +745,32 @@
                       "argumentTypes": [],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 979,
+                        "id": 1047,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14424,
-                        "src": "986:5:3",
+                        "referencedDeclaration": 14426,
+                        "src": "975:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_TicketSale721_$999",
-                          "typeString": "contract super TicketSale721"
+                          "typeIdentifier": "t_super$_TicketSalePluggable_$1067",
+                          "typeString": "contract super TicketSalePluggable"
                         }
                       },
-                      "id": 980,
+                      "id": 1048,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "token",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1182,
-                      "src": "986:11:3",
+                      "referencedDeclaration": 128,
+                      "src": "975:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$_t_contract$_Ticket721_$766_$",
                         "typeString": "function () view returns (contract Ticket721)"
                       }
                     },
-                    "id": 981,
+                    "id": 1049,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -809,27 +778,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "986:13:3",
+                    "src": "975:13:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_Ticket721_$766",
                       "typeString": "contract Ticket721"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "961:38:3"
+                  "src": "950:38:4"
                 },
                 {
                   "assignments": [
-                    984
+                    1052
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 984,
+                      "id": 1052,
                       "name": "event_id",
                       "nodeType": "VariableDeclaration",
-                      "scope": 997,
-                      "src": "1005:16:3",
+                      "scope": 1065,
+                      "src": "994:16:4",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -837,10 +806,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 983,
+                        "id": 1051,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1005:7:3",
+                        "src": "994:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -850,7 +819,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 988,
+                  "id": 1056,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [],
@@ -858,32 +827,32 @@
                       "argumentTypes": [],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 985,
+                        "id": 1053,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14424,
-                        "src": "1024:5:3",
+                        "referencedDeclaration": 14426,
+                        "src": "1013:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_TicketSale721_$999",
-                          "typeString": "contract super TicketSale721"
+                          "typeIdentifier": "t_super$_TicketSalePluggable_$1067",
+                          "typeString": "contract super TicketSalePluggable"
                         }
                       },
-                      "id": 986,
+                      "id": 1054,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "event_id",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1214,
-                      "src": "1024:14:3",
+                      "referencedDeclaration": 160,
+                      "src": "1013:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
                         "typeString": "function () view returns (uint256)"
                       }
                     },
-                    "id": 987,
+                    "id": 1055,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -891,14 +860,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1024:16:3",
+                    "src": "1013:16:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1005:35:3"
+                  "src": "994:35:4"
                 },
                 {
                   "expression": {
@@ -906,12 +875,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 992,
+                        "id": 1060,
                         "name": "visitor",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 972,
-                        "src": "1072:7:3",
+                        "referencedDeclaration": 1040,
+                        "src": "1061:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -919,12 +888,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 993,
+                        "id": 1061,
                         "name": "token_id",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 974,
-                        "src": "1081:8:3",
+                        "referencedDeclaration": 1042,
+                        "src": "1070:8:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -932,12 +901,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 994,
+                        "id": 1062,
                         "name": "event_id",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 984,
-                        "src": "1091:8:3",
+                        "referencedDeclaration": 1052,
+                        "src": "1080:8:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -961,18 +930,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 989,
+                        "id": 1057,
                         "name": "ticket_token",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 978,
-                        "src": "1046:12:3",
+                        "referencedDeclaration": 1046,
+                        "src": "1035:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_Ticket721_$766",
                           "typeString": "contract Ticket721"
                         }
                       },
-                      "id": 991,
+                      "id": 1059,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -980,13 +949,13 @@
                       "memberName": "redeemTicket",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 742,
-                      "src": "1046:25:3",
+                      "src": "1035:25:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256,uint256) external"
                       }
                     },
-                    "id": 995,
+                    "id": 1063,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -994,36 +963,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1046:54:3",
+                    "src": "1035:54:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 996,
+                  "id": 1064,
                   "nodeType": "ExpressionStatement",
-                  "src": "1046:54:3"
+                  "src": "1035:54:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 998,
+            "id": 1066,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "redeemTicket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 975,
+              "id": 1043,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 972,
+                  "id": 1040,
                   "name": "visitor",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
-                  "src": "913:15:3",
+                  "scope": 1066,
+                  "src": "902:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1031,10 +1000,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 971,
+                    "id": 1039,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "913:7:3",
+                    "src": "902:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1046,11 +1015,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 974,
+                  "id": 1042,
                   "name": "token_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
-                  "src": "930:16:3",
+                  "scope": 1066,
+                  "src": "919:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1058,10 +1027,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 973,
+                    "id": 1041,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "930:7:3",
+                    "src": "919:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1071,39 +1040,39 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "912:35:3"
+              "src": "901:35:4"
             },
             "returnParameters": {
-              "id": 976,
+              "id": 1044,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "955:0:3"
+              "src": "944:0:4"
             },
-            "scope": 999,
-            "src": "891:212:3",
+            "scope": 1067,
+            "src": "880:212:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1000,
-        "src": "82:1026:3"
+        "scope": 1068,
+        "src": "83:1014:4"
       }
     ],
-    "src": "0:1108:3"
+    "src": "0:1097:4"
   },
   "legacyAST": {
-    "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSale721.sol",
+    "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TicketSalePluggable.sol",
     "exportedSymbols": {
-      "TicketSale721": [
-        999
+      "TicketSalePluggable": [
+        1067
       ]
     },
-    "id": 1000,
+    "id": 1068,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 930,
+        "id": 1001,
         "literals": [
           "solidity",
           "^",
@@ -1111,27 +1080,27 @@
           ".11"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:4"
       },
       {
-        "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/TokenSale721.sol",
-        "file": "./TokenSale721.sol",
-        "id": 931,
+        "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/PluggableSale.sol",
+        "file": "./PluggableSale.sol",
+        "id": 1002,
         "nodeType": "ImportDirective",
-        "scope": 1000,
-        "sourceUnit": 1369,
-        "src": "26:28:3",
+        "scope": 1068,
+        "sourceUnit": 315,
+        "src": "26:29:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "/home/jack/ethProjects/MS-Factory/contracts/721/singleton/Ticket721.sol",
         "file": "./Ticket721.sol",
-        "id": 932,
+        "id": 1003,
         "nodeType": "ImportDirective",
-        "scope": 1000,
+        "scope": 1068,
         "sourceUnit": 767,
-        "src": "55:25:3",
+        "src": "56:25:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1141,48 +1110,48 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 933,
-              "name": "TokenSale721",
+              "id": 1004,
+              "name": "PluggableSale",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1368,
-              "src": "108:12:3",
+              "referencedDeclaration": 314,
+              "src": "115:13:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TokenSale721_$1368",
-                "typeString": "contract TokenSale721"
+                "typeIdentifier": "t_contract$_PluggableSale_$314",
+                "typeString": "contract PluggableSale"
               }
             },
-            "id": 934,
+            "id": 1005,
             "nodeType": "InheritanceSpecifier",
-            "src": "108:12:3"
+            "src": "115:13:4"
           }
         ],
         "contractDependencies": [
-          1368,
+          314,
           3859,
           14244
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 999,
+        "id": 1067,
         "linearizedBaseContracts": [
-          999,
-          1368,
+          1067,
+          314,
           14244,
           3859
         ],
-        "name": "TicketSale721",
+        "name": "TicketSalePluggable",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 948,
+              "id": 1016,
               "nodeType": "Block",
-              "src": "232:2:3",
+              "src": "221:2:4",
               "statements": []
             },
             "documentation": null,
-            "id": 949,
+            "id": 1017,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -1190,12 +1159,12 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 943,
+                    "id": 1012,
                     "name": "rate",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 936,
-                    "src": "206:4:3",
+                    "referencedDeclaration": 1007,
+                    "src": "199:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1203,62 +1172,49 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 944,
-                    "name": "wallet",
+                    "id": 1013,
+                    "name": "_origin",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 938,
-                    "src": "211:6:3",
+                    "referencedDeclaration": 1009,
+                    "src": "205:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     }
-                  },
-                  {
-                    "argumentTypes": null,
-                    "id": 945,
-                    "name": "token",
-                    "nodeType": "Identifier",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 940,
-                    "src": "218:5:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Ticket721_$766",
-                      "typeString": "contract Ticket721"
-                    }
                   }
                 ],
-                "id": 946,
+                "id": 1014,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 942,
-                  "name": "TokenSale721",
+                  "id": 1011,
+                  "name": "PluggableSale",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1368,
-                  "src": "193:12:3",
+                  "referencedDeclaration": 314,
+                  "src": "185:13:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_TokenSale721_$1368_$",
-                    "typeString": "type(contract TokenSale721)"
+                    "typeIdentifier": "t_type$_t_contract$_PluggableSale_$314_$",
+                    "typeString": "type(contract PluggableSale)"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "193:31:3"
+                "src": "185:28:4"
               }
             ],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 941,
+              "id": 1010,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 936,
+                  "id": 1007,
                   "name": "rate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 949,
-                  "src": "138:12:3",
+                  "scope": 1017,
+                  "src": "146:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1266,10 +1222,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 935,
+                    "id": 1006,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "138:7:3",
+                    "src": "146:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1280,11 +1236,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 938,
-                  "name": "wallet",
+                  "id": 1009,
+                  "name": "_origin",
                   "nodeType": "VariableDeclaration",
-                  "scope": 949,
-                  "src": "152:22:3",
+                  "scope": 1017,
+                  "src": "160:23:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1292,10 +1248,10 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 937,
+                    "id": 1008,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "152:15:3",
+                    "src": "160:15:4",
                     "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
@@ -1304,55 +1260,27 @@
                   },
                   "value": null,
                   "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 940,
-                  "name": "token",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 949,
-                  "src": "176:15:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Ticket721_$766",
-                    "typeString": "contract Ticket721"
-                  },
-                  "typeName": {
-                    "contractScope": null,
-                    "id": 939,
-                    "name": "Ticket721",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 766,
-                    "src": "176:9:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Ticket721_$766",
-                      "typeString": "contract Ticket721"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
                 }
               ],
-              "src": "137:55:3"
+              "src": "145:39:4"
             },
             "returnParameters": {
-              "id": 947,
+              "id": 1015,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "232:0:3"
+              "src": "221:0:4"
             },
-            "scope": 999,
-            "src": "126:108:3",
+            "scope": 1067,
+            "src": "134:89:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 960,
+              "id": 1028,
               "nodeType": "Block",
-              "src": "371:202:3",
+              "src": "360:202:4",
               "statements": [
                 {
                   "expression": {
@@ -1360,12 +1288,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 957,
+                        "id": 1025,
                         "name": "buyer",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 951,
-                        "src": "393:5:3",
+                        "referencedDeclaration": 1019,
+                        "src": "382:5:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1381,32 +1309,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 954,
+                        "id": 1022,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14424,
-                        "src": "377:5:3",
+                        "referencedDeclaration": 14426,
+                        "src": "366:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_TicketSale721_$999",
-                          "typeString": "contract super TicketSale721"
+                          "typeIdentifier": "t_super$_TicketSalePluggable_$1067",
+                          "typeString": "contract super TicketSalePluggable"
                         }
                       },
-                      "id": 956,
+                      "id": 1024,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "buyTokens",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1271,
-                      "src": "377:15:3",
+                      "referencedDeclaration": 217,
+                      "src": "366:15:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 958,
+                    "id": 1026,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1414,36 +1342,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "377:22:3",
+                    "src": "366:22:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 959,
+                  "id": 1027,
                   "nodeType": "ExpressionStatement",
-                  "src": "377:22:3"
+                  "src": "366:22:4"
                 }
               ]
             },
             "documentation": "* @dev overload buy token function to give allowance to reedem tickets \n*",
-            "id": 961,
+            "id": 1029,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "buyTicket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 952,
+              "id": 1020,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 951,
+                  "id": 1019,
                   "name": "buyer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 961,
-                  "src": "341:13:3",
+                  "scope": 1029,
+                  "src": "330:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1451,10 +1379,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 950,
+                    "id": 1018,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "341:7:3",
+                    "src": "330:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1465,25 +1393,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "340:15:3"
+              "src": "329:15:4"
             },
             "returnParameters": {
-              "id": 953,
+              "id": 1021,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "371:0:3"
+              "src": "360:0:4"
             },
-            "scope": 999,
-            "src": "322:251:3",
+            "scope": 1067,
+            "src": "311:251:4",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 969,
+              "id": 1037,
               "nodeType": "Block",
-              "src": "615:40:3",
+              "src": "604:40:4",
               "statements": [
                 {
                   "expression": {
@@ -1494,18 +1422,18 @@
                         "arguments": [],
                         "expression": {
                           "argumentTypes": [],
-                          "id": 965,
+                          "id": 1033,
                           "name": "_msgSender",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 3847,
-                          "src": "635:10:3",
+                          "src": "624:10:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_address_payable_$",
                             "typeString": "function () view returns (address payable)"
                           }
                         },
-                        "id": 966,
+                        "id": 1034,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1513,7 +1441,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "635:12:3",
+                        "src": "624:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -1527,18 +1455,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 964,
+                      "id": 1032,
                       "name": "buyTicket",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 961,
-                      "src": "625:9:3",
+                      "referencedDeclaration": 1029,
+                      "src": "614:9:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 967,
+                    "id": 1035,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1546,61 +1474,61 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "625:23:3",
+                    "src": "614:23:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 968,
+                  "id": 1036,
                   "nodeType": "ExpressionStatement",
-                  "src": "625:23:3"
+                  "src": "614:23:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 970,
+            "id": 1038,
             "implemented": true,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 962,
+              "id": 1030,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "595:2:3"
+              "src": "584:2:4"
             },
             "returnParameters": {
-              "id": 963,
+              "id": 1031,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "615:0:3"
+              "src": "604:0:4"
             },
-            "scope": 999,
-            "src": "587:68:3",
+            "scope": 1067,
+            "src": "576:68:4",
             "stateMutability": "payable",
-            "superFunction": 1174,
+            "superFunction": 120,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 997,
+              "id": 1065,
               "nodeType": "Block",
-              "src": "955:148:3",
+              "src": "944:148:4",
               "statements": [
                 {
                   "assignments": [
-                    978
+                    1046
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 978,
+                      "id": 1046,
                       "name": "ticket_token",
                       "nodeType": "VariableDeclaration",
-                      "scope": 997,
-                      "src": "961:22:3",
+                      "scope": 1065,
+                      "src": "950:22:4",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1609,11 +1537,11 @@
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 977,
+                        "id": 1045,
                         "name": "Ticket721",
                         "nodeType": "UserDefinedTypeName",
                         "referencedDeclaration": 766,
-                        "src": "961:9:3",
+                        "src": "950:9:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_Ticket721_$766",
                           "typeString": "contract Ticket721"
@@ -1623,7 +1551,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 982,
+                  "id": 1050,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [],
@@ -1631,32 +1559,32 @@
                       "argumentTypes": [],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 979,
+                        "id": 1047,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14424,
-                        "src": "986:5:3",
+                        "referencedDeclaration": 14426,
+                        "src": "975:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_TicketSale721_$999",
-                          "typeString": "contract super TicketSale721"
+                          "typeIdentifier": "t_super$_TicketSalePluggable_$1067",
+                          "typeString": "contract super TicketSalePluggable"
                         }
                       },
-                      "id": 980,
+                      "id": 1048,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "token",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1182,
-                      "src": "986:11:3",
+                      "referencedDeclaration": 128,
+                      "src": "975:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$_t_contract$_Ticket721_$766_$",
                         "typeString": "function () view returns (contract Ticket721)"
                       }
                     },
-                    "id": 981,
+                    "id": 1049,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1664,27 +1592,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "986:13:3",
+                    "src": "975:13:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_Ticket721_$766",
                       "typeString": "contract Ticket721"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "961:38:3"
+                  "src": "950:38:4"
                 },
                 {
                   "assignments": [
-                    984
+                    1052
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 984,
+                      "id": 1052,
                       "name": "event_id",
                       "nodeType": "VariableDeclaration",
-                      "scope": 997,
-                      "src": "1005:16:3",
+                      "scope": 1065,
+                      "src": "994:16:4",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1692,10 +1620,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 983,
+                        "id": 1051,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1005:7:3",
+                        "src": "994:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1705,7 +1633,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 988,
+                  "id": 1056,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [],
@@ -1713,32 +1641,32 @@
                       "argumentTypes": [],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 985,
+                        "id": 1053,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14424,
-                        "src": "1024:5:3",
+                        "referencedDeclaration": 14426,
+                        "src": "1013:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_TicketSale721_$999",
-                          "typeString": "contract super TicketSale721"
+                          "typeIdentifier": "t_super$_TicketSalePluggable_$1067",
+                          "typeString": "contract super TicketSalePluggable"
                         }
                       },
-                      "id": 986,
+                      "id": 1054,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "event_id",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1214,
-                      "src": "1024:14:3",
+                      "referencedDeclaration": 160,
+                      "src": "1013:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
                         "typeString": "function () view returns (uint256)"
                       }
                     },
-                    "id": 987,
+                    "id": 1055,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1746,14 +1674,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1024:16:3",
+                    "src": "1013:16:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1005:35:3"
+                  "src": "994:35:4"
                 },
                 {
                   "expression": {
@@ -1761,12 +1689,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 992,
+                        "id": 1060,
                         "name": "visitor",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 972,
-                        "src": "1072:7:3",
+                        "referencedDeclaration": 1040,
+                        "src": "1061:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1774,12 +1702,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 993,
+                        "id": 1061,
                         "name": "token_id",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 974,
-                        "src": "1081:8:3",
+                        "referencedDeclaration": 1042,
+                        "src": "1070:8:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1787,12 +1715,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 994,
+                        "id": 1062,
                         "name": "event_id",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 984,
-                        "src": "1091:8:3",
+                        "referencedDeclaration": 1052,
+                        "src": "1080:8:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1816,18 +1744,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 989,
+                        "id": 1057,
                         "name": "ticket_token",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 978,
-                        "src": "1046:12:3",
+                        "referencedDeclaration": 1046,
+                        "src": "1035:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_Ticket721_$766",
                           "typeString": "contract Ticket721"
                         }
                       },
-                      "id": 991,
+                      "id": 1059,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1835,13 +1763,13 @@
                       "memberName": "redeemTicket",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 742,
-                      "src": "1046:25:3",
+                      "src": "1035:25:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256,uint256) external"
                       }
                     },
-                    "id": 995,
+                    "id": 1063,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1849,36 +1777,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1046:54:3",
+                    "src": "1035:54:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 996,
+                  "id": 1064,
                   "nodeType": "ExpressionStatement",
-                  "src": "1046:54:3"
+                  "src": "1035:54:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 998,
+            "id": 1066,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "redeemTicket",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 975,
+              "id": 1043,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 972,
+                  "id": 1040,
                   "name": "visitor",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
-                  "src": "913:15:3",
+                  "scope": 1066,
+                  "src": "902:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1886,10 +1814,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 971,
+                    "id": 1039,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "913:7:3",
+                    "src": "902:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1901,11 +1829,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 974,
+                  "id": 1042,
                   "name": "token_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
-                  "src": "930:16:3",
+                  "scope": 1066,
+                  "src": "919:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1913,10 +1841,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 973,
+                    "id": 1041,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "930:7:3",
+                    "src": "919:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1926,26 +1854,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "912:35:3"
+              "src": "901:35:4"
             },
             "returnParameters": {
-              "id": 976,
+              "id": 1044,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "955:0:3"
+              "src": "944:0:4"
             },
-            "scope": 999,
-            "src": "891:212:3",
+            "scope": 1067,
+            "src": "880:212:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1000,
-        "src": "82:1026:3"
+        "scope": 1068,
+        "src": "83:1014:4"
       }
     ],
-    "src": "0:1108:3"
+    "src": "0:1097:4"
   },
   "compiler": {
     "name": "solc",
@@ -1953,7 +1881,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2020-03-11T08:58:52.190Z",
+  "updatedAt": "2020-03-11T08:58:52.191Z",
   "devdoc": {
     "methods": {
       "buyTicket(address)": {
