@@ -54,18 +54,20 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
     // Global counters for ticket_id and event_id
     Counters.Counter _ticket_id_count;
+    //Counters.Counter _ticket_type;
     Counters.Counter _event_id_count;
 
     // Ticket lifecycle
     enum TicketState {Paid, Fulfilled, Cancelled}
 
     // map from event id to ticketsale address
-    mapping(uint256 => address) eventsales;         // FIXME: one event could have a few ticketsale, so change it to address[] (?)
+    // TIP: ticket type = array.length
+    mapping(uint256 => address[]) eventsales;         // FIXME: one event could have a few ticketsale (for a different ticket types), so change it to address[] (?)
     // map from event id to ticket ids
     mapping (uint256 => uint256[]) ticketIds;
     // map fron token ID to its index in ticketIds
     mapping (uint256 => uint256) ticketIndex;
-    //
+    // map from ticket id to ticket info
     mapping (uint256 => TicketInfo) ticketInfoStorage;
 
 
@@ -78,6 +80,8 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     //string description;
     //uint price;
     TicketState state;
+   // Counters.Counter ticket_type;
+    uint ticket_type;
     //string fulfilmentURI;
     //address retailer;
   }
@@ -103,25 +107,32 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         super._transferFrom(from, to, tokenId);
     }
 
-
+    // TODO - check for event_id already existed
     function reserveEventId() public returns(uint256 event_id){
         _event_id_count.increment();
         event_id = _ticket_id_count.current();
-        eventsales[event_id] = msg.sender;
+      //  eventsales[event_id] = msg.sender;
+        eventsales[event_id].push(msg.sender);
         emit EventIdReserved(msg.sender,event_id);
         emit EventIdReservedHuman(msg.sender,event_id);
         return event_id;
     }
 
-    //TODO - return ticketIDs?
-    function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id) public{
-        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
+    //TODO - return ticketIDs(?)
+    function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id, uint _ticket_type) public{
+        address[] memory _sales = eventsales[event_id];
+        address _sale = _sales[_ticket_type];
+        require(_sale == msg.sender, "you should call buyTicket from ticketsale contract");
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
             addMinter(msg.sender);
             _mint(buyer,ticket_id);
-            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid);
+            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);
+
+            //TicketInfo storage t = ticketInfoStorage[ticket_id];
+            
+
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
             // approve for ticketsale (msg.sender = ticketsale)
@@ -165,9 +176,14 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
 
      function redeemTicket(address visitor, uint256 tokenId, uint256 event_id) public{
-        require(eventsales[event_id] == msg.sender, "caller doesn't match with event_id");
+        address[] memory _sales = eventsales[event_id];
+        TicketInfo memory info = ticketInfoStorage[tokenId];
+        address _sale = _sales[info.ticket_type];
+        require(_sale == msg.sender, "you should call buyTicket from ticketsale contract");
         require(ticketInfoStorage[tokenId].state == TicketState.Paid, "Ticket state must be Paid");
-        ticketInfoStorage[tokenId] = TicketInfo(TicketState.Fulfilled);
+        info.state = TicketState.Fulfilled;
+        ticketInfoStorage[tokenId] = info;
+       // ticketInfoStorage[tokenId] = TicketInfo(TicketState.Fulfilled);
         emit TicketFulfilled(visitor,event_id,tokenId);
         emit TicketFulfilledHuman(visitor, event_id,tokenId);
     }
