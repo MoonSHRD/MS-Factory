@@ -60,7 +60,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     enum TicketState {Paid, Fulfilled, Cancelled}
 
     // map from event id to ticketsale address
-    mapping(uint256 => address) eventsales;
+    mapping(uint256 => address) eventsales;         // FIXME: one event could have a few ticketsale, so change it to address[] (?)
     // map from event id to ticket ids
     mapping (uint256 => uint256[]) ticketIds;
     // map fron token ID to its index in ticketIds
