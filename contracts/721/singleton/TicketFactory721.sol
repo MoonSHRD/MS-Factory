@@ -4,6 +4,7 @@ pragma solidity ^0.5.11;
 
 import './Ticket721.sol';
 import './TicketSale721.sol';
+import './TicketSalePluggable.sol';
 
 contract TicketFactory721 {
 
@@ -15,7 +16,7 @@ constructor() public {
     ticket_template = createTicket721();
 }
 
-// FIXME: change to internal function
+
 function createTicket721() internal returns (address ticket_address) {
    address factory_address = address(this);
    ticket_address = address(new Ticket721(factory_address));
