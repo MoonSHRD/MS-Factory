@@ -17,5 +17,6 @@ module.exports = function(deployer, network, accounts) {
 });
 deployer.deploy(TicketFactory);
 deployer.deploy(Deposit);
+// test for estimating gas usage
 
 };
