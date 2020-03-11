@@ -22,6 +22,9 @@ contract TokenSale721 is Context, ReentrancyGuard {
     //event_id
     uint256 public _event_id;
 
+    // ticket type
+    uint _ticket_type = 1;
+
     // Address where funds are collected
     address payable public _wallet;
 
@@ -60,7 +63,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
         _wallet = wallet;
         _token = token;
 
-        _event_id = _token.reserveEventId();
+        _event_id = _token.reserveEventId(_wallet);
     }
 
     /**
@@ -162,7 +165,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param tokenAmount Number of tokens to be emitted
      */
     function _deliverTokens(address beneficiary, uint256 tokenAmount) internal {
-        _token.buyTicket(beneficiary,tokenAmount, _event_id);
+        _token.buyTicket(beneficiary,tokenAmount, _event_id, _ticket_type);
     }
 
     /**

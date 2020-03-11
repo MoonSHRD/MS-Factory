@@ -26,6 +26,9 @@ contract PluggableSale is Context, ReentrancyGuard {
     //event_id
     uint256 public _event_id;
 
+    // ticket type
+    uint _ticket_type;
+
     // Address where funds are collected
     address payable public _wallet;
 
@@ -52,7 +55,7 @@ contract PluggableSale is Context, ReentrancyGuard {
      * @dev The rate is the conversion between wei and the smallest and indivisible
      * token unit. So, if you are using a rate of 1 with a ERC20Detailed token
      * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
-     * 
+     *
      */
     constructor (uint256 rate, address payable origin) public {
         require(rate > 0, "Crowdsale: rate is 0");
@@ -60,13 +63,16 @@ contract PluggableSale is Context, ReentrancyGuard {
        // require(address(token) != address(0), "Crowdsale: token is the zero address");
         require(origin != address(0), "origin cannot be zero address");
 
+        _wallet = origin_sale.wallet();
+        require(_wallet == msg.sender, "only origin organizer can plug new sale");
+
         origin_sale = TokenSale721(origin);
 
         _rate = rate;
-        _wallet = origin_sale.wallet();
         _token = origin_sale.token();
 
         _event_id = origin_sale.event_id();
+        _ticket_type = _token.plugSale(_event_id,_wallet);
     }
 
     /**
@@ -168,7 +174,7 @@ contract PluggableSale is Context, ReentrancyGuard {
      * @param tokenAmount Number of tokens to be emitted
      */
     function _deliverTokens(address beneficiary, uint256 tokenAmount) internal {
-        _token.buyTicket(beneficiary,tokenAmount, _event_id);
+        _token.buyTicket(beneficiary,tokenAmount, _event_id,_ticket_type);
     }
 
     /**
