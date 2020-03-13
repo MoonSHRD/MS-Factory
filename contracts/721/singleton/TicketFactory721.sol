@@ -11,6 +11,12 @@ contract TicketFactory721 {
 // constant
 address ticket_template;
 
+// event
+event SaleCreated(address indexed organizer, uint price, uint256 indexed event_id);
+event SaleCreatedHuman(address organizer, uint price, uint256 event_id);
+event PluggedSale(address indexed organizer, address indexed orginal_sale, uint256 indexed event_id);
+event PluggedSaleHuman(address organizer, address original_sale, uint256 event_id);
+
 
 constructor() public {
     ticket_template = createTicket721();
@@ -40,6 +46,8 @@ function createTicketSale(address payable organizer, uint price) public returns 
     TicketSale721 ticket_sale = TicketSale721(ticket_sale_adr);
 
     event_id = ticket_sale.event_id();
+    emit SaleCreated(organizer, price, event_id);
+    emit SaleCreatedHuman(organizer,price,event_id);
     return(ticket_sale_adr, event_id);
 
 
@@ -48,6 +56,10 @@ function createTicketSale(address payable organizer, uint price) public returns 
 function PlugInTicketSale(address payable origin_sale, uint price) public returns(address payable plugin_sale) {
     uint cena = calculateRate(price);
     plugin_sale = address(new TicketSalePluggable(cena,origin_sale));
+    TicketSale721 ticket_sale = TicketSale721(origin_sale);
+    uint256 event_id = ticket_sale.event_id();
+    emit PluggedSale(msg.sender,origin_sale,event_id);
+    emit PluggedSaleHuman(msg.sender, origin_sale, event_id);
     return plugin_sale;
 }
 
