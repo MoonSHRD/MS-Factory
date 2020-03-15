@@ -12,10 +12,13 @@ contract TicketFactory721 {
 address ticket_template;
 
 // event
-event SaleCreated(address indexed organizer, uint price, uint256 indexed event_id);
-event SaleCreatedHuman(address organizer, uint price, uint256 event_id);
+event SaleCreated(address indexed organizer, uint price, uint256 indexed event_id, string indexed event_JID);
+event SaleCreatedHuman(address organizer, uint price, uint256 event_id, string event_JID);
 event PluggedSale(address indexed organizer, address indexed orginal_sale, uint256 indexed event_id);
 event PluggedSaleHuman(address organizer, address original_sale, uint256 event_id);
+
+// mapping from JID to event_id
+mapping (string => uint256) events_jids;
 
 
 constructor() public {
@@ -38,7 +41,7 @@ function createTicketSale721(address payable organizer, uint price, Ticket721 to
     return ticket_sale;
 }
 
-function createTicketSale(address payable organizer, uint price) public returns (address payable ticket_sale_adr, uint256 event_id) {
+function createTicketSale(address payable organizer, uint price, string memory event_JID) public returns (address payable ticket_sale_adr, uint256 event_id) {
 
     address ticket_adr = ticket_template;
     Ticket721 ticket = Ticket721(ticket_adr);
@@ -46,8 +49,9 @@ function createTicketSale(address payable organizer, uint price) public returns 
     TicketSale721 ticket_sale = TicketSale721(ticket_sale_adr);
 
     event_id = ticket_sale.event_id();
-    emit SaleCreated(organizer, price, event_id);
-    emit SaleCreatedHuman(organizer,price,event_id);
+    events_jids[event_JID] = event_id;
+    emit SaleCreated(organizer, price, event_id, event_JID);
+    emit SaleCreatedHuman(organizer,price,event_id, event_JID);
     return(ticket_sale_adr, event_id);
 
 
@@ -65,8 +69,13 @@ function PlugInTicketSale(address payable origin_sale, uint price) public return
 
 function calculateRate (uint256 price) internal pure returns (uint256 rate_p) {
     // rate = price * 1 eth
-    rate_p = price * (1 ether);
+    rate_p = price * (1 ether); // override for price determinition
     return rate_p;
+}
+
+
+function getEventIdByJid(string memory JID) public view returns(uint256) {
+    return events_jids[JID];
 }
 
 }
