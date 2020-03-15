@@ -81,4 +81,8 @@ function getEventIdByJid(string memory JID) public view returns(uint256) {
     return events_jids[JID];
 }
 
+function getTicketTemplateAddress() public view returns(address) {
+    return ticket_template;
+}
+
 }
