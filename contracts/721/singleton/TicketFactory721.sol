@@ -2,6 +2,9 @@ pragma solidity ^0.5.11;
 
 //import './zeppeline/token/ERC20/ERC20Mintable.sol';
 
+// TODO: replace contracts to interfaces cause of gas limit
+// FIXME: this contract required for 7m gas limit -- which is more than standart 6m in ethereum networks. We should consider that when deployment
+
 import './Ticket721.sol';
 import './TicketSale721.sol';
 import './TicketSalePluggable.sol';
