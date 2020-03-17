@@ -206,4 +206,9 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         return tickets;
     }
 
+    function getTicketSales(uint256 event_id) public view returns(address[] memory) {
+        address[] memory sales = eventsales[event_id];
+        return sales;
+    }
+
 }
