@@ -132,7 +132,6 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     //TODO - return ticketIDs(?)
-    // FIXME: Revert reason: MinterRole: caller does not have the Minter role
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id, uint _ticket_type) public{
         address[] memory _sales = eventsales[event_id];
         address _sale = _sales[_ticket_type];
@@ -141,7 +140,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
 
-            addMinter(msg.sender);
+            addMinter(msg.sender); // -problem is here, probably add constructor call
             _mint(buyer,ticket_id);
             ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
