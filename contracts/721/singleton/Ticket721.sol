@@ -201,4 +201,9 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         return ticket_type;
     }
 
+    function getTicketByOwner(address _owner) public view returns(uint256[] memory) {
+        uint256[] storage tickets = _tokensOfOwner(_owner);
+        return tickets;
+    }
+
 }
