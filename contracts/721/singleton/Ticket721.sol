@@ -115,6 +115,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
       //  eventsales[event_id] = msg.sender;
         eventsales[event_id].push(msg.sender);
         retailers[msg.sender] = orginizer;
+       // addMinter(msg.sender);
         emit EventIdReserved(msg.sender,event_id);
         emit EventIdReservedHuman(msg.sender,event_id);
         return event_id;
@@ -131,6 +132,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     //TODO - return ticketIDs(?)
+    // FIXME: Revert reason: MinterRole: caller does not have the Minter role
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id, uint _ticket_type) public{
         address[] memory _sales = eventsales[event_id];
         address _sale = _sales[_ticket_type];
@@ -138,6 +140,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
+
             addMinter(msg.sender);
             _mint(buyer,ticket_id);
             ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);

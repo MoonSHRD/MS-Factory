@@ -23,7 +23,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint256 public _event_id;
 
     // ticket type
-    uint _ticket_type = 1;
+    uint _ticket_type = 0;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -194,7 +194,12 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @return Number of tokens that can be purchased with the specified _weiAmount
      */
     function _getTokenAmount(uint256 weiAmount) internal view returns (uint256) {
-        return weiAmount.mul(_rate);
+      //  require(condition, message);
+        require(weiAmount >= _rate, "wei amount should be bigger or equal of rate");
+       // uint256 ta = SafeMath.mul(weiAmount, _rate);
+        uint256 ta = (weiAmount / (1 ether)) * _rate;
+        return ta;
+       // return weiAmount.mul(_rate);
         //FIXME: round result to int, check math
     }
 
