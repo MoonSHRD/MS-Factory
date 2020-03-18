@@ -15,7 +15,7 @@ module.exports = function(deployer, network, accounts) {
   console.log(accounts[0]);
   return deployer.deploy(SuperFactory, KNS.address,accounts[1],accounts[2]);
 });
-deployer.deploy(TicketFactory, {gas:'7000000'});
+deployer.deploy(TicketFactory, {gas:'7400000'});
 deployer.deploy(Deposit);
 // test for estimating gas usage
 

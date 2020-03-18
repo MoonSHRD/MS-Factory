@@ -94,7 +94,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     //FIXME: invoke constructor from 721(?)
     constructor(address factory_address) public {
        // _factory_address = factory_address;
-       // addMinter(msg.sender);
+        _addMinter(address(this));
     }
 
     // FIXME: approve for ticketsale, not factory
@@ -115,6 +115,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
       //  eventsales[event_id] = msg.sender;
         eventsales[event_id].push(msg.sender);
         retailers[msg.sender] = orginizer;
+        _addMinter(msg.sender);
         emit EventIdReserved(msg.sender,event_id);
         emit EventIdReservedHuman(msg.sender,event_id);
         return event_id;
@@ -138,13 +139,14 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
-            addMinter(msg.sender);
+
             _mint(buyer,ticket_id);
             ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
             // approve for ticketsale (msg.sender = ticketsale)
-            approve(msg.sender, ticket_id);
+          //  approve(msg.sender, ticket_id);
+            setApprovalForEvent(buyer,msg.sender);
             emit TicketBought(buyer,event_id,ticket_id);
             emit TicketBoughtHuman(buyer,event_id,ticket_id);
         }
@@ -199,6 +201,16 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         address[] memory _sales = eventsales[event_id];
         uint ticket_type = _sales.length;
         return ticket_type;
+    }
+
+    function getTicketByOwner(address _owner) public view returns(uint256[] memory) {
+        uint256[] storage tickets = _tokensOfOwner(_owner);
+        return tickets;
+    }
+
+    function getTicketSales(uint256 event_id) public view returns(address[] memory) {
+        address[] memory sales = eventsales[event_id];
+        return sales;
     }
 
 }
