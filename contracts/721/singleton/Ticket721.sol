@@ -140,13 +140,13 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
 
-          //  addMinter(msg.sender); // -problem is here, probably add constructor call
             _mint(buyer,ticket_id);
             ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
             // approve for ticketsale (msg.sender = ticketsale)
-            approve(msg.sender, ticket_id);
+          //  approve(msg.sender, ticket_id);
+            setApprovalForEvent(buyer,msg.sender);
             emit TicketBought(buyer,event_id,ticket_id);
             emit TicketBoughtHuman(buyer,event_id,ticket_id);
         }
