@@ -72,7 +72,7 @@ public class KNS extends Contract {
 
     static {
         _addresses = new HashMap<String, String>();
-        _addresses.put("5777", "0x274cd50BAADCf45047ff4007F1221d5e6a67D1CC");
+        _addresses.put("5777", "0xAaF26c538768caC8F3bb40478855b8dc2ec9981D");
     }
 
     @Deprecated

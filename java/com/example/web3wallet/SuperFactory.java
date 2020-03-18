@@ -68,7 +68,7 @@ public class SuperFactory extends Contract {
 
     static {
         _addresses = new HashMap<String, String>();
-        _addresses.put("5777", "0xea710DE5EDdEE12875E7EB5E143db87CaFF6A719");
+        _addresses.put("5777", "0x3A40E0ccB974f0763FFD0234Fd08747e154Bc188");
     }
 
     @Deprecated
