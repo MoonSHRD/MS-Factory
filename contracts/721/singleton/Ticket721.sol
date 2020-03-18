@@ -94,7 +94,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     //FIXME: invoke constructor from 721(?)
     constructor(address factory_address) public {
        // _factory_address = factory_address;
-       // addMinter(msg.sender);
+        _addMinter(address(this));
     }
 
     // FIXME: approve for ticketsale, not factory
@@ -115,7 +115,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
       //  eventsales[event_id] = msg.sender;
         eventsales[event_id].push(msg.sender);
         retailers[msg.sender] = orginizer;
-       // addMinter(msg.sender);
+        _addMinter(msg.sender);
         emit EventIdReserved(msg.sender,event_id);
         emit EventIdReservedHuman(msg.sender,event_id);
         return event_id;
@@ -140,7 +140,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
             _ticket_id_count.increment();
             uint256 ticket_id = _ticket_id_count.current();
 
-            addMinter(msg.sender); // -problem is here, probably add constructor call
+          //  addMinter(msg.sender); // -problem is here, probably add constructor call
             _mint(buyer,ticket_id);
             ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
