@@ -53,6 +53,15 @@ Once ganache is running - you can deploy project by ```truffle migrate --reset``
 
 Deployment and truffle configuration placed at ```./truffle.js```
 
+### Local testing step-by-step manual
+1. install truffle as global npm package from https://www.trufflesuite.com/
+2. install ganache 'one-click-blockchain' enviroment
+3. clone this repo
+4. launch ganache, set gaslimit to 7.3m or higher, set gasprice = 1, link ganache to this project (by adding truffle.js config -- follow GUI instructions)
+5. go to this repo, create separate branch, execute ``` truffle migrate --reset``` in terminal from root folder of repo.
+after you do that -- you get all contracts deployed and contracts artifacts file generated. Now you all set to interact with blockchain
+6. (optional) generate client-side artifacts, that required by your client application. Generating artifacts for java/android can be build as https://github.com/MoonSHRD/MS-Factory#build-java-artifacts-to-android
+
 **Debugging** of smart-contracts is available from ganache GUI and from internal tool **truffle debug**
 
 ## Front-end and administration
@@ -100,3 +109,10 @@ $ web3j truffle generate /path/to/<truffle-smart-contract-output>.json -o /path/
   ```
   web3j truffle generate ./client/src/contracts/TicketFactory721.json -o ./java/ -p com.example.web3wallet
   ```
+ ```
+  web3j truffle generate ./client/src/contracts/TicketSale721.json -o ./java/ -p com.example.web3wallet
+  web3j truffle generate ./client/src/contracts/Ticket721.json -o ./java/ -p com.example.web3wallet
+  web3j truffle generate ./client/src/contracts/Deposit.json -o ./java/ -p com.example.web3wallet
+  .. generate pluggable sale, etc if needed
+  ```
+  
