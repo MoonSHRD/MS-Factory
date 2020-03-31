@@ -41,8 +41,14 @@ struct IRequest {
     string payload; // should not be secret info
 }
 
-// cash out
+constructor() public payable {
 
+}
+
+
+
+
+// cash out
 function cashOutRequest(string memory destination, address user) public payable {
     uint amount = msg.value;
     // FIXME: add amount conversion

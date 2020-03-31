@@ -102,17 +102,11 @@ $ web3j truffle generate /path/to/<truffle-smart-contract-output>.json -o /path/
 
   ```
   web3j truffle generate ./client/src/contracts/KNS.json -o ./java/ -p com.example.web3wallet
-  ```
-  ```
   web3j truffle generate ./client/src/contracts/SuperFactory.json -o ./java/ -p com.example.web3wallet
-  ```
-  ```
   web3j truffle generate ./client/src/contracts/TicketFactory721.json -o ./java/ -p com.example.web3wallet
-  ```
- ```
   web3j truffle generate ./client/src/contracts/TicketSale721.json -o ./java/ -p com.example.web3wallet
   web3j truffle generate ./client/src/contracts/Ticket721.json -o ./java/ -p com.example.web3wallet
   web3j truffle generate ./client/src/contracts/Deposit.json -o ./java/ -p com.example.web3wallet
-  .. generate pluggable sale, etc if needed
+  web3j truffle generate ./client/src/contracts/PluggableSale.json -o ./java/ -p com.example.web3wallet
+  web3j truffle generate ./client/src/contracts/TicketSalePluggable.json -o ./java/ -p com.example.web3wallet
   ```
-  

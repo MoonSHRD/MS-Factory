@@ -14,6 +14,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
 
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
+  //  using Counters for Counters.Counter;
 
     // The token being sold
     Ticket721 public _token;
@@ -23,7 +24,13 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint256 public _event_id;
 
     // ticket type
-    uint _ticket_type = 0;
+    uint public _ticket_type = 0;
+
+    // maximum amount of tickets to sale
+   // Counters.Counter public _current_limit;
+    uint _sale_limit;
+    // how much have been already sold
+    uint public _sold_count = 0;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -54,7 +61,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, Ticket721 token) public {
+    constructor (uint256 rate, address payable wallet, Ticket721 token, uint sale_limit) public {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
         require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -62,6 +69,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
         _rate = rate;
         _wallet = wallet;
         _token = token;
+        _sale_limit = sale_limit;
 
         _event_id = _token.reserveEventId(_wallet);
     }
@@ -107,6 +115,10 @@ contract TokenSale721 is Context, ReentrancyGuard {
     function event_id() public view returns (uint256) {
         return _event_id;
     }
+    
+    function sale_limit() public view returns (uint) {
+        return sale_limit();
+    }
 
     /**
      * @dev low level token purchase ***DO NOT OVERRIDE***
@@ -116,13 +128,16 @@ contract TokenSale721 is Context, ReentrancyGuard {
      */
     function buyTokens(address beneficiary) public nonReentrant payable {
         uint256 weiAmount = msg.value;
-        _preValidatePurchase(beneficiary, weiAmount);
+       // _preValidatePurchase(beneficiary, weiAmount);
 
         // calculate token amount to be created
         uint256 tokens = _getTokenAmount(weiAmount);
 
+        _preValidatePurchase(beneficiary, weiAmount, tokens);
+
         // update state
         _weiRaised = _weiRaised.add(weiAmount);
+        _sold_count = _sold_count.add(tokens);
 
         _processPurchase(beneficiary, tokens);
         emit TokensPurchased(_msgSender(), beneficiary, weiAmount, tokens);
@@ -142,9 +157,11 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param beneficiary Address performing the token purchase
      * @param weiAmount Value in wei involved in the purchase
      */
-    function _preValidatePurchase(address beneficiary, uint256 weiAmount) internal view {
+    function _preValidatePurchase(address beneficiary, uint256 weiAmount, uint256 tokens) internal view {
         require(beneficiary != address(0), "Crowdsale: beneficiary is the zero address");
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
+        uint limit = _sold_count + tokens;
+        require(limit <= _sale_limit, "tokens amount should not exceed sale_limit");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
     }
 
