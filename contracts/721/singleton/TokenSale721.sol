@@ -14,6 +14,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
 
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
+  //  using Counters for Counters.Counter;
 
     // The token being sold
     Ticket721 public _token;
@@ -26,7 +27,10 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint public _ticket_type = 0;
 
     // maximum amount of tickets to sale
+   // Counters.Counter public _current_limit;
     uint _sale_limit;
+    // how much have been already sold
+    uint public _sold_count = 0;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -133,6 +137,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
 
         // update state
         _weiRaised = _weiRaised.add(weiAmount);
+        _sold_count = _sold_count.add(tokens);
 
         _processPurchase(beneficiary, tokens);
         emit TokensPurchased(_msgSender(), beneficiary, weiAmount, tokens);
@@ -155,7 +160,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
     function _preValidatePurchase(address beneficiary, uint256 weiAmount, uint256 tokens) internal view {
         require(beneficiary != address(0), "Crowdsale: beneficiary is the zero address");
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
-        require(tokens <= _sale_limit, "tokens amount should not exceed sale_limit");
+        uint limit = _sold_count + tokens;
+        require(limit <= _sale_limit, "tokens amount should not exceed sale_limit");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
     }
 
