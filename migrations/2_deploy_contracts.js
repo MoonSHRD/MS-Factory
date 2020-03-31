@@ -1,4 +1,3 @@
-//var SimpleStorage = artifacts.require("./SimpleStorage.sol");
 var SuperFactory = artifacts.require("./SuperFactory.sol");
 var KNS = artifacts.require("./KNS.sol");
 var TicketFactory = artifacts.require("./721/singleton/TicketFactory721.sol")
@@ -7,16 +6,18 @@ var Deposit = artifacts.require("./Deposit.sol")
 
 module.exports = function(deployer, network, accounts) {
  // deployer.deploy(SimpleStorage);
- deployer.deploy(KNS).then(function() {
+ deployer.deploy(KNS,{gasPrice:'1'}).then(function() {
   console.log(network);
   console.log(network.port);
   console.log(network.gasPrice);
   console.log(accounts);
   console.log(accounts[0]);
-  return deployer.deploy(SuperFactory, KNS.address,accounts[1],accounts[2]);
+  return deployer.deploy(SuperFactory, KNS.address,accounts[1],accounts[2],{gasPrice:'1'});
 });
-deployer.deploy(TicketFactory, {gas:'7500000'});
-deployer.deploy(Deposit);
+deployer.deploy(TicketFactory, {gas:'7500000',gasPrice:'1'});
+
+
+deployer.deploy(Deposit,{gasPrice:'1', value:'1'}); //FIXME: add value sent to deposit contract
 // test for estimating gas usage
 
 };
