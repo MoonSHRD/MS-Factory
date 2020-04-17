@@ -7,7 +7,7 @@ pragma solidity ^0.5.11;
 
 import './Ticket721.sol';
 import './TicketSale721.sol';
-import './TicketSalePluggable.sol';
+//import './TicketSalePluggable.sol';
 
 
 
@@ -19,8 +19,8 @@ address ticket_template;
 // event
 event SaleCreated(address indexed organizer, uint price, uint256 indexed event_id, string indexed event_JID);
 event SaleCreatedHuman(address organizer, uint price, uint256 event_id, string event_JID);
-event PluggedSale(address indexed organizer, address indexed orginal_sale, uint256 indexed event_id);
-event PluggedSaleHuman(address organizer, address original_sale, uint256 event_id);
+//event PluggedSale(address indexed organizer, address indexed orginal_sale, uint256 indexed event_id);
+//event PluggedSaleHuman(address organizer, address original_sale, uint256 event_id);
 
 // mapping from JID to event_id
 mapping (string => uint256) events_jids;
@@ -32,8 +32,8 @@ constructor() public {
 
 
 function createTicket721() internal returns (address ticket_address) {
-   address factory_address = address(this);
-   ticket_address = address(new Ticket721(factory_address));
+ //  address factory_address = address(this);
+   ticket_address = address(new Ticket721());
    return ticket_address;
 }
 
@@ -63,6 +63,7 @@ function createTicketSale(address payable organizer, uint price, string memory e
 
 }
 
+/*
 function PlugInTicketSale(address payable origin_sale, uint price) public returns(address payable plugin_sale) {
     uint cena = calculateRate(price);
     plugin_sale = address(new TicketSalePluggable(cena,origin_sale));
@@ -72,6 +73,7 @@ function PlugInTicketSale(address payable origin_sale, uint price) public return
     emit PluggedSaleHuman(msg.sender, origin_sale, event_id);
     return plugin_sale;
 }
+*/
 
 function calculateRate (uint256 price) internal pure returns (uint256 rate_p) {
     // rate = price * 1 eth

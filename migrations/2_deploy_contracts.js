@@ -14,7 +14,7 @@ module.exports = function(deployer, network, accounts) {
   console.log(accounts[0]);
   return deployer.deploy(SuperFactory, KNS.address,accounts[1],accounts[2],{gasPrice:'1'});
 });
-deployer.deploy(TicketFactory, {gas:'7500000',gasPrice:'1'});
+deployer.deploy(TicketFactory, {gas:'7721975',gasPrice:'1'});
 
 
 deployer.deploy(Deposit,{gasPrice:'1', value:'1'}); //FIXME: add value sent to deposit contract

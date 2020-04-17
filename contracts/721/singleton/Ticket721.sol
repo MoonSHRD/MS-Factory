@@ -42,7 +42,6 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
    using SafeMath for uint256;
    using Counters for Counters.Counter;
 
-    address _factory_address;
 
     //events
     event TicketBought(address indexed visitor_wallet,uint256 indexed event_id, uint256 indexed ticket_id);
@@ -92,8 +91,8 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
 
     //FIXME: invoke constructor from 721(?)
-    constructor(address factory_address) public {
-       // _factory_address = factory_address;
+    constructor() public {
+       
         _addMinter(address(this));
     }
 
