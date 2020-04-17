@@ -71,7 +71,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     // map from sale address to organizer
     mapping(address => address) retailers;
     // map from event id to event JID
-    mapping(uint256 => string) JIDs;
+    mapping(uint256 => string) public JIDs;
 
 
     /**
@@ -212,6 +212,11 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     function getTicketSales(uint256 event_id) public view returns(address[] memory) {
         address[] memory sales = eventsales[event_id];
         return sales;
+    }
+
+    function getJidbyID(uint256 event_id) public view returns (string memory jid) {
+        jid = JIDs[event_id];
+        return jid;
     }
 
 }
