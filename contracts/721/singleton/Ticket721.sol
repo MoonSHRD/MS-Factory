@@ -67,7 +67,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     // map fron token ID to its index in ticketIds
     mapping (uint256 => uint256) ticketIndex;
     // map from ticket id to ticket info
-    mapping (uint256 => TicketInfo) ticketInfoStorage;
+    mapping (uint256 => TicketInfo) public ticketInfoStorage;
     // map from sale address to organizer
     mapping(address => address) retailers;
     // map from event id to event JID
