@@ -61,7 +61,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, Ticket721 token, uint sale_limit) public {
+    constructor (uint256 rate, address payable wallet, Ticket721 token, uint sale_limit, string memory jid) public {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
         require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -71,7 +71,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
         _token = token;
         _sale_limit = sale_limit;
 
-        _event_id = _token.reserveEventId(_wallet);
+        _event_id = _token.reserveEventId(_wallet,jid);
     }
 
     /**

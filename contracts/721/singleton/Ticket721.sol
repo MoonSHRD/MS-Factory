@@ -54,7 +54,6 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
     // Global counters for ticket_id and event_id
     Counters.Counter _ticket_id_count;
-    //Counters.Counter _ticket_type;
     Counters.Counter _event_id_count;
 
     // Ticket lifecycle
@@ -71,6 +70,8 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     mapping (uint256 => TicketInfo) ticketInfoStorage;
     // map from sale address to organizer
     mapping(address => address) retailers;
+    // map from event id to event JID
+    mapping(uint256 => string) JIDs;
 
 
     /**
@@ -83,8 +84,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     TicketState state;
    // Counters.Counter ticket_type;
     uint ticket_type;
-    //string fulfilmentURI;
-    //address retailer;
+   // string event_JID;
   }
 
    // TicketInfo[] internal ticketStorage;
@@ -109,12 +109,13 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     }
 
     // TODO - check for event_id already existed
-    function reserveEventId(address orginizer) public returns(uint256 event_id){
+    function reserveEventId(address orginizer, string memory jid) public returns(uint256 event_id){
         _event_id_count.increment();
         event_id = _event_id_count.current();
       //  eventsales[event_id] = msg.sender;
         eventsales[event_id].push(msg.sender);
         retailers[msg.sender] = orginizer;
+        JIDs[event_id] = jid;
         _addMinter(msg.sender);
         emit EventIdReserved(msg.sender,event_id);
         emit EventIdReservedHuman(msg.sender,event_id);
@@ -125,7 +126,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     function plugSale(uint256 event_id, address orginizer) public returns(uint) {
         address[] memory _sales = eventsales[event_id];
         address _sale = _sales[0];
-        require(retailers[_sale] == orginizer, "only orginizer can plug sale");
+        require(retailers[_sale] == orginizer, "only orginizer can plug item");
         eventsales[event_id].push(msg.sender);
         uint type_count = getTicketTypeCount(event_id);
         return type_count;
