@@ -54,6 +54,7 @@ function createTicketSale(address payable organizer, uint price, string memory e
     TicketSale721 ticket_sale = TicketSale721(ticket_sale_adr);
 
     event_id = ticket_sale.event_id();
+    require(events_jids[event_JID] == 0, "sale with this JID is already created!");
     events_jids[event_JID] = event_id;
     emit SaleCreated(organizer, price, event_id, event_JID);
     emit SaleCreatedHuman(organizer,price,event_id, event_JID);
