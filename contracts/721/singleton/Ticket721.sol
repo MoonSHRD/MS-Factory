@@ -63,7 +63,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     // TIP: ticket type = array.length
     mapping(uint256 => address[]) public eventsales;         // FIXME: one event could have a few ticketsale (for a different ticket types), so change it to address[] (?)
     // map from event id to ticket ids
-    mapping (uint256 => uint256[]) ticketIds;
+    mapping (uint256 => uint256[]) public ticketIds;
     // map fron token ID to its index in ticketIds
     mapping (uint256 => uint256) ticketIndex;
     // map from ticket id to ticket info
@@ -84,7 +84,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     TicketState state;
    // Counters.Counter ticket_type;
     uint ticket_type;
-   // string event_JID;
+    string event_JID;
   }
 
    // TicketInfo[] internal ticketStorage;
@@ -142,7 +142,8 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
             uint256 ticket_id = _ticket_id_count.current();
 
             _mint(buyer,ticket_id);
-            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type);
+            string memory jid = getJidbyEventID(event_id);
+            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type, jid);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
             // approve for ticketsale (msg.sender = ticketsale)
@@ -214,8 +215,14 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         return sales;
     }
 
-    function getJidbyID(uint256 event_id) public view returns (string memory jid) {
+    function getJidbyEventID(uint256 event_id) public view returns (string memory jid) {
         jid = JIDs[event_id];
+        return jid;
+    }
+
+    function getJidByTicketId(uint ticket_id) public view returns (string memory jid) {
+        TicketInfo memory info = ticketInfoStorage[ticket_id];
+        jid = info.event_JID;
         return jid;
     }
 
