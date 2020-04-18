@@ -14717,14 +14717,265 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "approved",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event",
+          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+        },
+        "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "operator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "approved",
+              "type": "bool"
+            }
+          ],
+          "name": "ApprovalForAll",
+          "type": "event",
+          "signature": "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31"
+        },
+        "0xe7d1a453d66d83d6e4ffae7901ed08b56c3b1f53a1c43135c2de683e4529b65b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "ticket_sale",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "event_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "EventIdReserved",
+          "type": "event",
+          "signature": "0xe7d1a453d66d83d6e4ffae7901ed08b56c3b1f53a1c43135c2de683e4529b65b"
+        },
+        "0x0a554ff72c713dffd0372d9c23cc1e214c1dfefbadda4710f4eee43eb6229a7b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "ticket_sale",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "event_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "EventIdReservedHuman",
+          "type": "event",
+          "signature": "0x0a554ff72c713dffd0372d9c23cc1e214c1dfefbadda4710f4eee43eb6229a7b"
+        },
+        "0x6ae172837ea30b801fbfcdd4108aa1d5bf8ff775444fd70256b44e6bf3dfc3f6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MinterAdded",
+          "type": "event",
+          "signature": "0x6ae172837ea30b801fbfcdd4108aa1d5bf8ff775444fd70256b44e6bf3dfc3f6"
+        },
+        "0xe94479a9f7e1952cc78f2d6baab678adc1b772d936c6583def489e524cb66692": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MinterRemoved",
+          "type": "event",
+          "signature": "0xe94479a9f7e1952cc78f2d6baab678adc1b772d936c6583def489e524cb66692"
+        },
+        "0x97fac0ce6558f4accbb4696915809c0ef7023ffe7ba9454e94d49fb652aae1d5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "visitor_wallet",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "event_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "ticket_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "TicketBought",
+          "type": "event",
+          "signature": "0x97fac0ce6558f4accbb4696915809c0ef7023ffe7ba9454e94d49fb652aae1d5"
+        },
+        "0x6d651fdc8652e9b93372b6cece4377b2c0f78be48b1ffbf3bdafc7baef0138ab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "visitor_wallet",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "event_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "ticket_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "TicketBoughtHuman",
+          "type": "event",
+          "signature": "0x6d651fdc8652e9b93372b6cece4377b2c0f78be48b1ffbf3bdafc7baef0138ab"
+        },
+        "0x1852380d0869dc478452f3f2bcfac707f842df524f5b8896d2a4f70c756f8184": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "visitor_wallet",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "event_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "ticket_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "TicketFulfilled",
+          "type": "event",
+          "signature": "0x1852380d0869dc478452f3f2bcfac707f842df524f5b8896d2a4f70c756f8184"
+        },
+        "0xe82baa24ba3534133b9033b3b6013784eaa8e524dc5ef8cf2e3e0945d0074624": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "visitor_wallet",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "event_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "ticket_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "TicketFulfilledHuman",
+          "type": "event",
+          "signature": "0xe82baa24ba3534133b9033b3b6013784eaa8e524dc5ef8cf2e3e0945d0074624"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event",
+          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        }
+      },
       "links": {},
-      "address": "0x4Fa6df7098ae13a6DB1183332e26008a115B1018",
-      "transactionHash": "0xe3c1a6c77ec90161b2fb78224e139d291fd09660205743d8edfec154d3611e01"
+      "address": "0xdA33416b5B4C299A914b6128657AaE7398C379A7",
+      "transactionHash": "0x408e877b39b55d296b251b60b46f20b52fce0577e22403c23d2e15316be8abc2"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2020-04-18T12:09:12.004Z",
+  "updatedAt": "2020-04-18T12:13:34.206Z",
   "devdoc": {
     "methods": {
       "approve(address,uint256)": {
