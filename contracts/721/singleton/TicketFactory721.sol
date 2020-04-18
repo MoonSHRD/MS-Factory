@@ -26,8 +26,9 @@ event SaleCreatedHuman(address organizer, uint price, uint256 event_id, string e
 mapping (string => uint256) events_jids;
 
 
-constructor() public {
-    ticket_template = createTicket721();
+constructor(address _ticket) public {
+   // ticket_template = createTicket721();
+   ticket_template = _ticket;
 }
 
 
