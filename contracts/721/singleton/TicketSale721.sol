@@ -12,7 +12,7 @@ constructor(uint256 rate, address payable wallet, Ticket721 token, uint sale_lim
 
 /**
 *
-* @dev overload buy token function to give allowance to reedem tickets 
+*@dev overload buy token function to give allowance to reedem tickets
 *
 *
 */
