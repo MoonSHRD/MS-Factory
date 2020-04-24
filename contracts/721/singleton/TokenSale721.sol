@@ -24,7 +24,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint256 public _event_id;
 
     // ticket type
-    uint public _ticket_type = 0;
+    uint public _ticket_type = 1;
 
     // maximum amount of tickets to sale
    // Counters.Counter public _current_limit;
@@ -115,7 +115,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     function event_id() public view returns (uint256) {
         return _event_id;
     }
-    
+
     function sale_limit() public view returns (uint) {
         return sale_limit();
     }
