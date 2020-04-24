@@ -56,11 +56,11 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     Counters.Counter _event_id_count;
 
     // Ticket lifecycle
-    enum TicketState {Paid, Fulfilled, Cancelled}
+    enum TicketState {Non_Existed, Paid, Fulfilled, Cancelled}
 
     // map from event id to ticketsale address
     // TIP: ticket type = array.length
-    mapping(uint256 => address[]) public eventsales;         // FIXME: one event could have a few ticketsale (for a different ticket types), so change it to address[] (?)
+    mapping(uint256 => address[]) public eventsales;
     // map from event id to ticket ids
     mapping (uint256 => uint256[]) public ticketIds;
     // map fron token ID to its index in ticketIds
