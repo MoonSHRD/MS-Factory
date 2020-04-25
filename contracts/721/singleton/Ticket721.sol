@@ -134,7 +134,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
     //TODO - return ticketIDs(?)
     function buyTicket(address buyer, uint256 ticketAmount, uint256 event_id, uint _ticket_type) public{
         address[] memory _sales = eventsales[event_id];
-        address _sale = _sales[_ticket_type];
+        address _sale = _sales[_ticket_type - 1]; // array start from 0
         require(_sale == msg.sender, "you should call buyTicket from ticketsale contract");
         for (uint256 i = 0; i < ticketAmount; i++ ){
             _ticket_id_count.increment();
