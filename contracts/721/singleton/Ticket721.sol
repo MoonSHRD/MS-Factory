@@ -188,7 +188,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
      function redeemTicket(address visitor, uint256 tokenId, uint256 event_id) public{
         address[] memory _sales = eventsales[event_id];
         TicketInfo memory info = ticketInfoStorage[tokenId];
-        address _sale = _sales[info.ticket_type];
+        address _sale = _sales[info.ticket_type - 1];
         require(_sale == msg.sender, "you should call scan from ticketsale contract");
         require(ticketInfoStorage[tokenId].state == TicketState.Paid, "Ticket state must be Paid");
         info.state = TicketState.Fulfilled;
