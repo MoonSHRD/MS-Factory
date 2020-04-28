@@ -68,8 +68,9 @@ function createTicketSale(address payable organizer, uint price, string memory e
 function PlugInTicketSale(address payable origin_sale, uint price) public returns(address payable plugin_sale) {
     uint cena = calculateRate(price);
     plugin_sale = address(new TicketSalePluggable(cena,origin_sale));
-    TicketSale721 ticket_sale = TicketSale721(origin_sale);
-    uint256 event_id = ticket_sale.event_id();
+    //TicketSale721 ticket_sale = TicketSale721(origin_sale);
+    TicketSalePluggable plugin_sale_instance = TicketSalePluggable(plugin_sale);
+    uint256 event_id = plugin_sale_instance.event_id();
     emit PluggedSale(msg.sender,origin_sale,event_id);
     emit PluggedSaleHuman(msg.sender, origin_sale, event_id);
     return plugin_sale;
