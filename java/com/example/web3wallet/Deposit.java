@@ -76,7 +76,7 @@ public class Deposit extends Contract {
 
     static {
         _addresses = new HashMap<String, String>();
-        _addresses.put("5777", "0xa3a37f5126f01302164FCADaA448d7480705B23A");
+        _addresses.put("5777", "0x85816332E249DcF01E06522e91A04AefCAFcc6Ce");
     }
 
     @Deprecated

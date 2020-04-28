@@ -62,11 +62,10 @@ contract PluggableSale is Context, ReentrancyGuard {
        // require(wallet != address(0), "Crowdsale: wallet is the zero address");
        // require(address(token) != address(0), "Crowdsale: token is the zero address");
         require(origin != address(0), "origin cannot be zero address");
+        origin_sale = TokenSale721(origin);
 
         _wallet = origin_sale.wallet();
-        require(_wallet == msg.sender, "only origin organizer can plug new sale");
-
-        origin_sale = TokenSale721(origin);
+      //  require(_wallet == msg.sender, "only origin organizer can plug new sale");
 
         _rate = rate;
         _token = origin_sale.token();
