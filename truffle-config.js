@@ -6,6 +6,7 @@ module.exports = {
   contracts_build_directory: path.join(__dirname, "client/src/contracts"),
   networks: {
     develop: {
+      host: "192.168.1.39",
       port: 7545,
       gasPrice: '1',
       network_id: "*"
@@ -16,6 +17,13 @@ module.exports = {
       gasLimit: '7000000',
       gasPrice: '1',
       network_id: '5777'
+    },
+    moonshard: {
+      host: "51.15.244.238",
+      port: "8501",
+      gasLimit: "9800000",
+      gasPrice: '0',
+      network_id: '1515'
     }
   },
   compilers: {

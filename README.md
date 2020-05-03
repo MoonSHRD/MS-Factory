@@ -110,3 +110,24 @@ $ web3j truffle generate /path/to/<truffle-smart-contract-output>.json -o /path/
   web3j truffle generate ./client/src/contracts/PluggableSale.json -o ./java/ -p com.example.web3wallet
   web3j truffle generate ./client/src/contracts/TicketSalePluggable.json -o ./java/ -p com.example.web3wallet
   ```
+
+  ## Generating ABI
+
+```
+  solc --abi --bin ./contracts/KNS.sol -o build
+  solc --abi --bin ./contracts/Deposit.sol -o build
+  solc --abi --bin ./contracts/721/singleton/Ticket721.sol -o build --allow-paths *,
+  solc --abi --bin ./contracts/721/singleton/TicketSale721.sol -o build --allow-paths *,
+  solc --abi --bin ./contracts/721/singleton/TicketFactory721.sol -o build --allow-paths *,
+  solc --abi --bin ./contracts/721/singleton/TicketSalePluggable.sol -o build --allow-paths *,
+  solc --abi --bin ./contracts/721/singleton/PluggableSale.sol -o build --allow-paths *,
+  ```
+
+  ## Generating go files from ABI (for backend instances)
+
+  ```
+  abigen --abi="build/KNS.abi" --pkg=KNS --out="./go/KNS.go"
+  abigen --abi="build/Deposit.abi" --pkg=Deposit --out="./go/Deposit.go"
+  abigen --abi="build/Ticket721.abi" --pkg=Ticket721 --out="./go/Ticket721.go"
+  ```
+
