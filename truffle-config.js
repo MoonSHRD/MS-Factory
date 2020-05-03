@@ -23,7 +23,7 @@ module.exports = {
       port: "8501",
       gasLimit: "9800000",
       gasPrice: '0',
-      network_id: '1515'
+      network_id: '8995'
     }
   },
   compilers: {
