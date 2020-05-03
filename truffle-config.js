@@ -22,8 +22,9 @@ module.exports = {
       host: "51.15.244.238",
       port: "8501",
       gasLimit: "9800000",
-      gasPrice: '0',
-      network_id: '8995'
+      gasPrice: '1',
+      network_id: '8995',
+      from: "0x5fCBc110868ce8Ec2cc840D5dC1f5C234783cdaE"
     }
   },
   compilers: {

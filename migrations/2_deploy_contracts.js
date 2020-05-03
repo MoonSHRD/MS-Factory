@@ -3,9 +3,10 @@ var KNS = artifacts.require("./KNS.sol");
 var TicketFactory = artifacts.require("./721/singleton/TicketFactory721.sol")
 var Deposit = artifacts.require("./Deposit.sol")
 var Ticket = artifacts.require("./721/singleton/Ticket721.sol")
-//var accounts = web3.eth.getAccounts();
+var accounts = web3.eth.getAccounts();
 
 module.exports = function(deployer, network, accounts) {
+  console.log(accounts);
  deployer.deploy(KNS,{gasPrice:'1'}).then(function() {
   console.log(network);
   console.log(network.port);
