@@ -21,7 +21,8 @@ module.exports = {
     moonshard: {
       host: "51.15.244.238",
       port: "8501",
-      gasLimit: "9800000",
+      gasLimit: '9000000',
+     // gas:'8000000',
       gasPrice: '1',
       network_id: '8995',
       from: "0x5fCBc110868ce8Ec2cc840D5dC1f5C234783cdaE"
@@ -31,7 +32,15 @@ module.exports = {
     solc: {
       version: "^0.5.11", // A version or constraint - Ex. "^0.5.0"
                          // Can also be set to "native" to use a native solc
-      parser: "solcjs"
+      parser: "solcjs",
+      settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      },
+     // evmVersion: 'petersburg'
+      //  evmVersion: 'constantinople'
+      }
     }
   }
 };

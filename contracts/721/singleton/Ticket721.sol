@@ -92,7 +92,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
     //FIXME: invoke constructor from 721(?)
     constructor() public {
-        _addMinter(address(this));
+      //  _addMinter(address(this));
     }
 
     // FIXME: approve for ticketsale, not factory
