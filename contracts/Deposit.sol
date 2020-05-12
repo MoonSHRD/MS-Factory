@@ -16,7 +16,7 @@ event cashOutRequestEvent(string indexed destination, address indexed user, uint
 
 // TODO add indexed payload to event
 
-event cashInRequestEvent(string indexed from, address indexed user, uint amount, string indexed uuid);
+event cashInRequestEvent(address indexed user, uint amount, string indexed uuid);
 
 
 
@@ -32,11 +32,13 @@ mapping (string => IRequest) public InRequest;
 
 struct IRequest {
 
-    string fiat_uuid;
+    string paymentType;
+    string fiat_uuid;       // ID of transaction at unitpay side
     uint amount;
-    address payable user;
-    string fiat_address;
-    address submited_by;
+    address payable user_wallet; // In unitpay system it's params[account]
+   // string fiat_address; -- we are not processing this info
+
+    address submited_by; // moonshard operator
     bool executed;
     string payload; // should not be secret info
 }
@@ -58,14 +60,14 @@ function cashOutRequest(string memory destination, address user) public payable 
 
 // cash in
 // cashier submit request for cash in while getting events from Fiat payment processor
-function cashInRequest(string memory from, address payable user, string memory uuid, uint amount) public onlyOwner {
+function cashInRequest(address payable user, string memory uuid, uint amount) public onlyOwner {
 
-    emit cashInRequestEvent(from,user,amount,uuid);
+    emit cashInRequestEvent(user,amount,uuid);
 
     IRequest memory irq;
     irq.fiat_uuid = uuid;
-    irq.user = user;
-    irq.fiat_address = from;
+    irq.user_wallet = user;
+   // irq.fiat_address = from;
     irq.submited_by = msg.sender;
     irq.amount = amount;
     irq.executed = false;
@@ -84,7 +86,7 @@ function cashInSubmit(string memory uuid) public onlyOwner {
     IRequest memory irq;
     irq = InRequest[uuid];
     require(irq.executed = false, "transaction is already executed! (reentrancy guard)");
-    address payable _user = irq.user;
+    address payable _user = irq.user_wallet;
     uint amount = irq.amount;
     // Do some conversion for amount (FIXME)
     // ...
@@ -98,7 +100,7 @@ function cashInSubmit(string memory uuid) public onlyOwner {
 }
 
 function proceedTransaction(IRequest memory ts) internal {
-    address payable _user = ts.user;
+    address payable _user = ts.user_wallet;
     uint amount = ts.amount;
     _user.transfer(amount);
 }
