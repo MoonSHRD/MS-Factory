@@ -28,7 +28,7 @@ var (
 )
 
 // DepositABI is the input ABI used to generate the binding from.
-const DepositABI = "[{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"string\",\"name\":\"from\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"}],\"name\":\"cashInRequestEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"string\",\"name\":\"destination\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"cashOutRequestEvent\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"InRequest\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"fiat_uuid\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"addresspayable\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fiat_address\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"submited_by\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"payload\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"from\",\"type\":\"string\"},{\"internalType\":\"addresspayable\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"cashInRequest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"}],\"name\":\"cashInSubmit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"destination\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"cashOutRequest\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const DepositABI = "[{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"}],\"name\":\"cashInRequestEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"purce\",\"type\":\"string\"}],\"name\":\"cashOutRequestEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"txid\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"err_msg\",\"type\":\"string\"}],\"name\":\"cashOutRevertEvent\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"InRequest\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"paymentType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fiat_uuid\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"addresspayable\",\"name\":\"user_wallet\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"submited_by\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"payload\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"OutRequest\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"paymentType\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"addresspayable\",\"name\":\"wallet_from\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"purce\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"tx_id\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"addresspayable\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"cashInRequest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"}],\"name\":\"cashInSubmit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"purce\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"paymentType\",\"type\":\"string\"}],\"name\":\"cashOutRequest\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tx_id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"err_msg\",\"type\":\"string\"}],\"name\":\"cashOutRevert\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tx_id\",\"type\":\"uint256\"}],\"name\":\"cashOutSubmit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // Deposit is an auto generated Go binding around an Ethereum contract.
 type Deposit struct {
@@ -174,21 +174,21 @@ func (_Deposit *DepositTransactorRaw) Transact(opts *bind.TransactOpts, method s
 
 // InRequest is a free data retrieval call binding the contract method 0x3fb4b5de.
 //
-// Solidity: function InRequest(string ) view returns(string fiat_uuid, uint256 amount, address user, string fiat_address, address submited_by, bool executed, string payload)
+// Solidity: function InRequest(string ) view returns(string paymentType, string fiat_uuid, uint256 amount, address user_wallet, address submited_by, bool executed, string payload)
 func (_Deposit *DepositCaller) InRequest(opts *bind.CallOpts, arg0 string) (struct {
+	PaymentType string
 	FiatUuid    string
 	Amount      *big.Int
-	User        common.Address
-	FiatAddress string
+	UserWallet  common.Address
 	SubmitedBy  common.Address
 	Executed    bool
 	Payload     string
 }, error) {
 	ret := new(struct {
+		PaymentType string
 		FiatUuid    string
 		Amount      *big.Int
-		User        common.Address
-		FiatAddress string
+		UserWallet  common.Address
 		SubmitedBy  common.Address
 		Executed    bool
 		Payload     string
@@ -200,12 +200,12 @@ func (_Deposit *DepositCaller) InRequest(opts *bind.CallOpts, arg0 string) (stru
 
 // InRequest is a free data retrieval call binding the contract method 0x3fb4b5de.
 //
-// Solidity: function InRequest(string ) view returns(string fiat_uuid, uint256 amount, address user, string fiat_address, address submited_by, bool executed, string payload)
+// Solidity: function InRequest(string ) view returns(string paymentType, string fiat_uuid, uint256 amount, address user_wallet, address submited_by, bool executed, string payload)
 func (_Deposit *DepositSession) InRequest(arg0 string) (struct {
+	PaymentType string
 	FiatUuid    string
 	Amount      *big.Int
-	User        common.Address
-	FiatAddress string
+	UserWallet  common.Address
 	SubmitedBy  common.Address
 	Executed    bool
 	Payload     string
@@ -215,17 +215,69 @@ func (_Deposit *DepositSession) InRequest(arg0 string) (struct {
 
 // InRequest is a free data retrieval call binding the contract method 0x3fb4b5de.
 //
-// Solidity: function InRequest(string ) view returns(string fiat_uuid, uint256 amount, address user, string fiat_address, address submited_by, bool executed, string payload)
+// Solidity: function InRequest(string ) view returns(string paymentType, string fiat_uuid, uint256 amount, address user_wallet, address submited_by, bool executed, string payload)
 func (_Deposit *DepositCallerSession) InRequest(arg0 string) (struct {
+	PaymentType string
 	FiatUuid    string
 	Amount      *big.Int
-	User        common.Address
-	FiatAddress string
+	UserWallet  common.Address
 	SubmitedBy  common.Address
 	Executed    bool
 	Payload     string
 }, error) {
 	return _Deposit.Contract.InRequest(&_Deposit.CallOpts, arg0)
+}
+
+// OutRequest is a free data retrieval call binding the contract method 0x90b80897.
+//
+// Solidity: function OutRequest(uint256 ) view returns(string paymentType, uint256 amount, address wallet_from, string purce, uint256 tx_id, bool executed)
+func (_Deposit *DepositCaller) OutRequest(opts *bind.CallOpts, arg0 *big.Int) (struct {
+	PaymentType string
+	Amount      *big.Int
+	WalletFrom  common.Address
+	Purce       string
+	TxId        *big.Int
+	Executed    bool
+}, error) {
+	ret := new(struct {
+		PaymentType string
+		Amount      *big.Int
+		WalletFrom  common.Address
+		Purce       string
+		TxId        *big.Int
+		Executed    bool
+	})
+	out := ret
+	err := _Deposit.contract.Call(opts, out, "OutRequest", arg0)
+	return *ret, err
+}
+
+// OutRequest is a free data retrieval call binding the contract method 0x90b80897.
+//
+// Solidity: function OutRequest(uint256 ) view returns(string paymentType, uint256 amount, address wallet_from, string purce, uint256 tx_id, bool executed)
+func (_Deposit *DepositSession) OutRequest(arg0 *big.Int) (struct {
+	PaymentType string
+	Amount      *big.Int
+	WalletFrom  common.Address
+	Purce       string
+	TxId        *big.Int
+	Executed    bool
+}, error) {
+	return _Deposit.Contract.OutRequest(&_Deposit.CallOpts, arg0)
+}
+
+// OutRequest is a free data retrieval call binding the contract method 0x90b80897.
+//
+// Solidity: function OutRequest(uint256 ) view returns(string paymentType, uint256 amount, address wallet_from, string purce, uint256 tx_id, bool executed)
+func (_Deposit *DepositCallerSession) OutRequest(arg0 *big.Int) (struct {
+	PaymentType string
+	Amount      *big.Int
+	WalletFrom  common.Address
+	Purce       string
+	TxId        *big.Int
+	Executed    bool
+}, error) {
+	return _Deposit.Contract.OutRequest(&_Deposit.CallOpts, arg0)
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
@@ -280,25 +332,25 @@ func (_Deposit *DepositCallerSession) Owner() (common.Address, error) {
 	return _Deposit.Contract.Owner(&_Deposit.CallOpts)
 }
 
-// CashInRequest is a paid mutator transaction binding the contract method 0x9b65f4e3.
+// CashInRequest is a paid mutator transaction binding the contract method 0xe2b6bc85.
 //
-// Solidity: function cashInRequest(string from, address user, string uuid, uint256 amount) returns()
-func (_Deposit *DepositTransactor) CashInRequest(opts *bind.TransactOpts, from string, user common.Address, uuid string, amount *big.Int) (*types.Transaction, error) {
-	return _Deposit.contract.Transact(opts, "cashInRequest", from, user, uuid, amount)
+// Solidity: function cashInRequest(address user, string uuid, uint256 amount) returns()
+func (_Deposit *DepositTransactor) CashInRequest(opts *bind.TransactOpts, user common.Address, uuid string, amount *big.Int) (*types.Transaction, error) {
+	return _Deposit.contract.Transact(opts, "cashInRequest", user, uuid, amount)
 }
 
-// CashInRequest is a paid mutator transaction binding the contract method 0x9b65f4e3.
+// CashInRequest is a paid mutator transaction binding the contract method 0xe2b6bc85.
 //
-// Solidity: function cashInRequest(string from, address user, string uuid, uint256 amount) returns()
-func (_Deposit *DepositSession) CashInRequest(from string, user common.Address, uuid string, amount *big.Int) (*types.Transaction, error) {
-	return _Deposit.Contract.CashInRequest(&_Deposit.TransactOpts, from, user, uuid, amount)
+// Solidity: function cashInRequest(address user, string uuid, uint256 amount) returns()
+func (_Deposit *DepositSession) CashInRequest(user common.Address, uuid string, amount *big.Int) (*types.Transaction, error) {
+	return _Deposit.Contract.CashInRequest(&_Deposit.TransactOpts, user, uuid, amount)
 }
 
-// CashInRequest is a paid mutator transaction binding the contract method 0x9b65f4e3.
+// CashInRequest is a paid mutator transaction binding the contract method 0xe2b6bc85.
 //
-// Solidity: function cashInRequest(string from, address user, string uuid, uint256 amount) returns()
-func (_Deposit *DepositTransactorSession) CashInRequest(from string, user common.Address, uuid string, amount *big.Int) (*types.Transaction, error) {
-	return _Deposit.Contract.CashInRequest(&_Deposit.TransactOpts, from, user, uuid, amount)
+// Solidity: function cashInRequest(address user, string uuid, uint256 amount) returns()
+func (_Deposit *DepositTransactorSession) CashInRequest(user common.Address, uuid string, amount *big.Int) (*types.Transaction, error) {
+	return _Deposit.Contract.CashInRequest(&_Deposit.TransactOpts, user, uuid, amount)
 }
 
 // CashInSubmit is a paid mutator transaction binding the contract method 0x8a3cac3c.
@@ -322,25 +374,67 @@ func (_Deposit *DepositTransactorSession) CashInSubmit(uuid string) (*types.Tran
 	return _Deposit.Contract.CashInSubmit(&_Deposit.TransactOpts, uuid)
 }
 
-// CashOutRequest is a paid mutator transaction binding the contract method 0xd91f86b2.
+// CashOutRequest is a paid mutator transaction binding the contract method 0x34ae76f2.
 //
-// Solidity: function cashOutRequest(string destination, address user) payable returns()
-func (_Deposit *DepositTransactor) CashOutRequest(opts *bind.TransactOpts, destination string, user common.Address) (*types.Transaction, error) {
-	return _Deposit.contract.Transact(opts, "cashOutRequest", destination, user)
+// Solidity: function cashOutRequest(string purce, string paymentType) payable returns()
+func (_Deposit *DepositTransactor) CashOutRequest(opts *bind.TransactOpts, purce string, paymentType string) (*types.Transaction, error) {
+	return _Deposit.contract.Transact(opts, "cashOutRequest", purce, paymentType)
 }
 
-// CashOutRequest is a paid mutator transaction binding the contract method 0xd91f86b2.
+// CashOutRequest is a paid mutator transaction binding the contract method 0x34ae76f2.
 //
-// Solidity: function cashOutRequest(string destination, address user) payable returns()
-func (_Deposit *DepositSession) CashOutRequest(destination string, user common.Address) (*types.Transaction, error) {
-	return _Deposit.Contract.CashOutRequest(&_Deposit.TransactOpts, destination, user)
+// Solidity: function cashOutRequest(string purce, string paymentType) payable returns()
+func (_Deposit *DepositSession) CashOutRequest(purce string, paymentType string) (*types.Transaction, error) {
+	return _Deposit.Contract.CashOutRequest(&_Deposit.TransactOpts, purce, paymentType)
 }
 
-// CashOutRequest is a paid mutator transaction binding the contract method 0xd91f86b2.
+// CashOutRequest is a paid mutator transaction binding the contract method 0x34ae76f2.
 //
-// Solidity: function cashOutRequest(string destination, address user) payable returns()
-func (_Deposit *DepositTransactorSession) CashOutRequest(destination string, user common.Address) (*types.Transaction, error) {
-	return _Deposit.Contract.CashOutRequest(&_Deposit.TransactOpts, destination, user)
+// Solidity: function cashOutRequest(string purce, string paymentType) payable returns()
+func (_Deposit *DepositTransactorSession) CashOutRequest(purce string, paymentType string) (*types.Transaction, error) {
+	return _Deposit.Contract.CashOutRequest(&_Deposit.TransactOpts, purce, paymentType)
+}
+
+// CashOutRevert is a paid mutator transaction binding the contract method 0xf00fc110.
+//
+// Solidity: function cashOutRevert(uint256 tx_id, string err_msg) returns()
+func (_Deposit *DepositTransactor) CashOutRevert(opts *bind.TransactOpts, tx_id *big.Int, err_msg string) (*types.Transaction, error) {
+	return _Deposit.contract.Transact(opts, "cashOutRevert", tx_id, err_msg)
+}
+
+// CashOutRevert is a paid mutator transaction binding the contract method 0xf00fc110.
+//
+// Solidity: function cashOutRevert(uint256 tx_id, string err_msg) returns()
+func (_Deposit *DepositSession) CashOutRevert(tx_id *big.Int, err_msg string) (*types.Transaction, error) {
+	return _Deposit.Contract.CashOutRevert(&_Deposit.TransactOpts, tx_id, err_msg)
+}
+
+// CashOutRevert is a paid mutator transaction binding the contract method 0xf00fc110.
+//
+// Solidity: function cashOutRevert(uint256 tx_id, string err_msg) returns()
+func (_Deposit *DepositTransactorSession) CashOutRevert(tx_id *big.Int, err_msg string) (*types.Transaction, error) {
+	return _Deposit.Contract.CashOutRevert(&_Deposit.TransactOpts, tx_id, err_msg)
+}
+
+// CashOutSubmit is a paid mutator transaction binding the contract method 0x021ce0cd.
+//
+// Solidity: function cashOutSubmit(uint256 tx_id) returns()
+func (_Deposit *DepositTransactor) CashOutSubmit(opts *bind.TransactOpts, tx_id *big.Int) (*types.Transaction, error) {
+	return _Deposit.contract.Transact(opts, "cashOutSubmit", tx_id)
+}
+
+// CashOutSubmit is a paid mutator transaction binding the contract method 0x021ce0cd.
+//
+// Solidity: function cashOutSubmit(uint256 tx_id) returns()
+func (_Deposit *DepositSession) CashOutSubmit(tx_id *big.Int) (*types.Transaction, error) {
+	return _Deposit.Contract.CashOutSubmit(&_Deposit.TransactOpts, tx_id)
+}
+
+// CashOutSubmit is a paid mutator transaction binding the contract method 0x021ce0cd.
+//
+// Solidity: function cashOutSubmit(uint256 tx_id) returns()
+func (_Deposit *DepositTransactorSession) CashOutSubmit(tx_id *big.Int) (*types.Transaction, error) {
+	return _Deposit.Contract.CashOutSubmit(&_Deposit.TransactOpts, tx_id)
 }
 
 // RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
@@ -627,22 +721,17 @@ func (it *DepositCashInRequestEventIterator) Close() error {
 
 // DepositCashInRequestEvent represents a CashInRequestEvent event raised by the Deposit contract.
 type DepositCashInRequestEvent struct {
-	From   common.Hash
 	User   common.Address
 	Amount *big.Int
 	Uuid   common.Hash
 	Raw    types.Log // Blockchain specific contextual infos
 }
 
-// FilterCashInRequestEvent is a free log retrieval operation binding the contract event 0xc7257fe765b6dd4946dfa7e3829b142c46f4566767caec90f8396dcaf7e625c1.
+// FilterCashInRequestEvent is a free log retrieval operation binding the contract event 0xe6d3c69bf41366e6392c93656bdfe09104b47ef9a500b54eefc068a54f0dcf1a.
 //
-// Solidity: event cashInRequestEvent(string indexed from, address indexed user, uint256 amount, string indexed uuid)
-func (_Deposit *DepositFilterer) FilterCashInRequestEvent(opts *bind.FilterOpts, from []string, user []common.Address, uuid []string) (*DepositCashInRequestEventIterator, error) {
+// Solidity: event cashInRequestEvent(address indexed user, uint256 amount, string indexed uuid)
+func (_Deposit *DepositFilterer) FilterCashInRequestEvent(opts *bind.FilterOpts, user []common.Address, uuid []string) (*DepositCashInRequestEventIterator, error) {
 
-	var fromRule []interface{}
-	for _, fromItem := range from {
-		fromRule = append(fromRule, fromItem)
-	}
 	var userRule []interface{}
 	for _, userItem := range user {
 		userRule = append(userRule, userItem)
@@ -653,22 +742,18 @@ func (_Deposit *DepositFilterer) FilterCashInRequestEvent(opts *bind.FilterOpts,
 		uuidRule = append(uuidRule, uuidItem)
 	}
 
-	logs, sub, err := _Deposit.contract.FilterLogs(opts, "cashInRequestEvent", fromRule, userRule, uuidRule)
+	logs, sub, err := _Deposit.contract.FilterLogs(opts, "cashInRequestEvent", userRule, uuidRule)
 	if err != nil {
 		return nil, err
 	}
 	return &DepositCashInRequestEventIterator{contract: _Deposit.contract, event: "cashInRequestEvent", logs: logs, sub: sub}, nil
 }
 
-// WatchCashInRequestEvent is a free log subscription operation binding the contract event 0xc7257fe765b6dd4946dfa7e3829b142c46f4566767caec90f8396dcaf7e625c1.
+// WatchCashInRequestEvent is a free log subscription operation binding the contract event 0xe6d3c69bf41366e6392c93656bdfe09104b47ef9a500b54eefc068a54f0dcf1a.
 //
-// Solidity: event cashInRequestEvent(string indexed from, address indexed user, uint256 amount, string indexed uuid)
-func (_Deposit *DepositFilterer) WatchCashInRequestEvent(opts *bind.WatchOpts, sink chan<- *DepositCashInRequestEvent, from []string, user []common.Address, uuid []string) (event.Subscription, error) {
+// Solidity: event cashInRequestEvent(address indexed user, uint256 amount, string indexed uuid)
+func (_Deposit *DepositFilterer) WatchCashInRequestEvent(opts *bind.WatchOpts, sink chan<- *DepositCashInRequestEvent, user []common.Address, uuid []string) (event.Subscription, error) {
 
-	var fromRule []interface{}
-	for _, fromItem := range from {
-		fromRule = append(fromRule, fromItem)
-	}
 	var userRule []interface{}
 	for _, userItem := range user {
 		userRule = append(userRule, userItem)
@@ -679,7 +764,7 @@ func (_Deposit *DepositFilterer) WatchCashInRequestEvent(opts *bind.WatchOpts, s
 		uuidRule = append(uuidRule, uuidItem)
 	}
 
-	logs, sub, err := _Deposit.contract.WatchLogs(opts, "cashInRequestEvent", fromRule, userRule, uuidRule)
+	logs, sub, err := _Deposit.contract.WatchLogs(opts, "cashInRequestEvent", userRule, uuidRule)
 	if err != nil {
 		return nil, err
 	}
@@ -711,9 +796,9 @@ func (_Deposit *DepositFilterer) WatchCashInRequestEvent(opts *bind.WatchOpts, s
 	}), nil
 }
 
-// ParseCashInRequestEvent is a log parse operation binding the contract event 0xc7257fe765b6dd4946dfa7e3829b142c46f4566767caec90f8396dcaf7e625c1.
+// ParseCashInRequestEvent is a log parse operation binding the contract event 0xe6d3c69bf41366e6392c93656bdfe09104b47ef9a500b54eefc068a54f0dcf1a.
 //
-// Solidity: event cashInRequestEvent(string indexed from, address indexed user, uint256 amount, string indexed uuid)
+// Solidity: event cashInRequestEvent(address indexed user, uint256 amount, string indexed uuid)
 func (_Deposit *DepositFilterer) ParseCashInRequestEvent(log types.Log) (*DepositCashInRequestEvent, error) {
 	event := new(DepositCashInRequestEvent)
 	if err := _Deposit.contract.UnpackLog(event, "cashInRequestEvent", log); err != nil {
@@ -791,48 +876,40 @@ func (it *DepositCashOutRequestEventIterator) Close() error {
 
 // DepositCashOutRequestEvent represents a CashOutRequestEvent event raised by the Deposit contract.
 type DepositCashOutRequestEvent struct {
-	Destination common.Hash
-	User        common.Address
-	Amount      *big.Int
-	Raw         types.Log // Blockchain specific contextual infos
+	User   common.Address
+	Amount *big.Int
+	Purce  string
+	Raw    types.Log // Blockchain specific contextual infos
 }
 
-// FilterCashOutRequestEvent is a free log retrieval operation binding the contract event 0xe3cb954797a95fbb1caebb51fad66117ac891d940890eb9c2d8c4e3051761288.
+// FilterCashOutRequestEvent is a free log retrieval operation binding the contract event 0x51ab2593a5027d6d349f47998805aa648323b8f40cbefaabcfb7cc6277990a3a.
 //
-// Solidity: event cashOutRequestEvent(string indexed destination, address indexed user, uint256 amount)
-func (_Deposit *DepositFilterer) FilterCashOutRequestEvent(opts *bind.FilterOpts, destination []string, user []common.Address) (*DepositCashOutRequestEventIterator, error) {
+// Solidity: event cashOutRequestEvent(address indexed user, uint256 amount, string purce)
+func (_Deposit *DepositFilterer) FilterCashOutRequestEvent(opts *bind.FilterOpts, user []common.Address) (*DepositCashOutRequestEventIterator, error) {
 
-	var destinationRule []interface{}
-	for _, destinationItem := range destination {
-		destinationRule = append(destinationRule, destinationItem)
-	}
 	var userRule []interface{}
 	for _, userItem := range user {
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _Deposit.contract.FilterLogs(opts, "cashOutRequestEvent", destinationRule, userRule)
+	logs, sub, err := _Deposit.contract.FilterLogs(opts, "cashOutRequestEvent", userRule)
 	if err != nil {
 		return nil, err
 	}
 	return &DepositCashOutRequestEventIterator{contract: _Deposit.contract, event: "cashOutRequestEvent", logs: logs, sub: sub}, nil
 }
 
-// WatchCashOutRequestEvent is a free log subscription operation binding the contract event 0xe3cb954797a95fbb1caebb51fad66117ac891d940890eb9c2d8c4e3051761288.
+// WatchCashOutRequestEvent is a free log subscription operation binding the contract event 0x51ab2593a5027d6d349f47998805aa648323b8f40cbefaabcfb7cc6277990a3a.
 //
-// Solidity: event cashOutRequestEvent(string indexed destination, address indexed user, uint256 amount)
-func (_Deposit *DepositFilterer) WatchCashOutRequestEvent(opts *bind.WatchOpts, sink chan<- *DepositCashOutRequestEvent, destination []string, user []common.Address) (event.Subscription, error) {
+// Solidity: event cashOutRequestEvent(address indexed user, uint256 amount, string purce)
+func (_Deposit *DepositFilterer) WatchCashOutRequestEvent(opts *bind.WatchOpts, sink chan<- *DepositCashOutRequestEvent, user []common.Address) (event.Subscription, error) {
 
-	var destinationRule []interface{}
-	for _, destinationItem := range destination {
-		destinationRule = append(destinationRule, destinationItem)
-	}
 	var userRule []interface{}
 	for _, userItem := range user {
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _Deposit.contract.WatchLogs(opts, "cashOutRequestEvent", destinationRule, userRule)
+	logs, sub, err := _Deposit.contract.WatchLogs(opts, "cashOutRequestEvent", userRule)
 	if err != nil {
 		return nil, err
 	}
@@ -864,12 +941,168 @@ func (_Deposit *DepositFilterer) WatchCashOutRequestEvent(opts *bind.WatchOpts, 
 	}), nil
 }
 
-// ParseCashOutRequestEvent is a log parse operation binding the contract event 0xe3cb954797a95fbb1caebb51fad66117ac891d940890eb9c2d8c4e3051761288.
+// ParseCashOutRequestEvent is a log parse operation binding the contract event 0x51ab2593a5027d6d349f47998805aa648323b8f40cbefaabcfb7cc6277990a3a.
 //
-// Solidity: event cashOutRequestEvent(string indexed destination, address indexed user, uint256 amount)
+// Solidity: event cashOutRequestEvent(address indexed user, uint256 amount, string purce)
 func (_Deposit *DepositFilterer) ParseCashOutRequestEvent(log types.Log) (*DepositCashOutRequestEvent, error) {
 	event := new(DepositCashOutRequestEvent)
 	if err := _Deposit.contract.UnpackLog(event, "cashOutRequestEvent", log); err != nil {
+		return nil, err
+	}
+	return event, nil
+}
+
+// DepositCashOutRevertEventIterator is returned from FilterCashOutRevertEvent and is used to iterate over the raw logs and unpacked data for CashOutRevertEvent events raised by the Deposit contract.
+type DepositCashOutRevertEventIterator struct {
+	Event *DepositCashOutRevertEvent // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DepositCashOutRevertEventIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DepositCashOutRevertEvent)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DepositCashOutRevertEvent)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DepositCashOutRevertEventIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DepositCashOutRevertEventIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DepositCashOutRevertEvent represents a CashOutRevertEvent event raised by the Deposit contract.
+type DepositCashOutRevertEvent struct {
+	User   common.Address
+	Amount *big.Int
+	Txid   *big.Int
+	ErrMsg string
+	Raw    types.Log // Blockchain specific contextual infos
+}
+
+// FilterCashOutRevertEvent is a free log retrieval operation binding the contract event 0x18299177ec34ec12a04fd18c915c81caa62b319c422628d2cdd1374fa84e1744.
+//
+// Solidity: event cashOutRevertEvent(address indexed user, uint256 amount, uint256 indexed txid, string err_msg)
+func (_Deposit *DepositFilterer) FilterCashOutRevertEvent(opts *bind.FilterOpts, user []common.Address, txid []*big.Int) (*DepositCashOutRevertEventIterator, error) {
+
+	var userRule []interface{}
+	for _, userItem := range user {
+		userRule = append(userRule, userItem)
+	}
+
+	var txidRule []interface{}
+	for _, txidItem := range txid {
+		txidRule = append(txidRule, txidItem)
+	}
+
+	logs, sub, err := _Deposit.contract.FilterLogs(opts, "cashOutRevertEvent", userRule, txidRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DepositCashOutRevertEventIterator{contract: _Deposit.contract, event: "cashOutRevertEvent", logs: logs, sub: sub}, nil
+}
+
+// WatchCashOutRevertEvent is a free log subscription operation binding the contract event 0x18299177ec34ec12a04fd18c915c81caa62b319c422628d2cdd1374fa84e1744.
+//
+// Solidity: event cashOutRevertEvent(address indexed user, uint256 amount, uint256 indexed txid, string err_msg)
+func (_Deposit *DepositFilterer) WatchCashOutRevertEvent(opts *bind.WatchOpts, sink chan<- *DepositCashOutRevertEvent, user []common.Address, txid []*big.Int) (event.Subscription, error) {
+
+	var userRule []interface{}
+	for _, userItem := range user {
+		userRule = append(userRule, userItem)
+	}
+
+	var txidRule []interface{}
+	for _, txidItem := range txid {
+		txidRule = append(txidRule, txidItem)
+	}
+
+	logs, sub, err := _Deposit.contract.WatchLogs(opts, "cashOutRevertEvent", userRule, txidRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DepositCashOutRevertEvent)
+				if err := _Deposit.contract.UnpackLog(event, "cashOutRevertEvent", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseCashOutRevertEvent is a log parse operation binding the contract event 0x18299177ec34ec12a04fd18c915c81caa62b319c422628d2cdd1374fa84e1744.
+//
+// Solidity: event cashOutRevertEvent(address indexed user, uint256 amount, uint256 indexed txid, string err_msg)
+func (_Deposit *DepositFilterer) ParseCashOutRevertEvent(log types.Log) (*DepositCashOutRevertEvent, error) {
+	event := new(DepositCashOutRevertEvent)
+	if err := _Deposit.contract.UnpackLog(event, "cashOutRevertEvent", log); err != nil {
 		return nil, err
 	}
 	return event, nil

@@ -29,6 +29,8 @@ Constants
 
 Counters.Counter tx_id_out;
 
+//uint balance;
+
 // fiat uuid = request
 mapping (string => IRequest) public InRequest;
 
