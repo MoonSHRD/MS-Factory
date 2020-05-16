@@ -15,7 +15,7 @@ Events
 // this event invoke when someone want to cashout funds to plastic card
 // this event should been catched by 'cashier' service and procced tx out at Fiat payment processer
 // amount is in Wei, so cashier probably need to convert it
-event cashOutRequestEvent(address indexed user, uint amount, string purce);
+event cashOutRequestEvent(address indexed user, uint amount, string purce,uint256 indexed txid);
 
 // TODO add indexed payload to event
 
@@ -27,7 +27,7 @@ event cashOutRevertEvent(address indexed user, uint amount, uint256 indexed txid
 Constants
 */
 
-Counters.Counter tx_id_out;
+Counters.Counter public tx_id_out;
 
 //uint balance;
 
@@ -87,14 +87,13 @@ function cashOutRequest(string memory purce, string memory paymentType) public p
 
     OutRequest[id] = orq;
 
-    emit cashOutRequestEvent(wallet_from, amount, purce);
+    emit cashOutRequestEvent(wallet_from, amount, purce,id);
 }
 
 // cash in
 // cashier submit request for cash in while getting events from Fiat payment processor
 function cashInRequest(address payable user, string memory uuid, uint amount) public onlyOwner {
 
-    
     IRequest memory irq;
     irq.fiat_uuid = uuid;
     irq.user_wallet = user;
@@ -119,7 +118,7 @@ function cashInRequest(address payable user, string memory uuid, uint amount) pu
 function cashInSubmit(string memory uuid) public onlyOwner {
     IRequest memory irq;
     irq = InRequest[uuid];
-    require(irq.executed = false, "transaction is already executed! (reentrancy guard)");
+    require(irq.executed == false, "transaction is already executed! (reentrancy guard)");
     address payable _user = irq.user_wallet;
     uint amount = irq.amount;
     // Do some conversion for amount (FIXME)
@@ -136,7 +135,7 @@ function cashInSubmit(string memory uuid) public onlyOwner {
 function cashOutSubmit(uint256 tx_id) public onlyOwner {
     ORequest memory orq;
     orq = OutRequest[tx_id];
-    require(orq.executed = false, "transaction is already executed! (reentrancy guard)");
+    require(orq.executed == false, "transaction is already executed! (reentrancy guard)");
     orq.executed = true;
     OutRequest[tx_id] = orq;
 }
@@ -144,7 +143,7 @@ function cashOutSubmit(uint256 tx_id) public onlyOwner {
 function cashOutRevert(uint256 tx_id, string memory err_msg) public onlyOwner {
     ORequest memory orq;
     orq = OutRequest[tx_id];
-    require(orq.executed = false, "transaction is already executed! (reentrancy guard)");
+    require(orq.executed == false, "transaction is already executed! (reentrancy guard)");
     address payable user = orq.wallet_from;
     uint amount = orq.amount;
     user.transfer(amount);
@@ -167,7 +166,7 @@ function proceedTransactionIN(IRequest memory ts) internal {
 function() external payable {
   //  cashOutRequest()
   // don't allow user to cashOut without pointing destination
-  revert("can't cashOut without out address");
+  //revert("can't cashOut without out address");
 }
 
 
