@@ -16,6 +16,7 @@ Events
 // this event should been catched by 'cashier' service and procced tx out at Fiat payment processer
 // amount is in Wei, so cashier probably need to convert it
 event cashOutRequestEvent(address indexed user, uint amount, string purce,uint256 indexed txid);
+event cashOutRequestEventAnonymouse(address user, uint amount, string purce, uint256 txid);
 
 // TODO add indexed payload to event
 
@@ -112,7 +113,7 @@ function cashInRequest(address payable user, string memory uuid, uint amount) pu
 
 // **WARN** -- DEPRECATED
 //
-// TODO Validator key can be added here to prove (submit) transaction from FIAT processor. 
+//TODO Validator key can be added here to prove (submit) transaction from FIAT processor.
 // It 's not neccerily, as we could just use the blockchain validation itself, but do it in more transcendent way
 // FIXME : change onlyOwner to onlyValidator
 function cashInSubmit(string memory uuid) public onlyOwner {
