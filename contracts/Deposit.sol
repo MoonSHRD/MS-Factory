@@ -89,6 +89,7 @@ function cashOutRequest(string memory purce, string memory paymentType) public p
     OutRequest[id] = orq;
 
     emit cashOutRequestEvent(wallet_from, amount, purce,id);
+    emit cashOutRequestEventAnonymouse(wallet_from, amount, purce, id);
 }
 
 // cash in
