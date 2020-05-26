@@ -28,6 +28,8 @@ contract PluggableSale is Context, ReentrancyGuard {
 
     // ticket type
     uint _ticket_type;
+    //
+    uint _sale_limit;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -57,7 +59,7 @@ contract PluggableSale is Context, ReentrancyGuard {
      * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
      *
      */
-    constructor (uint256 rate, address payable origin) public {
+    constructor (uint256 rate, address payable origin, uint sale_limit) public {
         require(rate > 0, "Crowdsale: rate is 0");
        // require(wallet != address(0), "Crowdsale: wallet is the zero address");
        // require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -68,6 +70,7 @@ contract PluggableSale is Context, ReentrancyGuard {
       //  require(_wallet == msg.sender, "only origin organizer can plug new sale");
 
         _rate = rate;
+        _sale_limit = sale_limit;
         _token = origin_sale.token();
 
         _event_id = origin_sale.event_id();
@@ -114,6 +117,14 @@ contract PluggableSale is Context, ReentrancyGuard {
 
     function event_id() public view returns (uint256) {
         return _event_id;
+    }
+
+    function sale_limit() public view returns (uint) {
+        return _sale_limit;
+    }
+
+    function ticket_type() public view returns (uint) {
+        return _ticket_type;
     }
 
     /**

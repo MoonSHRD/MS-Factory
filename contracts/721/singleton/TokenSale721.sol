@@ -117,7 +117,11 @@ contract TokenSale721 is Context, ReentrancyGuard {
     }
 
     function sale_limit() public view returns (uint) {
-        return sale_limit();
+        return _sale_limit;
+    }
+
+    function ticket_type() public view returns (uint) {
+        return _ticket_type;
     }
 
     /**
