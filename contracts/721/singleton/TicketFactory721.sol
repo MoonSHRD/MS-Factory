@@ -18,9 +18,9 @@ address ticket_template;
 
 // event
 event SaleCreated(address indexed organizer, uint price, uint256 indexed event_id, string indexed event_JID);
-event SaleCreatedHuman(address organizer, uint price, uint256 event_id, string event_JID);
+event SaleCreatedHuman(address organizer, uint price, uint256 event_id, string event_JID, uint ticket_type);
 event PluggedSale(address indexed organizer, address indexed orginal_sale, uint256 indexed event_id);
-event PluggedSaleHuman(address organizer, address original_sale, uint256 event_id);
+event PluggedSaleHuman(address organizer, address original_sale, uint256 event_id, uint ticket_type);
 
 // mapping from JID to event_id
 mapping (string => uint256) events_jids;
@@ -56,23 +56,25 @@ function createTicketSale(address payable organizer, uint price, string memory e
     TicketSale721 ticket_sale = TicketSale721(ticket_sale_adr);
 
     event_id = ticket_sale.event_id();
+    uint ticket_type = ticket_sale.ticket_type();
     events_jids[event_JID] = event_id;
     emit SaleCreated(organizer, price, event_id, event_JID);
-    emit SaleCreatedHuman(organizer,price,event_id, event_JID);
+    emit SaleCreatedHuman(organizer,price,event_id, event_JID, ticket_type);
     return(ticket_sale_adr, event_id);
 
 
 }
 
 
-function PlugInTicketSale(address payable origin_sale, uint price) public returns(address payable plugin_sale) {
+function PlugInTicketSale(address payable origin_sale, uint price, uint _sale_limit) public returns(address payable plugin_sale) {
     uint cena = calculateRate(price);
-    plugin_sale = address(new TicketSalePluggable(cena,origin_sale));
+    plugin_sale = address(new TicketSalePluggable(cena,origin_sale, _sale_limit));
     //TicketSale721 ticket_sale = TicketSale721(origin_sale);
     TicketSalePluggable plugin_sale_instance = TicketSalePluggable(plugin_sale);
     uint256 event_id = plugin_sale_instance.event_id();
+    uint ticket_type = plugin_sale_instance.ticket_type();
     emit PluggedSale(msg.sender,origin_sale,event_id);
-    emit PluggedSaleHuman(msg.sender, origin_sale, event_id);
+    emit PluggedSaleHuman(msg.sender, origin_sale, event_id, ticket_type);
     return plugin_sale;
 }
 

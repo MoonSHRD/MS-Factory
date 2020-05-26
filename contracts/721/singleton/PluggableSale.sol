@@ -28,6 +28,10 @@ contract PluggableSale is Context, ReentrancyGuard {
 
     // ticket type
     uint _ticket_type;
+    //
+    uint _sale_limit;
+    // how much have been already sold
+    uint public _sold_count = 0;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -57,7 +61,7 @@ contract PluggableSale is Context, ReentrancyGuard {
      * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
      *
      */
-    constructor (uint256 rate, address payable origin) public {
+    constructor (uint256 rate, address payable origin, uint sale_limit) public {
         require(rate > 0, "Crowdsale: rate is 0");
        // require(wallet != address(0), "Crowdsale: wallet is the zero address");
        // require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -68,6 +72,7 @@ contract PluggableSale is Context, ReentrancyGuard {
       //  require(_wallet == msg.sender, "only origin organizer can plug new sale");
 
         _rate = rate;
+        _sale_limit = sale_limit;
         _token = origin_sale.token();
 
         _event_id = origin_sale.event_id();
@@ -116,6 +121,14 @@ contract PluggableSale is Context, ReentrancyGuard {
         return _event_id;
     }
 
+    function sale_limit() public view returns (uint) {
+        return _sale_limit;
+    }
+
+    function ticket_type() public view returns (uint) {
+        return _ticket_type;
+    }
+
     /**
      * @dev low level token purchase ***DO NOT OVERRIDE***
      * This function has a non-reentrancy guard, so it shouldn't be called by
@@ -124,13 +137,17 @@ contract PluggableSale is Context, ReentrancyGuard {
      */
     function buyTokens(address beneficiary) public nonReentrant payable {
         uint256 weiAmount = msg.value;
-        _preValidatePurchase(beneficiary, weiAmount);
+       // _preValidatePurchase(beneficiary, weiAmount);
 
         // calculate token amount to be created
         uint256 tokens = _getTokenAmount(weiAmount);
 
+        // Validate purchase
+        _preValidatePurchase(beneficiary, weiAmount, tokens);
+
         // update state
         _weiRaised = _weiRaised.add(weiAmount);
+        _sold_count = _sold_count.add(tokens);
 
         _processPurchase(beneficiary, tokens);
         emit TokensPurchased(_msgSender(), beneficiary, weiAmount, tokens);
@@ -150,9 +167,11 @@ contract PluggableSale is Context, ReentrancyGuard {
      * @param beneficiary Address performing the token purchase
      * @param weiAmount Value in wei involved in the purchase
      */
-    function _preValidatePurchase(address beneficiary, uint256 weiAmount) internal view {
+    function _preValidatePurchase(address beneficiary, uint256 weiAmount, uint256 tokens) internal view {
         require(beneficiary != address(0), "Crowdsale: beneficiary is the zero address");
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
+        uint limit = _sold_count + tokens;
+        require(limit <= _sale_limit, "tokens amount should not exceed sale_limit");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
     }
 
