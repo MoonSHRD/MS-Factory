@@ -132,7 +132,6 @@ contract TokenSale721 is Context, ReentrancyGuard {
      */
     function buyTokens(address beneficiary) public nonReentrant payable {
         uint256 weiAmount = msg.value;
-       // _preValidatePurchase(beneficiary, weiAmount);
 
         // calculate token amount to be created
         uint256 tokens = _getTokenAmount(weiAmount);

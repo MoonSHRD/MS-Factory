@@ -7,7 +7,7 @@ contract TicketSalePluggable is PluggableSale {
 
 
 
-constructor(uint256 rate, address payable _origin) PluggableSale(rate, _origin) public {}
+constructor(uint256 rate, address payable _origin, uint sale_limit) PluggableSale(rate, _origin, sale_limit) public {}
 
 
 /**

@@ -30,6 +30,8 @@ contract PluggableSale is Context, ReentrancyGuard {
     uint _ticket_type;
     //
     uint _sale_limit;
+    // how much have been already sold
+    uint public _sold_count = 0;
 
     // Address where funds are collected
     address payable public _wallet;
@@ -135,13 +137,17 @@ contract PluggableSale is Context, ReentrancyGuard {
      */
     function buyTokens(address beneficiary) public nonReentrant payable {
         uint256 weiAmount = msg.value;
-        _preValidatePurchase(beneficiary, weiAmount);
+       // _preValidatePurchase(beneficiary, weiAmount);
 
         // calculate token amount to be created
         uint256 tokens = _getTokenAmount(weiAmount);
 
+        // Validate purchase
+        _preValidatePurchase(beneficiary, weiAmount, tokens);
+
         // update state
         _weiRaised = _weiRaised.add(weiAmount);
+        _sold_count = _sold_count.add(tokens);
 
         _processPurchase(beneficiary, tokens);
         emit TokensPurchased(_msgSender(), beneficiary, weiAmount, tokens);
@@ -161,9 +167,11 @@ contract PluggableSale is Context, ReentrancyGuard {
      * @param beneficiary Address performing the token purchase
      * @param weiAmount Value in wei involved in the purchase
      */
-    function _preValidatePurchase(address beneficiary, uint256 weiAmount) internal view {
+    function _preValidatePurchase(address beneficiary, uint256 weiAmount, uint256 tokens) internal view {
         require(beneficiary != address(0), "Crowdsale: beneficiary is the zero address");
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
+        uint limit = _sold_count + tokens;
+        require(limit <= _sale_limit, "tokens amount should not exceed sale_limit");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
     }
 
