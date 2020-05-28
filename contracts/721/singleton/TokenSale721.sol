@@ -69,7 +69,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
         _rate = rate;
         _wallet = wallet;
         _token = token;
-        _sale_limit = sale_limit;
+        _sale_limit = sale_limit * (1 ether);
 
         _event_id = _token.reserveEventId(_wallet,jid);
     }

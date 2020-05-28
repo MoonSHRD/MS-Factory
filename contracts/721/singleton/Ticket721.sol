@@ -127,7 +127,6 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         require(retailers[_sale] == orginizer, "only orginizer can plug item");
         eventsales[event_id].push(msg.sender);
         uint type_count = getTicketTypeCount(event_id);
-        type_count = type_count + 1;
         return type_count;
     }
 

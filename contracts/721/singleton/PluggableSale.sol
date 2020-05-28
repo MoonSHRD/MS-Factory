@@ -72,7 +72,7 @@ contract PluggableSale is Context, ReentrancyGuard {
       //  require(_wallet == msg.sender, "only origin organizer can plug new sale");
 
         _rate = rate;
-        _sale_limit = sale_limit;
+        _sale_limit = sale_limit * (1 ether);
         _token = origin_sale.token();
 
         _event_id = origin_sale.event_id();
