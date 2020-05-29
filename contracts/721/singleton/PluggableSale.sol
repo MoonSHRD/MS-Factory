@@ -221,8 +221,11 @@ contract PluggableSale is Context, ReentrancyGuard {
      * @return Number of tokens that can be purchased with the specified _weiAmount
      */
     function _getTokenAmount(uint256 weiAmount) internal view returns (uint256) {
-        return weiAmount.mul(_rate);
+      //  return weiAmount.mul(_rate);
         //FIXME: round result to int, check math
+        require(weiAmount >= _rate, "wei amount should be bigger or equal of rate");
+        uint256 ta = (weiAmount / (1 ether)) * (_rate / (1 ether));
+        return ta;
     }
 
     /**
