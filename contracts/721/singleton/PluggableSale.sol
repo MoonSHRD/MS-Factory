@@ -170,7 +170,8 @@ contract PluggableSale is Context, ReentrancyGuard {
     function _preValidatePurchase(address beneficiary, uint256 weiAmount, uint256 tokens) internal view {
         require(beneficiary != address(0), "Crowdsale: beneficiary is the zero address");
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
-        uint limit = _sold_count + tokens;
+        uint sc = _sold_count * (1 ether);
+        uint limit = sc + tokens;
         require(limit <= _sale_limit, "tokens amount should not exceed sale_limit");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
     }
