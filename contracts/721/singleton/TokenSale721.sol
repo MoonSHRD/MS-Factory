@@ -217,7 +217,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
       //  require(condition, message);
         require(weiAmount >= _rate, "wei amount should be bigger or equal of rate");
        // uint256 ta = SafeMath.mul(weiAmount, _rate);
-        uint256 ta = (weiAmount / (1 ether)) * (_rate / (1 ether));
+        uint256 ta = (weiAmount / (1 ether)) / (_rate / (1 ether));
         return ta;
        // return weiAmount.mul(_rate);
         //FIXME: round result to int, check math

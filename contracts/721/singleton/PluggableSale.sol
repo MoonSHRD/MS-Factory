@@ -224,7 +224,7 @@ contract PluggableSale is Context, ReentrancyGuard {
       //  return weiAmount.mul(_rate);
         //FIXME: round result to int, check math
         require(weiAmount >= _rate, "wei amount should be bigger or equal of rate");
-        uint256 ta = (weiAmount / (1 ether)) * (_rate / (1 ether));
+        uint256 ta = (weiAmount / (1 ether)) / (_rate / (1 ether));
         return ta;
     }
 
