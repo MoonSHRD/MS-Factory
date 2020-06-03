@@ -84,6 +84,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
    // Counters.Counter ticket_type;
     uint ticket_type;
     string event_JID;
+    address sale_address;
   }
 
    // TicketInfo[] internal ticketStorage;
@@ -141,7 +142,7 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
 
             _mint(buyer,ticket_id);
             string memory jid = getJidbyEventID(event_id);
-            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type, jid);
+            ticketInfoStorage[ticket_id] = TicketInfo(TicketState.Paid,_ticket_type, jid,_sale);
             ticketIndex[ticket_id] = ticketIds[event_id].length;
             ticketIds[event_id].push(ticket_id);
             // approve for ticketsale (msg.sender = ticketsale)
