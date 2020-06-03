@@ -129,6 +129,10 @@ contract PluggableSale is Context, ReentrancyGuard {
         return _ticket_type;
     }
 
+    function sold_count() public view returns (uint) {
+        return _sold_count;
+    }
+
     /**
      * @dev low level token purchase ***DO NOT OVERRIDE***
      * This function has a non-reentrancy guard, so it shouldn't be called by
