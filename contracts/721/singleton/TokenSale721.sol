@@ -45,7 +45,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint256 private _weiRaised;
 
     // service comission fee
-    uint percent_fee;
+    uint public percent_fee;
 
 
     /**
@@ -56,6 +56,9 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param amount amount of tokens purchased
      */
     event TokensPurchased(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
+
+    event CalculatedFees(uint256 initial_value, uint256 fees, uint256 transfered_amount);
+
 
     /**
      * @param rate Number of token units a buyer gets per wei
@@ -236,7 +239,11 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @dev Determines how ETH is stored/forwarded on purchases.
      */
     function _forwardFunds() internal {
-        _wallet.transfer(msg.value);
+        uint256 amount = msg.value;
+        uint256 scale = 100;
+        uint256 fees = calculateFee(amount,scale);
+        amount = amount - fees;
+        _wallet.transfer(amount);
     }
 
 
@@ -267,7 +274,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     /*
     *   Calculate fee (SafeMath)
     */
-    function calculateFee(uint256 amount, uint256 scale) internal view returns (uint256) {
+    function calculateFee(uint256 amount, uint256 scale) internal returns (uint256) {
         uint256 a = SafeMath.div(amount, scale);
         uint256 b = SafeMath.mod(amount, scale);
         uint256 c = SafeMath.div(percent_fee, scale);
@@ -293,6 +300,9 @@ contract TokenSale721 is Context, ReentrancyGuard {
         uint256 a2 = SafeMath.add(m1,m2);
         uint256 a3 = SafeMath.add(a2,m3);
         uint256 a4 = SafeMath.add(a3,d2);
+
+        uint256 check = amount - a4;
+        emit CalculatedFees(amount,a4,check);
 
         return a4;
     }
