@@ -9,7 +9,7 @@ using Counters for Counters.Counter;
 
 Counters.Counter scanned_tickets;
 
-constructor(uint256 rate, address payable wallet, Ticket721 token, uint sale_limit, string memory jid) TokenSale721(rate,wallet,token, sale_limit, jid) public {}
+constructor(uint256 rate, address payable wallet, Ticket721 token, uint sale_limit, string memory jid, address payable _treasure_fund) TokenSale721(rate,wallet,token, sale_limit, jid, _treasure_fund) public {}
 
 
 /**

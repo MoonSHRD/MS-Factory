@@ -35,6 +35,9 @@ contract TokenSale721 is Context, ReentrancyGuard {
     // Address where funds are collected
     address payable public _wallet;
 
+    // Address where we collect comission
+    address payable public treasure_fund;
+
     // How many token units a buyer gets per wei.
     // The rate is the conversion between wei and the smallest and indivisible token unit.
     // So, if you are using a rate of 1 with a ERC20Detailed token with 3 decimals called TOK
@@ -68,13 +71,14 @@ contract TokenSale721 is Context, ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, Ticket721 token, uint sale_limit, string memory jid) public {
+    constructor (uint256 rate, address payable wallet, Ticket721 token, uint sale_limit, string memory jid, address payable _treasure_fund) public {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
         require(address(token) != address(0), "Crowdsale: token is the zero address");
 
         _rate = rate;
         _wallet = wallet;
+        treasure_fund = _treasure_fund;
         _token = token;
         _sale_limit = sale_limit * (1 ether);
 
@@ -244,6 +248,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
         uint256 fees = calculateFee(amount,scale);
         amount = amount - fees;
         _wallet.transfer(amount);
+        treasure_fund.transfer(fees);
     }
 
 
