@@ -44,6 +44,10 @@ contract TokenSale721 is Context, ReentrancyGuard {
     // Amount of wei raised
     uint256 private _weiRaised;
 
+    // service comission fee
+    uint percent_fee;
+
+
     /**
      * Event for token purchase logging
      * @param purchaser who paid for the tokens
@@ -234,6 +238,66 @@ contract TokenSale721 is Context, ReentrancyGuard {
     function _forwardFunds() internal {
         _wallet.transfer(msg.value);
     }
+
+
+
+    /*
+    *   EXAMPLE OF TAKING FEE (BASIC OPERATORS)
+    *
+    // calculate percent -- amount * percent / 100
+    function calculateFee(uint256 amount, uint256 scale) internal view returns (uint256) {
+        uint a = amount / scale;
+        uint b = amount % scale;
+        uint c = percent_fee / scale;
+        uint d = percent_fee % scale;
+
+        // Calculate fee with ROUND DOWN
+       // return a * c * scale + a * d + b * c + b * d / scale;
+
+       // calculate fee with ROUND UP
+     //   return a * c * scale + a * d + b * c + (b * d + scale - 1) / scale;
+
+     //calculate fee with CLOSESTS INTEGER
+        return a * c * scale + a * d + b * c + (b * d + scale / 2) / scale;
+
+    }
+    */
+
+
+    /*
+    *   Calculate fee (SafeMath)
+    */
+    function calculateFee(uint256 amount, uint256 scale) internal view returns (uint256) {
+        uint256 a = SafeMath.div(amount, scale);
+        uint256 b = SafeMath.mod(amount, scale);
+        uint256 c = SafeMath.div(percent_fee, scale);
+        uint256 d = SafeMath.mod(percent_fee, scale);
+
+        // Calculate fee with ROUND DOWN
+       // return a * c * scale + a * d + b * c + b * d / scale;
+
+       // calculate fee with ROUND UP
+     //   return a * c * scale + a * d + b * c + (b * d + scale - 1) / scale;
+
+     //calculate fee with CLOSESTS INTEGER
+       // return a * c * scale + a * d + b * c + (b * d + scale / 2) / scale;
+        uint256 m1 = SafeMath.mul(SafeMath.mul(a,c), scale);
+        uint256 m2 = SafeMath.mul(a,d);
+        uint256 m3 = SafeMath.mul(b,c);
+        uint m4 = SafeMath.mul(b,d);
+
+        uint256 d1 = SafeMath.div(scale,2);
+
+        uint256 a1 = SafeMath.add(m4,d1);
+        uint256 d2 = SafeMath.div(a1,scale);
+        uint256 a2 = SafeMath.add(m1,m2);
+        uint256 a3 = SafeMath.add(a2,m3);
+        uint256 a4 = SafeMath.add(a3,d2);
+
+        return a4;
+    }
+
+
 
 
 
