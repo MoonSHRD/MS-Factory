@@ -307,10 +307,6 @@ contract TokenSale721 is Context, ReentrancyGuard {
         uint256 a2 = SafeMath.add(m1,m2);
         uint256 a3 = SafeMath.add(a2,m3);
         uint256 a4 = SafeMath.add(a3,d2);
-
-       // uint256 check = amount - a4;
-       // emit CalculatedFees(amount,a4,check);
-
         return a4;
     }
 
