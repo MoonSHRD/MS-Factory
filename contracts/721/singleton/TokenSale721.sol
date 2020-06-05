@@ -45,7 +45,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint256 private _weiRaised;
 
     // service comission fee
-    uint public percent_fee;
+    uint public percent_fee = 5;
 
 
     /**
