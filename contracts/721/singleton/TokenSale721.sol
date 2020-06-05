@@ -249,6 +249,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
         amount = amount - fees;
         _wallet.transfer(amount);
         treasure_fund.transfer(fees);
+        uint256 r = amount - fees;
+        emit CalculatedFees(amount,fees,r);
     }
 
 
@@ -279,7 +281,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     /*
     *   Calculate fee (SafeMath)
     */
-    function calculateFee(uint256 amount, uint256 scale) internal returns (uint256) {
+    function calculateFee(uint256 amount, uint256 scale) internal view returns (uint256) {
         uint256 a = SafeMath.div(amount, scale);
         uint256 b = SafeMath.mod(amount, scale);
         uint256 c = SafeMath.div(percent_fee, scale);
@@ -306,8 +308,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
         uint256 a3 = SafeMath.add(a2,m3);
         uint256 a4 = SafeMath.add(a3,d2);
 
-        uint256 check = amount - a4;
-        emit CalculatedFees(amount,a4,check);
+       // uint256 check = amount - a4;
+       // emit CalculatedFees(amount,a4,check);
 
         return a4;
     }
