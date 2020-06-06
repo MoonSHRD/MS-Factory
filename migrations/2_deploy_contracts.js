@@ -21,7 +21,7 @@ module.exports = function(deployer, network, accounts) {
 console.log("gas limit");
 console.log(limitGas);
 deployer.deploy(Ticket, {gasPrice:'1'}).then(function() {
-  return deployer.deploy(TicketFactory,Ticket.address,{gasPrice:'1'});
+  return deployer.deploy(TicketFactory,Ticket.address,accounts[0],{gasPrice:'1'}); // parameters -- ticket address, treasure_fund address
 })
 deployer.deploy(Deposit,{gasPrice:'1', value:'1'}); //FIXME: add value sent to deposit contract
 };

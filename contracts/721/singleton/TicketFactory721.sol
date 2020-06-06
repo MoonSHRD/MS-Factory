@@ -16,6 +16,8 @@ contract TicketFactory721 {
 // constant
 address ticket_template;
 
+address payable treasure_fund;
+
 // event
 event SaleCreated(address indexed organizer, uint price, uint256 indexed event_id, string indexed event_JID);
 event SaleCreatedHuman(address organizer, uint price, uint256 event_id, string event_JID, uint ticket_type);
@@ -26,9 +28,10 @@ event PluggedSaleHuman(address organizer, address original_sale, uint256 event_i
 mapping (string => uint256) events_jids;
 
 
-constructor(address _ticket) public {
+constructor(address _ticket, address payable _treasure_fund) public {
    // ticket_template = createTicket721();
    ticket_template = _ticket;
+   treasure_fund = _treasure_fund;
 }
 
 
@@ -43,7 +46,7 @@ function createTicketSale721(address payable organizer, uint price, Ticket721 to
     // calculate price
     uint256 cena = calculateRate(price);
 
-    ticket_sale = address(new TicketSale721(cena, organizer, token, sale_limit, jid));
+    ticket_sale = address(new TicketSale721(cena, organizer, token, sale_limit, jid,treasure_fund));
     return ticket_sale;
 }
 
