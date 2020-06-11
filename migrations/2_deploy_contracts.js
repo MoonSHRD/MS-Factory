@@ -6,7 +6,7 @@ var Ticket = artifacts.require("./721/singleton/Ticket721.sol")
 var accounts = web3.eth.getAccounts();
 var limitGas = web3.eth.getBlock("latest").gasLimit;
 
-var deposit_value = '1';
+var deposit_value = '50000';  // deposit INITIAL exchange market cup (turn capital)
 var deposit_value_wei = web3.utils.toWei(deposit_value,'ether');
 
 
