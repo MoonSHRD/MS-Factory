@@ -18,7 +18,8 @@ module.exports = {
       gasPrice: '1',
       network_id: '5777'
     },
-    moonshard: {
+    /*
+    moonshard: {              // for test purposes, do not use it in production
       host: "51.15.244.238",
       port: "8501",
       gasLimit: '9000000',
@@ -26,7 +27,15 @@ module.exports = {
       gasPrice: '1',
       network_id: '8995',
       from: "0x5fCBc110868ce8Ec2cc840D5dC1f5C234783cdaE"
-    }
+    },
+    */
+    moonshard_local: {
+      host: "127.0.0.1",
+      port: 8545,
+      gasPrice: '1',
+      network_id: "*",
+      from: "0x3214db97bf87a057c039a39594e91cd31f5d2a2c"
+    },
   },
   compilers: {
     solc: {
