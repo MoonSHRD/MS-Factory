@@ -36,6 +36,9 @@ contract PluggableSale is Context, ReentrancyGuard {
     // Address where funds are collected
     address payable public _wallet;
 
+    // Address where we collect comission
+    address payable public treasure_fund;
+
     // How many token units a buyer gets per wei.
     // The rate is the conversion between wei and the smallest and indivisible token unit.
     // So, if you are using a rate of 1 with a ERC20Detailed token with 3 decimals called TOK
@@ -44,6 +47,9 @@ contract PluggableSale is Context, ReentrancyGuard {
 
     // Amount of wei raised
     uint256 private _weiRaised;
+
+    // service comission fee
+    uint public percent_fee = 5;
 
     /**
      * Event for token purchase logging
@@ -54,6 +60,9 @@ contract PluggableSale is Context, ReentrancyGuard {
      */
     event TokensPurchased(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
 
+    event CalculatedFees(uint256 initial_value, uint256 fees, uint256 transfered_amount);
+
+
     /**
      * @param rate Number of token units a buyer gets per wei
      * @dev The rate is the conversion between wei and the smallest and indivisible
@@ -61,7 +70,7 @@ contract PluggableSale is Context, ReentrancyGuard {
      * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
      *
      */
-    constructor (uint256 rate, address payable origin, uint sale_limit) public {
+    constructor (uint256 rate, address payable origin, uint sale_limit, address payable _treasure_fund) public {
         require(rate > 0, "Crowdsale: rate is 0");
        // require(wallet != address(0), "Crowdsale: wallet is the zero address");
        // require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -69,6 +78,7 @@ contract PluggableSale is Context, ReentrancyGuard {
         origin_sale = TokenSale721(origin);
 
         _wallet = origin_sale.wallet();
+        treasure_fund = _treasure_fund;
       //  require(_wallet == msg.sender, "only origin organizer can plug new sale");
 
         _rate = rate;
@@ -237,9 +247,46 @@ contract PluggableSale is Context, ReentrancyGuard {
      * @dev Determines how ETH is stored/forwarded on purchases.
      */
     function _forwardFunds() internal {
-        _wallet.transfer(msg.value);
+        uint256 amount = msg.value;
+        uint256 scale = 100;
+        uint256 fees = calculateFee(amount,scale);
+        amount = amount - fees;
+        _wallet.transfer(amount);
+        treasure_fund.transfer(fees);
+        uint256 r = amount - fees;
+        emit CalculatedFees(amount,fees,r);
     }
 
+    /*
+    *   Calculate fee (SafeMath)
+    */
+    function calculateFee(uint256 amount, uint256 scale) internal view returns (uint256) {
+        uint256 a = SafeMath.div(amount, scale);
+        uint256 b = SafeMath.mod(amount, scale);
+        uint256 c = SafeMath.div(percent_fee, scale);
+        uint256 d = SafeMath.mod(percent_fee, scale);
 
+        // Calculate fee with ROUND DOWN
+       // return a * c * scale + a * d + b * c + b * d / scale;
+
+       // calculate fee with ROUND UP
+     //   return a * c * scale + a * d + b * c + (b * d + scale - 1) / scale;
+
+     //calculate fee with CLOSESTS INTEGER
+       // return a * c * scale + a * d + b * c + (b * d + scale / 2) / scale;
+        uint256 m1 = SafeMath.mul(SafeMath.mul(a,c), scale);
+        uint256 m2 = SafeMath.mul(a,d);
+        uint256 m3 = SafeMath.mul(b,c);
+        uint m4 = SafeMath.mul(b,d);
+
+        uint256 d1 = SafeMath.div(scale,2);
+
+        uint256 a1 = SafeMath.add(m4,d1);
+        uint256 d2 = SafeMath.div(a1,scale);
+        uint256 a2 = SafeMath.add(m1,m2);
+        uint256 a3 = SafeMath.add(a2,m3);
+        uint256 a4 = SafeMath.add(a3,d2);
+        return a4;
+    }
 
 }

@@ -93,7 +93,7 @@ public class Deposit extends Contract {
 
     static {
         _addresses = new HashMap<String, String>();
-        _addresses.put("8995", "0xD93e4e0958efa3E9D36457D1966C1EE718cD8149");
+        _addresses.put("8995", "0x56D17255fFFab24677ba0e6760d9F6ac86313493");
     }
 
     @Deprecated

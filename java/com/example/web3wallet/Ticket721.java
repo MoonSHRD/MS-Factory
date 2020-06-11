@@ -156,7 +156,7 @@ public class Ticket721 extends Contract {
 
     static {
         _addresses = new HashMap<String, String>();
-        _addresses.put("8995", "0xA7eDA6f4FE64884c210795A4E790Ac89DB1F7aA9");
+        _addresses.put("8995", "0x272Af4b45f1945933caf7cebD4dfeB0a01212b33");
     }
 
     @Deprecated
