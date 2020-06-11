@@ -9,7 +9,7 @@ contract TicketSalePluggable is PluggableSale {
 using Counters for Counters.Counter;
 Counters.Counter scanned_tickets;
 
-constructor(uint256 rate, address payable _origin, uint sale_limit) PluggableSale(rate, _origin, sale_limit) public {}
+constructor(uint256 rate, address payable _origin, uint sale_limit, address payable _treasure_fund) PluggableSale(rate, _origin, sale_limit, _treasure_fund) public {}
 
 
 /**

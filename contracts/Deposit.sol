@@ -164,7 +164,7 @@ function proceedTransactionIN(IRequest memory ts) internal {
 
 
 
-// fallback
+// fallback -- this functiion should be invoked when we need to add turn capital to deposit
 function() external payable {
   //  cashOutRequest()
   // don't allow user to cashOut without pointing destination
