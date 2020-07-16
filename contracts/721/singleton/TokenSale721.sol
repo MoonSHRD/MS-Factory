@@ -56,6 +56,9 @@ contract TokenSale721 is Context, ReentrancyGuard {
     // How much time before event start (in seconds)
     uint _timeToStart;
 
+    // Funds, that have been locked
+    uint256 public lockedFunds;
+
     /**
      * Event for token purchase logging
      * @param purchaser who paid for the tokens
@@ -169,7 +172,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
 
         _updatePurchasingState(beneficiary, weiAmount);
 
-        _forwardFunds();
+     //   _forwardFunds();
+         _lockFunds();
         _postValidatePurchase(beneficiary, weiAmount);
     }
 
@@ -260,7 +264,29 @@ contract TokenSale721 is Context, ReentrancyGuard {
         emit CalculatedFees(amount,fees,r);
     }
 
+    // Locking funds form sales to contract balance
+    function _lockFunds() public payable {
+        uint256 amount = msg.value;
+        uint256 scale = 100;
+        uint256 fees = calculateFee(amount,scale);
+        amount = amount - fees;
+        treasure_fund.transfer(fees);
+        uint256 r = amount - fees;
+        emit CalculatedFees(amount,fees,r);
+        lockedFunds = lockedFunds + amount;
 
+    }
+
+    // WithDraw locked funds to organiser
+    function withDrawFunds() public {
+        require(msg.sender == _wallet, "only organaizer can do it");
+        if (now >= crDate - _timeToStart) {
+            _wallet.transfer(lockedFunds);
+            lockedFunds == 0;
+        } else {
+            revert("event is not started yet, funds are locked");
+        }
+    }
 
     /*
     *   EXAMPLE OF TAKING FEE (BASIC OPERATORS)
