@@ -251,7 +251,9 @@ contract PluggableSale is Context, ReentrancyGuard {
         uint256 scale = 100;
         uint256 fees = calculateFee(amount,scale);
         amount = amount - fees;
-        _wallet.transfer(amount);
+      //  _wallet.transfer(amount);
+       // origin_sale._lockFunds{value:amount}();
+        origin_sale._lockFunds.value(amount)();
         treasure_fund.transfer(fees);
         uint256 r = amount - fees;
         emit CalculatedFees(amount,fees,r);
