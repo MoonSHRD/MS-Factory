@@ -42,20 +42,20 @@ function createTicket721() internal returns (address ticket_address) {
 }
 
 
-function createTicketSale721(address payable organizer, uint price, Ticket721 token,uint sale_limit, string memory jid) internal returns(address payable ticket_sale) {
+function createTicketSale721(address payable organizer, uint price, Ticket721 token,uint sale_limit, string memory jid,uint timeToStart) internal returns(address payable ticket_sale) {
     // calculate price
     uint256 cena = calculateRate(price);
 
-    ticket_sale = address(new TicketSale721(cena, organizer, token, sale_limit, jid,treasure_fund));
+    ticket_sale = address(new TicketSale721(cena, organizer, token, sale_limit, jid,treasure_fund, timeToStart));
     return ticket_sale;
 }
 
-function createTicketSale(address payable organizer, uint price, string memory event_JID, uint sale_limit) public returns (address payable ticket_sale_adr, uint256 event_id) {
+function createTicketSale(address payable organizer, uint price, string memory event_JID, uint sale_limit, uint timeToStart) public returns (address payable ticket_sale_adr, uint256 event_id) {
 
     address ticket_adr = ticket_template;
     require(events_jids[event_JID] == 0, "sale with this JID is already created!");
     Ticket721 ticket = Ticket721(ticket_adr);
-    ticket_sale_adr = createTicketSale721(organizer, price, ticket,sale_limit, event_JID);
+    ticket_sale_adr = createTicketSale721(organizer, price, ticket,sale_limit, event_JID, timeToStart);
     TicketSale721 ticket_sale = TicketSale721(ticket_sale_adr);
 
     event_id = ticket_sale.event_id();
