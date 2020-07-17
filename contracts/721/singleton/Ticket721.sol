@@ -197,6 +197,19 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         emit TicketFulfilledHuman(visitor, event_id,tokenId);
     }
 
+    function refundTicket(address visitor,uint256 tokenId, uint256 event_id) public returns(bool) {
+        address[] memory _sales = eventsales[event_id];
+        TicketInfo memory info = ticketInfoStorage[tokenId];
+        address _sale = _sales[info.ticket_type - 1];
+        require(_sale == msg.sender, "you should call refund from ticketsale contract");
+        // check status
+        TicketState status = getTicketStatus(tokenId);
+        require(status == TicketState.Paid, "ticket status is not valid");
+        _transferFromTicket(visitor, msg.sender, tokenId);
+        info.state = TicketState.Cancelled;
+        ticketInfoStorage[tokenId] = info;
+        return true;
+    }
 
     function getTicketTypeCount(uint256 event_id) public view returns(uint) {
         address[] memory _sales = eventsales[event_id];
@@ -225,4 +238,9 @@ contract Ticket721 is ERC721Enumerable, ERC721Mintable {
         return jid;
     }
 
+    function getTicketStatus(uint ticket_id) public view returns (TicketState status) {
+        TicketInfo memory info = ticketInfoStorage[ticket_id];
+        status = info.state;
+        return status;
+    }
 }

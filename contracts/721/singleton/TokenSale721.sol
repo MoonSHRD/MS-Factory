@@ -54,7 +54,7 @@ contract TokenSale721 is Context, ReentrancyGuard {
     uint public crDate = now;
 
     // How much time before event start (in seconds)
-    uint _timeToStart;
+    uint public _timeToStart;
 
     // Funds, that have been locked
     uint256 public lockedFunds;
@@ -260,8 +260,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
         amount = amount - fees;
         _wallet.transfer(amount);
         treasure_fund.transfer(fees);
-        uint256 r = amount - fees;
-        emit CalculatedFees(amount,fees,r);
+        uint256 r = amount + fees;
+        emit CalculatedFees(r,fees,amount);
     }
 
     // Locking funds form sales to contract balance
@@ -271,8 +271,8 @@ contract TokenSale721 is Context, ReentrancyGuard {
         uint256 fees = calculateFee(amount,scale);
         amount = amount - fees;
         treasure_fund.transfer(fees);
-        uint256 r = amount - fees;
-        emit CalculatedFees(amount,fees,r);
+        uint256 r = amount + fees;
+        emit CalculatedFees(r,fees,amount);
         lockedFunds = lockedFunds + amount;
 
     }
@@ -282,10 +282,15 @@ contract TokenSale721 is Context, ReentrancyGuard {
         require(msg.sender == _wallet, "only organaizer can do it");
         if (now >= crDate - _timeToStart) {
             _wallet.transfer(lockedFunds);
-            lockedFunds == 0;
+            lockedFunds = 0;
         } else {
             revert("event is not started yet, funds are locked");
         }
+    }
+
+    function refundToken(address payable visitor, uint256 amount) internal {
+        visitor.transfer(amount);
+        lockedFunds = lockedFunds.sub(amount);
     }
 
     /*
