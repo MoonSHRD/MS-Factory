@@ -64,7 +64,7 @@ function refundTicket(uint256 token_id) public {
             uint256 amount = rate / (1 ether);
             uint fees = calculateFee(amount, 100);
             amount = amount - fees;
-            refundToken(visitor, amount);
+            super.refundToken(visitor, amount);
 
         } else {
             revert("event is already started");
