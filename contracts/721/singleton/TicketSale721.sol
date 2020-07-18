@@ -61,7 +61,8 @@ function refundTicket(uint256 token_id) public {
     if (now <= crDate - _timeToStart) {
          require(ticket_token.refundTicket(msg.sender, token_id, event_id), "can't refund ticket from Ticket721");
             uint256 rate = rate();
-            uint256 amount = rate / (1 ether);
+//            uint256 amount = rate / (1 ether);
+            uint256 amount = rate;
             uint fees = calculateFee(amount, 100);
             amount = amount - fees;
             super.refundToken(visitor, amount);
