@@ -1,4 +1,6 @@
 # MS-Factory
+**DEPRECATED AS OBSOLETE** , see new version here -- https://github.com/MoonSHRD/UniversalNFTMarketplace 
+
 Portable payment system core, based on ethereum
 
 ## Main features
